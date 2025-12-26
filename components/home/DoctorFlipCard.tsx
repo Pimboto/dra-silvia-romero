@@ -5,8 +5,14 @@ import { Link } from "@heroui/link";
 
 export const DoctorFlipCard = () => {
   return (
-    <section className="py-24 px-6 md:px-12 bg-white">
-      <div className="max-w-7xl mx-auto items-center gap-16 grid grid-cols-1 lg:grid-cols-2">
+    <section className="relative py-24 px-6 md:px-12 bg-white">
+      {/* Degradado superior */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-luxury-black/10 to-transparent"></div>
+      
+      {/* Degradado inferior */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-neutral-50/80"></div>
+      
+      <div className="max-w-7xl mx-auto items-center gap-16 grid grid-cols-1 lg:grid-cols-2 relative z-10">
 
         {/* 3D Filp Card Component */}
         <div className="group w-full h-[650px] [perspective:1000px]">
@@ -15,7 +21,7 @@ export const DoctorFlipCard = () => {
             {/* FRONT FACE */}
             <div className="absolute w-full h-full [backface-visibility:hidden]">
               <img
-                src="https://images.unsplash.com/photo-1559839734-2b71ea86b48e?q=80&w=2070&auto=format&fit=crop"
+                src="/img/doc/doctora.jpeg"
                 alt="Dra. Silvia Romero"
                 className="w-full h-full object-cover grayscale brightness-110"
               />
@@ -47,7 +53,7 @@ export const DoctorFlipCard = () => {
                   <span className="text-gold font-serif text-2xl opacity-50 font-bold group-hover/item:opacity-100 transition-opacity">01.</span>
                   <div>
                     <h4 className="text-white text-sm uppercase tracking-wider font-bold mb-1">Formación</h4>
-                    <p className="text-gray-400 font-light text-sm leading-relaxed">Médica y Cirujana - Universidad Industrial de Santander (UIS).</p>
+                    <p className="text-gray-400 font-light text-sm leading-relaxed">Medicina General - Universidad Industrial de Santander, Colombia.</p>
                   </div>
                 </div>
 
@@ -55,7 +61,7 @@ export const DoctorFlipCard = () => {
                   <span className="text-gold font-serif text-2xl opacity-50 font-bold group-hover/item:opacity-100 transition-opacity">02.</span>
                   <div>
                     <h4 className="text-white text-sm uppercase tracking-wider font-bold mb-1">Especialización</h4>
-                    <p className="text-gray-400 font-light text-sm leading-relaxed">Cirugía Plástica, Estética y Reconstructiva.</p>
+                    <p className="text-gray-400 font-light text-sm leading-relaxed">Cirugía Plástica - Universidad Industrial de Santander, Colombia.</p>
                   </div>
                 </div>
 
@@ -63,14 +69,14 @@ export const DoctorFlipCard = () => {
                   <span className="text-gold font-serif text-2xl opacity-50 font-bold group-hover/item:opacity-100 transition-opacity">03.</span>
                   <div>
                     <h4 className="text-white text-sm uppercase tracking-wider font-bold mb-1">Experiencia</h4>
-                    <p className="text-gray-400 font-light text-sm leading-relaxed">+5 Años de trayectoria y más de 400 vidas transformadas con éxito.</p>
+                    <p className="text-gray-400 font-light text-sm leading-relaxed">5 Años de experiencia y aprox. 400 cirugías realizadas.</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-12 text-center">
                 <div className="inline-block p-4 border border-white/10 bg-white/5 backdrop-blur-sm">
-                  <p className="text-xs text-gold uppercase tracking-widest text-center">Miembro SCCP</p>
+                  <p className="text-xs text-gold uppercase tracking-widest text-center">Miembro SCCP • Motiva Certified</p>
                 </div>
               </div>
             </div>
@@ -89,11 +95,8 @@ export const DoctorFlipCard = () => {
           </h2>
 
           <div className="space-y-8 text-lg leading-relaxed text-gray-600 font-light border-l border-gray-200 pl-8">
-            <blockquote className="italic text-gray-800 font-serif text-xl">
-              "La belleza no se trata de cambiar quien eres, sino de revelar tu versión más radiante y segura."
-            </blockquote>
             <p>
-              Entiendo la cirugía plástica como el punto de encuentro exacto entre la ciencia médica rigorosa y la sensibilidad artística. Cada procedimiento es planificado meticulosamente, respetando la anatomía única de cada paciente.
+              Busco ir más allá, logrando una transformación de cuerpo, mente y espíritu, acompañándote con amor en cada paso de este proceso.
             </p>
           </div>
 

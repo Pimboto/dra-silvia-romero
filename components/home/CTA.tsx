@@ -6,8 +6,8 @@ import { Whatsapp, Calendar } from "iconsax-reactjs";
 
 export const CTA = () => {
   return (
-    <section className="py-32 px-6 flex flex-col items-center justify-center bg-gold/10 text-center">
-      <h2 className="text-5xl md:text-7xl font-serif mb-8 text-luxury-black">¿Lista para el cambio?</h2>
+    <section className="py-32 px-6 flex flex-col items-center justify-center bg-luxury-black text-center">
+      <h2 className="text-5xl md:text-7xl font-serif mb-8 text-white">¿Lista para el cambio?</h2>
       <div className="flex flex-col md:flex-row gap-6">
         <Button
           as={Link}

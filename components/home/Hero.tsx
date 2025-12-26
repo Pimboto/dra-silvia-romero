@@ -6,13 +6,22 @@ import { Link } from "@heroui/link";
 export const Hero = () => {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-luxury-black">
-      {/* Placeholder for Video Background */}
-      <div className="absolute inset-0 bg-neutral-900/50 z-0">
-        <div className="w-full h-full opacity-30 bg-gradient-to-b from-black/20 via-black/40 to-black/80">
-          {/* Simulated Video Element */}
-          <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1519681393798-3828fb4090bb?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center grayscale mix-blend-overlay opacity-40"></div>
-        </div>
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover scale-110 blur-md opacity-40"
+        >
+          <source src="/vid/hero-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent"></div>
       </div>
+      
+      {/* Gradiente suave hacia la siguiente sección */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white z-[5]"></div>
 
       <div className="relative z-10 text-center max-w-4xl px-6 animate-fade-in-up">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 tracking-tight leading-tight">
