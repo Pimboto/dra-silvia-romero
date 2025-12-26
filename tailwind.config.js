@@ -9,9 +9,16 @@ const config = {
   ],
   theme: {
     extend: {
+      colors: {
+        gold: {
+          DEFAULT: "#D4AF37",
+          light: "#E5C565", // Lighter variation for hover
+        },
+        "luxury-black": "#1a1a1a",
+      },
       fontFamily: {
         sans: ["var(--font-sans)"],
-        mono: ["var(--font-mono)"],
+        serif: ["var(--font-serif)"],
       },
     },
   },

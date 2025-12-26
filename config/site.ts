@@ -1,62 +1,62 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + HeroUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Dra. Silvia Romero - Medicina Estética",
+  description: "Medicina Estética de Alta Gama. Resultados naturales y elegantes.",
   navItems: [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
+      label: "La Doctora",
       href: "/about",
+    },
+    {
+      label: "Servicios",
+      href: "/services",
+    },
+    {
+      label: "Antes y Después",
+      href: "/results",
+    },
+    {
+      label: "Testimonios",
+      href: "/testimonials",
+    },
+    {
+      label: "Aliados / Post-operatorio",
+      href: "/allies",
+    },
+    {
+      label: "FAQ",
+      href: "/faq",
+    },
+    {
+      label: "Contacto",
+      href: "/contact",
     },
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "La Doctora",
+      href: "/about",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Servicios",
+      href: "/services",
     },
     {
-      label: "Projects",
-      href: "/projects",
+      label: "Antes y Después",
+      href: "/results",
     },
     {
-      label: "Team",
-      href: "/team",
+      label: "Testimonios",
+      href: "/testimonials",
     },
     {
-      label: "Calendar",
-      href: "/calendar",
+      label: "FAQ",
+      href: "/faq",
     },
     {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "Contacto",
+      href: "/contact",
     },
   ],
   links: {
