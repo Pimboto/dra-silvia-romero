@@ -5,93 +5,109 @@ import { Link } from "@heroui/link";
 
 export const DoctorFlipCard = () => {
   return (
-    <section className="py-32 px-6 md:px-12 bg-white">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
-        {/* Flip Card Container */}
-        <div className="group w-full md:w-1/2 h-[750px] perspective-1000">
-          <div className="relative w-full h-full transition-all duration-1000 transform style-preserve-3d group-hover:rotate-y-180 shadow-2xl">
-            {/* Front */}
-            <div className="absolute w-full h-full backface-hidden">
+    <section className="py-24 px-6 md:px-12 bg-white">
+      <div className="max-w-7xl mx-auto items-center gap-16 grid grid-cols-1 lg:grid-cols-2">
+
+        {/* 3D Filp Card Component */}
+        <div className="group w-full h-[650px] [perspective:1000px]">
+          <div className="relative w-full h-full transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] shadow-2xl rounded-sm">
+
+            {/* FRONT FACE */}
+            <div className="absolute w-full h-full [backface-visibility:hidden]">
               <img
                 src="https://images.unsplash.com/photo-1559839734-2b71ea86b48e?q=80&w=2070&auto=format&fit=crop"
                 alt="Dra. Silvia Romero"
                 className="w-full h-full object-cover grayscale brightness-110"
               />
-              <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-                <h3 className="text-4xl font-serif text-white mb-1">Dra. Silvia Romero</h3>
-                <p className="text-gold tracking-widest text-sm uppercase font-semibold">Cirujana Plástica Estética y Reconstructiva</p>
-                <p className="text-gray-300 text-sm mt-4 opacity-80 italic">"La belleza es un estado de equilibrio"</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90"></div>
+
+              <div className="absolute bottom-0 left-0 w-full p-10">
+                <div className="border-l-4 border-gold pl-6">
+                  <h3 className="text-4xl md:text-5xl font-serif text-white mb-2 leading-tight">Dra. Silvia <br /> Romero</h3>
+                  <p className="text-gold tracking-[0.2em] text-sm uppercase font-semibold">Cirujana Plástica</p>
+                </div>
               </div>
             </div>
-            {/* Back */}
-            <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-luxury-black p-12 flex flex-col justify-center text-center border-[12px] border-double border-gold/20">
-              <div className="mb-8">
-                <h3 className="text-3xl font-serif text-white mb-2">Dra. Silvia Romero</h3>
-                <div className="h-0.5 w-16 bg-gold mx-auto my-4"></div>
-                <p className="text-gold text-xs uppercase tracking-[0.2em]">Trayectoria & Excelencia</p>
+
+            {/* BACK FACE */}
+            <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-luxury-black text-white p-12 flex flex-col justify-center border-[1px] border-gold/30">
+
+              {/* Decorative element */}
+              <div className="absolute top-6 right-6 w-16 h-16 border-t border-r border-gold/40"></div>
+              <div className="absolute bottom-6 left-6 w-16 h-16 border-b border-l border-gold/40"></div>
+
+              <div className="text-center mb-10">
+                <span className="text-gold text-xs uppercase tracking-[0.3em] block mb-2">Credenciales</span>
+                <h3 className="text-3xl font-serif text-white">Excelencia Médica</h3>
+                <div className="w-12 h-0.5 bg-gold mx-auto mt-4"></div>
               </div>
 
-              <div className="space-y-8 text-white/80 font-serif text-lg">
-                <div>
-                  <h4 className="text-gold text-sm uppercase tracking-widest mb-1">Formación Académica</h4>
-                  <p className="font-light">Medica Cirujana - Universidad Industrial de Santander</p>
-                  <p className="font-light text-sm mt-1">Especialista en Cirugía Plástica, Estética y Reconstructiva</p>
+              <div className="space-y-8 relative z-10">
+                <div className="flex gap-4 items-start group/item">
+                  <span className="text-gold font-serif text-2xl opacity-50 font-bold group-hover/item:opacity-100 transition-opacity">01.</span>
+                  <div>
+                    <h4 className="text-white text-sm uppercase tracking-wider font-bold mb-1">Formación</h4>
+                    <p className="text-gray-400 font-light text-sm leading-relaxed">Médica y Cirujana - Universidad Industrial de Santander (UIS).</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-gold text-sm uppercase tracking-widest mb-1">Experiencia Clínica</h4>
-                  <p className="font-light">+5 años dedicados al arte de la cirugía</p>
-                  <p className="font-light">+400 procedimientos exitosos</p>
+
+                <div className="flex gap-4 items-start group/item">
+                  <span className="text-gold font-serif text-2xl opacity-50 font-bold group-hover/item:opacity-100 transition-opacity">02.</span>
+                  <div>
+                    <h4 className="text-white text-sm uppercase tracking-wider font-bold mb-1">Especialización</h4>
+                    <p className="text-gray-400 font-light text-sm leading-relaxed">Cirugía Plástica, Estética y Reconstructiva.</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-gold text-sm uppercase tracking-widest mb-1">Ubicación Exclusiva</h4>
-                  <p className="font-light">Centro Comercial El Tesoro</p>
-                  <p className="font-light">Torre Médica 2, Consultorio 1062</p>
-                  <p className="font-light text-sm text-gray-400">Medellín, Colombia</p>
-                </div>
-                <div>
-                  <h4 className="text-gold text-sm uppercase tracking-widest mb-1">Certificaciones</h4>
-                  <p className="font-light text-sm">Miembro de Número - SCCP</p>
-                  <p className="font-light text-sm">Preservé Motiva Certified Surgeon</p>
+
+                <div className="flex gap-4 items-start group/item">
+                  <span className="text-gold font-serif text-2xl opacity-50 font-bold group-hover/item:opacity-100 transition-opacity">03.</span>
+                  <div>
+                    <h4 className="text-white text-sm uppercase tracking-wider font-bold mb-1">Experiencia</h4>
+                    <p className="text-gray-400 font-light text-sm leading-relaxed">+5 Años de trayectoria y más de 400 vidas transformadas con éxito.</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-10">
-                <Button
-                  as={Link}
-                  href="/about"
-                  variant="bordered"
-                  className="border-gold text-gold hover:bg-gold hover:text-black rounded-none uppercase tracking-widest text-xs px-6 py-4"
-                >
-                  Perfil Completo
-                </Button>
+              <div className="mt-12 text-center">
+                <div className="inline-block p-4 border border-white/10 bg-white/5 backdrop-blur-sm">
+                  <p className="text-xs text-gold uppercase tracking-widest text-center">Miembro SCCP</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="w-full md:w-1/2">
-          <span className="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4 block">Filosofía</span>
-          <h2 className="text-5xl md:text-6xl font-serif mb-8 text-luxury-black leading-tight">
-            Pasión por <br /> la <span className="text-gold">Perfección</span>
+        {/* Right Side Content (Static) */}
+        <div className="flex flex-col justify-center">
+          <span className="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-6 flex items-center gap-4">
+            <span className="w-10 h-[1px] bg-gold"></span>
+            Filosofía
+          </span>
+
+          <h2 className="text-5xl md:text-6xl font-serif mb-8 text-luxury-black leading-[1.1]">
+            Pasión por <br /> la <span className="text-gold italic">Perfección</span>
           </h2>
-          <div className="space-y-6 text-xl leading-relaxed text-gray-600 font-light">
+
+          <div className="space-y-8 text-lg leading-relaxed text-gray-600 font-light border-l border-gray-200 pl-8">
+            <blockquote className="italic text-gray-800 font-serif text-xl">
+              "La belleza no se trata de cambiar quien eres, sino de revelar tu versión más radiante y segura."
+            </blockquote>
             <p>
-              "La belleza no se trata de cambiar quien eres, sino de revelar tu versión más radiante y segura. Entiendo la cirugía plástica como el punto de encuentro exacto entre la ciencia médica rigorosa y la sensibilidad artística."
-            </p>
-            <p>
-              Cada procedimiento es planificado meticulosamente, respetando la anatomía única de cada paciente para esculpir resultados que no solo se ven naturales, sino que armonizan con tu esencia.
+              Entiendo la cirugía plástica como el punto de encuentro exacto entre la ciencia médica rigorosa y la sensibilidad artística. Cada procedimiento es planificado meticulosamente, respetando la anatomía única de cada paciente.
             </p>
           </div>
-          <Button
-            as={Link}
-            href="/about"
-            variant="light"
-            className="mt-10 text-gold text-lg uppercase tracking-wider font-semibold border-b border-gold rounded-none px-0 pb-1 hover:opacity-70 transition-opacity"
-            disableRipple
-          >
-            Conoce más sobre mí
-          </Button>
+
+          <div className="mt-12">
+            <Button
+              as={Link}
+              href="/about"
+              className="bg-luxury-black text-white px-10 py-7 rounded-none text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition-all shadow-xl"
+            >
+              Leer Biografía Completa
+            </Button>
+          </div>
         </div>
+
       </div>
     </section>
   );

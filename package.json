@@ -53,6 +53,7 @@
     "@react-aria/visually-hidden": "3.8.29",
     "clsx": "2.1.1",
     "framer-motion": "11.18.2",
+    "gsap": "^3.14.2",
     "iconsax-reactjs": "^0.0.8",
     "intl-messageformat": "10.7.16",
     "next": "15.5.9",

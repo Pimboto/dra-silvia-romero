@@ -13,7 +13,7 @@ export const siteConfig = {
       href: "/services",
     },
     {
-      label: "Antes y Después",
+      label: "Galería",
       href: "/results",
     },
     {
@@ -21,7 +21,7 @@ export const siteConfig = {
       href: "/testimonials",
     },
     {
-      label: "Aliados / Post-operatorio",
+      label: "Pacientes",
       href: "/allies",
     },
     {
