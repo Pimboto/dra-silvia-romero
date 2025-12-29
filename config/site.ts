@@ -5,7 +5,7 @@ export const siteConfig = {
   description: "Medicina Estética de Alta Gama. Resultados naturales y elegantes.",
   navItems: [
     {
-      label: "La Doctora",
+      label: "Doctora",
       href: "/about",
     },
     {
@@ -35,7 +35,7 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "La Doctora",
+      label: "Doctora",
       href: "/about",
     },
     {

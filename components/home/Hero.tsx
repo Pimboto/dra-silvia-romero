@@ -2,26 +2,30 @@
 
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { ArrowDown2 } from "iconsax-reactjs";
 
 export const Hero = () => {
+  const scrollToNextSection = () => {
+    const nextSection = document.querySelector('section:nth-of-type(2)');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-luxury-black">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-luxury-black">
       {/* Video Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden pt-16">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover scale-110 blur-md opacity-40"
+          className="min-w-full min-h-full object-cover opacity-50"
         >
-          <source src="/vid/hero-bg.mp4" type="video/mp4" />
+          <source src="/img/assets/hero/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent"></div>
       </div>
-      
-      {/* Gradiente suave hacia la siguiente sección */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white z-[5]"></div>
 
       <div className="relative z-10 text-center max-w-4xl px-6 animate-fade-in-up">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-6 tracking-tight leading-tight">
@@ -35,12 +39,24 @@ export const Hero = () => {
           as={Link}
           href="/contact"
           variant="solid"
-          radius="none"
-          className="bg-gold text-luxury-black font-semibold text-lg px-10 py-8 hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_-5px_var(--color-gold)]"
+          radius="full"
+          className="bg-gold text-luxury-black font-semibold text-lg px-10 py-8 hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_-5px_var(--color-gold)] rounded-full"
         >
           Descubre tu mejor versión
         </Button>
       </div>
+
+      {/* Scroll Indicator */}
+      <button
+        onClick={scrollToNextSection}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/70 hover:text-gold transition-colors duration-300 cursor-pointer group"
+        aria-label="Scroll to next section"
+      >
+        <span className="text-xs uppercase tracking-widest font-semibold">Scroll</span>
+        <div className="animate-bounce">
+          <ArrowDown2 size={28} variant="Bold" className="group-hover:text-gold transition-colors" />
+        </div>
+      </button>
     </section>
   );
 };

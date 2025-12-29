@@ -2,7 +2,7 @@
 
 import { Link } from "@heroui/link";
 import { siteConfig } from "@/config/site";
-import { Instagram, Whatsapp, Facebook } from "iconsax-reactjs";
+import { SocialIcon } from "react-social-icons";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,27 +18,36 @@ export const Footer = () => {
             Medicina estética y cirugía plástica con un enfoque humano y artístico. Transformamos vidas a través de la belleza responsable.
           </p>
           <div className="flex gap-4">
-            <Link isExternal href="#" className="p-2 rounded-full bg-white/5 hover:bg-gold hover:text-black transition-all">
-              <Instagram size={20} />
-            </Link>
-            <Link isExternal href="#" className="p-2 rounded-full bg-white/5 hover:bg-gold hover:text-black transition-all">
-              <Facebook size={20} />
-            </Link>
-            <Link isExternal href="https://wa.me/" className="p-2 rounded-full bg-white/5 hover:bg-gold hover:text-black transition-all">
-              <Whatsapp size={20} />
-            </Link>
+            <SocialIcon 
+              url="https://www.instagram.com/dra.silviaromero/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-110"
+              style={{ height: 40, width: 40 }}
+              bgColor="#000000"
+              fgColor="#ffffff"
+            />
+            <SocialIcon 
+              url="https://wa.me/573118324191"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-110"
+              style={{ height: 40, width: 40 }}
+              bgColor="#000000"
+              fgColor="#ffffff"
+            />
           </div>
         </div>
 
         {/* Links */}
         <div>
-          <h3 className="text-gold font-serif uppercase tracking-widest text-sm mb-6">Navegación</h3>
+          <h3 className="text-gold font-serif uppercase tracking-widest text-sm mb-6 font-bold">Navegación</h3>
           <ul className="space-y-4">
             {siteConfig.navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-gray-400 hover:text-gold transition-colors text-sm"
+                  className="text-gray-400 hover:text-gold transition-colors text-sm font-medium"
                 >
                   {item.label}
                 </Link>
@@ -49,11 +58,11 @@ export const Footer = () => {
 
         {/* Contact */}
         <div>
-          <h3 className="text-gold font-serif uppercase tracking-widest text-sm mb-6">Contacto</h3>
-          <div className="space-y-4 text-sm text-gray-400">
+          <h3 className="text-gold font-serif uppercase tracking-widest text-sm mb-6 font-bold">Contacto</h3>
+          <div className="space-y-4 text-sm text-gray-400 font-medium">
             <p>C.C. El Tesoro, Torre Médica 2</p>
             <p>Consultorio 1062, Medellín</p>
-            <p>+57 300 000 0000</p>
+            <p>+57 311 832 4191</p>
             <p>contacto@drasilviaromero.com</p>
           </div>
         </div>

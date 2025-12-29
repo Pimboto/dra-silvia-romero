@@ -8,37 +8,32 @@ import { motion, AnimatePresence } from "framer-motion";
 const resultsData = [
   {
     id: 1,
-    title: "Abdominoplastia",
-    before: "/img/after-before/antes-abdominoplastia.jpeg",
-    after: "/img/after-before/Abdominoplastia.jpeg",
-    description: "Definición abdominal y eliminación de flacidez."
+    title: "Ritidoplastia",
+    before: "/img/assets/ritidoplastiabianca.mp4",
+    after: "/img/assets/ritidoplastiabianca.mp4",
+    description: "Rejuvenecimiento facial natural.",
+    isVideo: true
   },
   {
     id: 2,
-    title: "Armonización Facial",
-    before: "/img/after-before/antes-acido.jpeg",
-    after: "/img/after-before/acido.jpeg",
-    description: "Resultados naturales con ácido hialurónico."
+    title: "Bichectomía",
+    before: "/img/assets/bichetomia.mp4",
+    after: "/img/assets/bichetomia.mp4",
+    description: "Perfilamiento facial y definición de mejillas.",
+    isVideo: true
   },
   {
     id: 3,
-    title: "Bichectomía",
-    before: "/img/after-before/antes-bichetomia.jpeg",
-    after: "/img/after-before/Bichetomia.jpeg",
-    description: "Perfilamiento facial y definición de mejillas."
+    title: "Armonización Facial",
+    before: "/img/assets/acidoastrid.mp4",
+    after: "/img/assets/acidoastrid.mp4",
+    description: "Resultados naturales con ácido hialurónico.",
+    isVideo: true
   }
 ];
 
 export const Results = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [sliderPos, setSliderPos] = useState(50);
-
-  const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    const x = "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-    const position = ((x - rect.left) / rect.width) * 100;
-    setSliderPos(Math.min(Math.max(position, 0), 100));
-  };
 
   return (
     <section className="relative py-32 px-6 md:px-12 bg-luxury-black text-white overflow-hidden">
@@ -58,8 +53,8 @@ export const Results = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Casos de Éxito</span>
-              <h2 className="text-5xl md:text-6xl font-serif mb-8 leading-tight">Resultados <br /> <span className="text-gold italic">Reales</span></h2>
+              <span className="font-sans text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Casos de Éxito</span>
+              <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">Resultados <br /> <span className="text-gold italic">Reales</span></h2>
 
               <div className="space-y-6 mb-12">
                 {resultsData.map((item, index) => (
@@ -67,81 +62,55 @@ export const Results = () => {
                     key={item.id}
                     onClick={() => {
                       setActiveIndex(index);
-                      setSliderPos(50);
                     }}
-                    className={`w-full text-left p-6 border-l-2 transition-all duration-500 ${activeIndex === index
+                    className={`w-full text-left p-6 border-l-4 rounded-r-[20px] transition-all duration-500 ${activeIndex === index
                         ? "border-gold bg-white/5"
                         : "border-white/10 hover:border-white/30"
                       }`}
                   >
-                    <h3 className={`text-xl font-serif mb-1 ${activeIndex === index ? "text-gold" : "text-white"}`}>
+                    <h3 className={`font-serif text-xl mb-1 ${activeIndex === index ? "text-gold" : "text-white"}`}>
                       {item.title}
                     </h3>
-                    <p className="text-sm text-gray-400 font-light">{item.description}</p>
+                    <p className="font-sans text-sm text-gray-400 font-light">{item.description}</p>
                   </button>
                 ))}
               </div>
 
-              <Button
-                as={Link}
-                href="/results"
-                className="bg-gold text-luxury-black px-10 py-7 rounded-none text-sm uppercase tracking-widest font-bold hover:bg-white transition-all shadow-xl"
-              >
-                Ver Galería Completa
-              </Button>
+
             </motion.div>
           </div>
 
           {/* Right Slider */}
           <div className="lg:col-span-7">
-            <div className="relative aspect-[4/5] md:aspect-square w-full bg-neutral-800 overflow-hidden shadow-2xl border border-white/5">
-              <div
-                className="relative w-full h-full cursor-col-resize select-none"
-                onMouseMove={handleMove}
-                onTouchMove={handleMove}
-              >
-                {/* After Image (Base) */}
-                <img
-                  src={resultsData[activeIndex].after}
-                  alt="Después"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-
-                {/* Before Image (Overlay) */}
-                <div
-                  className="absolute inset-0 w-full h-full overflow-hidden"
-                  style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
-                >
-                  <img
-                    src={resultsData[activeIndex].before}
-                    alt="Antes"
-                    className="absolute inset-0 w-full h-full object-cover grayscale-[0.3]"
+            <div className="relative aspect-[4/5] md:aspect-square w-full bg-neutral-800 overflow-hidden shadow-2xl border border-white/5 rounded-[32px]">
+              <div className="relative w-full h-full">
+                {/* Video */}
+                {resultsData[activeIndex].isVideo ? (
+                  <video
+                    key={activeIndex}
+                    src={resultsData[activeIndex].after}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute top-6 left-6 bg-black/40 backdrop-blur-md px-4 py-1 text-[10px] uppercase tracking-widest border border-white/10">
-                    Antes
-                  </div>
-                </div>
+                ) : (
+                  <img
+                    src={resultsData[activeIndex].after}
+                    alt={resultsData[activeIndex].title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
 
-                <div className="absolute top-6 right-6 bg-gold/80 backdrop-blur-md px-4 py-1 text-[10px] uppercase tracking-widest text-black font-bold">
-                  Después
-                </div>
-
-                {/* Slider Handle */}
-                <div
-                  className="absolute top-0 bottom-0 w-0.5 bg-gold z-20"
-                  style={{ left: `${sliderPos}%` }}
-                >
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-gold rounded-full flex items-center justify-center shadow-2xl">
-                    <div className="flex gap-1">
-                      <div className="w-1 h-1 bg-black rounded-full"></div>
-                      <div className="w-1 h-1 bg-black rounded-full"></div>
-                    </div>
-                  </div>
+                {/* Title Overlay */}
+                <div className="absolute bottom-6 left-6 bg-gold/90 backdrop-blur-md px-6 py-3 text-sm uppercase tracking-widest text-black font-bold rounded-full font-sans">
+                  {resultsData[activeIndex].title}
                 </div>
               </div>
             </div>
-            <p className="mt-6 text-center text-gray-500 text-xs uppercase tracking-[0.2em]">
-              Desliza para comparar el cambio
+            <p className="font-sans mt-6 text-center text-gray-500 text-xs uppercase tracking-[0.2em]">
+              Video de caso real
             </p>
           </div>
 

@@ -36,8 +36,8 @@ export const Navbar = () => {
   }));
 
   const socialItems = [
-    { label: 'Instagram', link: '#' },
-    { label: 'WhatsApp', link: 'https://wa.me/' },
+    { label: 'Instagram', link: 'https://www.instagram.com/drasilvia.romero/' },
+    { label: 'WhatsApp', link: 'https://wa.me/573118324191' },
   ];
 
   return (
@@ -47,20 +47,33 @@ export const Navbar = () => {
       className={clsx(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b",
         isScrolled
-          ? "bg-black/20 backdrop-blur-xl border-white/5 py-2 shadow-sm"
-          : "bg-transparent border-white/5 py-4"
+          ? "bg-zinc-900/95 backdrop-blur-xl border-white/5 py-2 shadow-lg"
+          : "bg-zinc-900/90 backdrop-blur-md border-white/10 py-4"
       )}
     >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="relative h-10 w-40 md:w-48 lg:w-56" href="/">
-            <Image
-              src="/logo.png"
-              alt="Logo Dra. Silvia Romero"
-              fill
-              className="object-contain transition-all duration-300 brightness-0 invert drop-shadow-md"
-              priority
-            />
+        <NavbarBrand as="li" className="gap-2 max-w-fit flex items-center">
+          <NextLink className="flex items-center gap-2" href="/">
+            {/* Águila */}
+            <div className="relative h-10 w-10 flex-shrink-0">
+              <Image
+                src="/img/logoaguila.png"
+                alt="Águila Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            {/* Letras */}
+            <div className="relative h-6 w-28 flex-shrink-0">
+              <Image
+                src="/img/image.png"
+                alt="Dra. Silvia Romero"
+                fill
+                className="object-contain brightness-0 invert"
+                priority
+              />
+            </div>
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
@@ -98,7 +111,7 @@ export const Navbar = () => {
                 : "bg-white text-luxury-black hover:bg-white/90 shadow-white/10"
             )}
             href="/contact"
-            radius="none"
+            radius="full"
             variant="solid"
           >
             Agendar Cita

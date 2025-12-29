@@ -1,67 +1,238 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { User, Calendar, MagicStar, TickCircle } from "iconsax-reactjs";
 
-export const CustomerJourney = () => {
-  return (
-    <section className="py-24 px-6 md:px-12 bg-gradient-to-b from-white via-gray-100 to-luxury-black text-white">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif text-luxury-black">Tu Viaje de Transformación</h2>
-        </div>
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-        <div className="relative border-l border-gold/30 ml-4 md:ml-12 space-y-12">
-          <JourneyStep
-            number="01"
-            title="Valoración"
-            desc="Evaluación personalizada virtual o presencial para entender tus deseos."
-            icon={<User className="text-black" size={20} />}
-            textColor="text-luxury-black"
-            descColor="text-gray-600"
-          />
-          <JourneyStep
-            number="02"
-            title="Planificación"
-            desc="Diseño detallado de tu procedimiento y preparación pre-quirúrgica."
-            icon={<Calendar className="text-black" size={20} />}
-            textColor="text-luxury-black"
-            descColor="text-gray-600"
-          />
-          <JourneyStep
-            number="03"
-            title="Tu Gran Día"
-            desc="Cirugía en quirófanos de Nivel III con los más altos estándares de seguridad."
-            icon={<MagicStar className="text-black" size={20} />}
-            textColor="text-white"
-            descColor="text-gray-300"
-          />
-          <JourneyStep
-            number="04"
-            title="Seguimiento"
-            desc="Acompañamiento cercano 24/7 durante tu recuperación."
-            icon={<TickCircle className="text-black" size={20} />}
-            textColor="text-white"
-            descColor="text-gray-300"
-          />
-        </div>
-      </div>
+const steps = [
+  {
+    number: "01",
+    tag: "INICIO DEL PROCESO",
+    title: "Valoración",
+    subtitle: "Personalizada",
+    description: "Evaluación personalizada virtual o presencial para entender profundamente tus deseos y expectativas estéticas.",
+    icon: User,
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
+  },
+  {
+    number: "02",
+    tag: "ESTRATEGIA",
+    title: "Planificación",
+    subtitle: "Detallada",
+    description: "Diseño detallado de tu procedimiento y preparación pre-quirúrgica, asegurando que cada detalle esté cubierto.",
+    icon: Calendar,
+    image: "https://images.unsplash.com/photo-1581093458791-9f302e6d8359?q=80&w=2670&auto=format&fit=crop"
+  },
+  {
+    number: "03",
+    tag: "EL MOMENTO",
+    title: "Tu Gran Día",
+    subtitle: "",
+    description: "Cirugía en quirófanos de Nivel III con los más altos estándares de seguridad y tecnología de vanguardia.",
+    icon: MagicStar,
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2668&auto=format&fit=crop"
+  },
+  {
+    number: "04",
+    tag: "RECUPERACIÓN",
+    title: "Seguimiento",
+    subtitle: "Continuo",
+    description: "Acompañamiento cercano 24/7 durante tu recuperación, asegurando resultados óptimos y tu tranquilidad.",
+    icon: TickCircle,
+    image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?q=80&w=2670&auto=format&fit=crop"
+  }
+];
+
+export const CustomerJourney = () => {
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const ctx = gsap.context(() => {
+      // Header animation
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+          }
+        });
+      }
+
+      // Step animations
+      sectionRefs.current.forEach((section, index) => {
+        if (!section) return;
+
+        const isEven = index % 2 === 0;
+        const content = section.querySelector('.step-content');
+        const imageContainer = section.querySelector('.step-image');
+        const number = section.querySelector('.step-number');
+
+        // Content reveal
+        if (content) {
+          gsap.fromTo(content,
+            { y: 100, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1.2,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 75%",
+              }
+            }
+          );
+        }
+
+        // Image reveal
+        if (imageContainer) {
+          gsap.fromTo(imageContainer,
+            { scale: 0.8, opacity: 0, rotationY: isEven ? 15 : -15 },
+            {
+              scale: 1,
+              opacity: 1,
+              rotationY: 0,
+              duration: 1.5,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 70%",
+              }
+            }
+          );
+        }
+
+        // Number parallax
+        if (number) {
+          gsap.to(number, {
+            y: -50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 2,
+            }
+          });
+        }
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section className="relative bg-luxury-black text-white overflow-hidden">
+      {/* Intro Header */}
+      <header 
+        ref={headerRef}
+        className="min-h-[60vh] flex flex-col items-center justify-center relative z-10 text-center px-4 py-24"
+      >
+        <p className="font-sans text-sm md:text-base tracking-[0.5em] uppercase text-gray-400 mb-6">
+          Experiencia Exclusiva
+        </p>
+        <h1 className="font-serif text-6xl md:text-8xl font-bold mb-4 leading-none">
+          TU <span className="text-gold italic">VIAJE</span>
+        </h1>
+        <div className="w-px h-24 bg-gradient-to-b from-gold to-transparent mt-10"></div>
+      </header>
+
+      {/* Steps */}
+      {steps.map((step, index) => {
+        const isEven = index % 2 === 0;
+        const Icon = step.icon;
+
+        return (
+          <section
+            key={step.number}
+            ref={(el) => { sectionRefs.current[index] = el; }}
+            className="relative min-h-screen flex items-center justify-center border-b border-white/5 py-24"
+          >
+            {/* Background Image with Parallax */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center opacity-20"
+              style={{ 
+                backgroundImage: `url('${step.image}')`,
+                transform: 'translateZ(0)',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/90 via-luxury-black/70 to-luxury-black/90" />
+
+            <div className="container mx-auto px-6 relative z-10">
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${isEven ? '' : 'md:flex-row-reverse'}`}>
+                {/* Content */}
+                <div className={`step-content relative ${isEven ? 'order-2 md:order-1' : 'order-2'}`}>
+                  {/* Large Background Number */}
+                  <span className="step-number absolute text-[15rem] font-bold font-serif opacity-5 -z-10 select-none"
+                    style={{
+                      left: isEven ? '-50px' : 'auto',
+                      right: isEven ? 'auto' : '-50px',
+                      top: '-80px',
+                      WebkitTextStroke: '1px rgba(255, 255, 255, 0.1)',
+                      color: 'transparent',
+                    }}
+                  >
+                    {step.number}
+                  </span>
+
+                  <div className={isEven ? '' : 'md:pl-12'}>
+                    <h3 className="font-sans text-gold tracking-[0.3em] text-sm font-bold mb-2">
+                      {step.tag}
+                    </h3>
+                    <h2 className="font-serif text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                      {step.title}
+                      {step.subtitle && (
+                        <>
+                          <br />
+                          <span className="font-light italic text-gray-300">{step.subtitle}</span>
+                        </>
+                      )}
+                    </h2>
+                    <div className={`w-16 h-1 bg-gold mb-8 ${isEven ? '' : 'ml-auto md:ml-0'}`}></div>
+                    <p className="font-sans text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-md">
+                      {step.description}
+                    </p>
+
+                    {/* Icon */}
+                    <div className="mt-8 flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+                        <Icon size={24} variant="Bold" className="text-gold" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Image */}
+                <div className={`step-image ${isEven ? 'order-1 md:order-2' : 'order-1'} flex ${isEven ? 'justify-center md:justify-end' : 'justify-center md:justify-start'}`}>
+                  <div 
+                    className="relative p-2 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-gold/10 rounded-lg shadow-2xl transform hover:rotate-0 transition-transform duration-700 w-full max-w-md"
+                    style={{ transform: `rotate(${isEven ? '2deg' : '-2deg'})` }}
+                  >
+                    <img
+                      src={step.image}
+                      alt={step.title}
+                      className="w-full h-[400px] object-cover rounded grayscale hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
     </section>
   );
 };
-
-function JourneyStep({ number, title, desc, icon, textColor, descColor }: { number: string, title: string, desc: string, icon: React.ReactNode, textColor: string, descColor: string }) {
-  return (
-    <div className="relative pl-12">
-      {/* Dot/Icon on the line */}
-      <div className="absolute -left-5 top-0 w-10 h-10 rounded-full bg-gold flex items-center justify-center border-4 border-luxury-black z-10">
-        {icon}
-      </div>
-
-      <div className="mb-2">
-        <span className="text-gold text-sm font-bold tracking-widest block mb-1">PASO {number}</span>
-        <h3 className={`text-2xl font-serif ${textColor}`}>{title}</h3>
-      </div>
-      <p className={`${descColor} max-w-md`}>{desc}</p>
-    </div>
-  );
-}

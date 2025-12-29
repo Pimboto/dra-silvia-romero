@@ -6,27 +6,24 @@ import { Link } from "@heroui/link";
 export const FAQ = () => {
   return (
     <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-white to-gray-50">
-      {/* Degradado superior */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-50/50 to-transparent"></div>
-      
       <div className="max-w-3xl mx-auto relative z-10">
-        <h2 className="text-4xl md:text-5xl font-serif text-center mb-16 text-luxury-black">Preguntas Frecuentes</h2>
+        <h2 className="font-serif text-4xl md:text-5xl text-center mb-16 text-luxury-black">Preguntas Frecuentes</h2>
 
         <Accordion
           variant="splitted"
           className="[&>div]:!bg-white"
           itemClasses={{
-            base: "!bg-white !shadow-xl !rounded-2xl !mb-6 !border !border-gray-100",
+            base: "!bg-white !shadow-xl !rounded-[24px] !mb-6 !border !border-gray-100",
             title: "font-serif !text-luxury-black text-xl py-6",
             trigger: "px-8 !bg-white hover:!bg-gray-50",
-            content: "px-8 pb-8 !text-gray-600 font-light leading-relaxed text-lg !bg-white",
+            content: "px-8 pb-8 !text-gray-600 font-sans font-light leading-relaxed text-lg !bg-white",
             indicator: "text-luxury-black"
           }}
         >
           <AccordionItem
             key="1"
-            aria-label="Recuperación"
-            title="¿Cuánto tiempo es la recuperación?"
+            aria-label="Costo de cirugía"
+            title="¿Cuánto cuesta mi cirugía?"
             className="!bg-white"
             classNames={{
               base: "!bg-white",
@@ -35,12 +32,12 @@ export const FAQ = () => {
               content: "!bg-white !text-gray-600"
             }}
           >
-            Depende del procedimiento, pero generalmente recomendamos de 7 a 14 días de reposo relativo. Para cirugías mayores como abdominoplastia, puede requerirse hasta 21 días para retomar actividades exigentes.
+            En tu consulta médica te entrego el presupuesto completo de tu cirugía, ya que según el diagnóstico y tratamiento indicado establezco el costo de tu cirugía.
           </AccordionItem>
           <AccordionItem
             key="2"
-            aria-label="Financiación"
-            title="¿Aceptan planes de financiación?"
+            aria-label="Resultados"
+            title="¿En cuánto tiempo veré los resultados finales de mi procedimiento?"
             className="!bg-white"
             classNames={{
               base: "!bg-white",
@@ -49,12 +46,12 @@ export const FAQ = () => {
               content: "!bg-white !text-gray-600"
             }}
           >
-            Sí, trabajamos con aliados financieros que ofrecen tasas preferenciales para procedimientos estéticos. Contáctanos para más detalles.
+            A los tres meses verás el resultado parcial, y al año obtendrás el resultado final completo de tu transformación.
           </AccordionItem>
           <AccordionItem
             key="3"
-            aria-label="Ubicación"
-            title="¿Dónde se realizan las cirugías?"
+            aria-label="Pacientes internacionales"
+            title="¿Se puede operar pacientes internacionales?"
             className="!bg-white"
             classNames={{
               base: "!bg-white",
@@ -63,14 +60,14 @@ export const FAQ = () => {
               content: "!bg-white !text-gray-600"
             }}
           >
-            Todas nuestras cirugías se realizan en instituciones de Nivel III que garantizan la máxima seguridad para nuestros pacientes, cumpliendo con todos los estándares internacionales.
+            La mayoría de mis pacientes son internacionales, así que tengo una amplia experiencia en el manejo desde la primera consulta hasta el cuidado y seguimiento postoperatorio.
           </AccordionItem>
         </Accordion>
 
         <div className="mt-16 text-center">
           <Link
             href="/faq"
-            className="text-gold font-bold uppercase tracking-[0.2em] text-xs hover:opacity-70 transition-opacity"
+            className="font-sans text-gold font-bold uppercase tracking-[0.2em] text-xs hover:opacity-70 transition-opacity"
           >
             Ver todas las preguntas frecuentes
           </Link>
