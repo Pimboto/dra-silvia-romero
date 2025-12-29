@@ -8,7 +8,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans, fontSerif } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: {
@@ -50,8 +50,8 @@ export default function RootLayout({
             <main className="w-full flex-grow">
               {children}
             </main>
-            <Footer />
           </div>
+          <WhatsAppButton />
         </Providers>
       </body>
     </html>
