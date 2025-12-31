@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Transformación - Timeline de Lujo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Manrope:wght@300;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- GSAP for Advanced Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --dark-bg: #050505;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Gold Text Effect */
+        .text-gold {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Parallax Container Styles */
+        .parallax-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        .glass-card {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-number-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            color: transparent;
+            position: absolute;
+            z-index: -1;
+            font-size: 15rem;
+            line-height: 1;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            opacity: 0.5;
+            transition: all 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .step-number-outline {
+                font-size: 8rem;
+                top: 0;
+                right: 0;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b38728; 
+        }
+
+        /* Button Hover Effect */
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-luxury:hover::before {
+            left: 100%;
+        }
+
+        /* --- FLIP CARD STYLES --- */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .flip-card-front {
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .flip-card-back {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            transform: rotateY(180deg);
+        }
+
+        /* Tab Active State (Services) */
+        .tab-btn.active {
+            color: #b38728;
+            border-bottom: 2px solid #b38728;
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn:hover {
+            color: #fcf6ba;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .modal-tab-btn {
+            padding-bottom: 0.5rem;
+            color: #6b7280;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .modal-tab-btn:hover {
+            color: #bf953f;
+        }
+        .modal-tab-btn.active {
+            color: #fcf6ba;
+            border-bottom: 2px solid #bf953f;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Intro Header -->
+    <header class="h-screen flex flex-col items-center justify-center relative z-10 text-center px-4">
+        <p class="text-sm md:text-base tracking-[0.5em] uppercase text-gray-400 mb-6 reveal-text">Experiencia Exclusiva</p>
+        <h1 class="text-6xl md:text-9xl font-bold mb-4 leading-none reveal-text">
+            TU <span class="text-gold italic">VIAJE</span>
+        </h1>
+        <div class="w-px h-24 bg-gradient-to-b from-yellow-600 to-transparent mt-10"></div>
+    </header>
+
+    <!-- NEW SECTION: BIO INTRO -->
+    <section class="py-24 relative z-10 text-center bg-black border-b border-gray-900">
+        <div class="gsap-reveal container mx-auto px-6">
+            <span class="text-gold tracking-[0.3em] text-sm font-bold block mb-4">CONOCE AL EXPERTO</span>
+            <h2 class="text-3xl md:text-5xl font-bold mb-10 text-white font-playfair">
+                El Arte de la <span class="text-gold italic">Medicina Estética</span>
+            </h2>
+            
+            <button onclick="openModal()" class="btn-luxury group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden border border-yellow-600/50 rounded-sm hover:border-yellow-500 transition-colors">
+                <span class="font-cinzel text-lg text-white group-hover:text-yellow-200 transition-colors tracking-widest mr-3">VER BIOGRAFÍA COMPLETA</span>
+                <span class="text-2xl transform group-hover:rotate-12 transition-transform duration-300">🥥</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- STEP 01: Valoración -->
+    <section class="parallax-section group" id="step1">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-black/70 z-0"></div> 
+
+        <div class="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 relative">
+                <span class="step-number-outline left-[-50px] top-[-80px] md:top-[-100px]">01</span>
+                <div class="gsap-reveal">
+                    <h3 class="text-gold tracking-[0.3em] text-sm font-bold mb-2">INICIO DEL PROCESO</h3>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">Valoración<br><span class="font-light italic text-gray-300">Personalizada</span></h2>
+                    <div class="w-16 h-1 bg-yellow-600 mb-8"></div>
+                    <p class="text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-md">
+                        Evaluación personalizada virtual o presencial para entender profundamente tus deseos y expectativas estéticas.
+                    </p>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center md:justify-end gsap-image-reveal">
+                <div class="glass-card p-2 transform rotate-2 hover:rotate-0 transition-transform duration-700 w-full max-w-md">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop" alt="Consultation" class="w-full h-[400px] object-cover filter grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 02: Planificación -->
+    <section class="parallax-section" id="step2">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=2676&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-black/80 z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-1 flex justify-center md:justify-start gsap-image-reveal">
+                 <div class="glass-card p-2 transform -rotate-2 hover:rotate-0 transition-transform duration-700 w-full max-w-md">
+                    <img src="https://images.unsplash.com/photo-1581093458791-9f302e6d8359?q=80&w=2670&auto=format&fit=crop" alt="Planning" class="w-full h-[400px] object-cover filter grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+            </div>
+            <div class="order-2 relative text-right md:text-left">
+                <span class="step-number-outline right-0 md:left-[-50px] top-[-80px] md:top-[-100px]">02</span>
+                <div class="gsap-reveal md:pl-12">
+                    <h3 class="text-gold tracking-[0.3em] text-sm font-bold mb-2">ESTRATEGIA</h3>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">Planificación<br><span class="font-light italic text-gray-300">Detallada</span></h2>
+                    <div class="w-16 h-1 bg-yellow-600 mb-8 ml-auto md:ml-0"></div>
+                    <p class="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+                        Diseño detallado de tu procedimiento y preparación pre-quirúrgica, asegurando que cada detalle esté cubierto.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 03: Tu Gran Día -->
+    <section class="parallax-section" id="step3">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=2532&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-black/70 z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 relative">
+                <span class="step-number-outline left-[-50px] top-[-80px] md:top-[-100px]">03</span>
+                <div class="gsap-reveal">
+                    <h3 class="text-gold tracking-[0.3em] text-sm font-bold mb-2">EL MOMENTO</h3>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">Tu Gran<br><span class="text-gold">Día</span></h2>
+                    <div class="w-16 h-1 bg-yellow-600 mb-8"></div>
+                    <p class="text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-md">
+                        Cirugía en quirófanos de Nivel III con los más altos estándares de seguridad y tecnología de vanguardia.
+                    </p>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center md:justify-end gsap-image-reveal">
+                <div class="glass-card p-2 transform rotate-3 hover:rotate-0 transition-transform duration-700 w-full max-w-md">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2668&auto=format&fit=crop" alt="Surgery Room" class="w-full h-[400px] object-cover filter grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 04: Seguimiento -->
+    <section class="parallax-section" id="step4">
+        <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2680&auto=format&fit=crop');"></div>
+        <div class="absolute inset-0 bg-black/80 z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-1 flex justify-center md:justify-start gsap-image-reveal">
+                 <div class="glass-card p-2 transform -rotate-1 hover:rotate-0 transition-transform duration-700 w-full max-w-md">
+                    <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?q=80&w=2670&auto=format&fit=crop" alt="Recovery" class="w-full h-[400px] object-cover filter grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+            </div>
+            
+            <div class="order-2 relative text-right md:text-left">
+                <span class="step-number-outline right-0 md:left-[-50px] top-[-80px] md:top-[-100px]">04</span>
+                <div class="gsap-reveal md:pl-12">
+                    <h3 class="text-gold tracking-[0.3em] text-sm font-bold mb-2">RECUPERACIÓN</h3>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-8 leading-tight">Seguimiento<br><span class="font-light italic text-gray-300">Continuo</span></h2>
+                    <div class="w-16 h-1 bg-yellow-600 mb-8 ml-auto md:ml-0"></div>
+                    <p class="text-xl md:text-2xl text-gray-300 font-light leading-relaxed">
+                        Acompañamiento cercano 24/7 durante tu recuperación, asegurando resultados óptimos y tu tranquilidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES / PROCEDURES SECTION -->
+    <section id="services" class="py-32 relative bg-black border-t border-gray-900">
+        <div class="container mx-auto px-6 mb-16 text-center gsap-reveal">
+            <span class="text-gold tracking-[0.3em] text-sm font-bold block mb-4">PORTAFOLIO EXCLUSIVO</span>
+            <h2 class="text-4xl md:text-7xl font-bold mb-4">Nuestros <span class="text-gold italic">Procedimientos</span></h2>
+            <div class="w-24 h-px bg-yellow-600 mx-auto mt-8"></div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="container mx-auto px-6 mb-16">
+            <div class="flex flex-wrap justify-center gap-4 md:gap-10 border-b border-gray-800 pb-4" id="tabs-container">
+                <!-- Tabs will be injected here via JS -->
+            </div>
+        </div>
+
+        <!-- Cards Grid Container -->
+        <div class="container mx-auto px-6">
+            <div id="procedures-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[500px]">
+                <!-- Cards will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-32 relative flex items-center justify-center overflow-hidden border-t border-gray-900">
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-[#1a1500] to-black z-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center gsap-reveal">
+            <p class="text-gold tracking-[0.5em] text-sm font-bold mb-6">NO ESPERES MÁS</p>
+            <h2 class="text-5xl md:text-8xl font-bold mb-10 leading-tight">
+                Empieza Tu <br><span class="text-gold italic">Transformación</span>
+            </h2>
+            <div class="flex justify-center">
+                <a href="#" class="btn-luxury group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-cinzel font-bold text-white transition-all duration-300 border border-yellow-600 hover:border-yellow-400 hover:bg-yellow-900/20">
+                    <span class="relative tracking-[0.2em] group-hover:text-yellow-400 transition-colors z-10">AGENDA TU CITA</span>
+                </a>
+            </div>
+            <p class="mt-8 text-gray-500 text-sm tracking-widest uppercase">Plazas Limitadas Este Mes</p>
+        </div>
+    </section>
+
+    <footer class="py-20 bg-black text-center border-t border-gray-900">
+        <p class="text-gold font-cinzel text-xl mb-4">EXCELENCIA MÉDICA</p>
+        <p class="text-gray-500 text-sm">© 2024 Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- ==================== BIO MODAL ==================== -->
+    <div id="bioModal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeModal()"></div>
+        
+        <!-- Modal Content Container -->
+        <div class="modal-content relative bg-[#0f0f0f] border border-yellow-600/30 w-full max-w-6xl h-[85vh] md:h-[70vh] flex flex-col md:flex-row rounded-lg overflow-hidden shadow-2xl">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-50 text-gray-400 hover:text-white transition-colors bg-black/50 p-2 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- LEFT: Tabs & Content -->
+            <div class="w-full md:w-1/2 flex flex-col border-r border-gray-800">
+                <!-- Tabs Header -->
+                <div class="flex items-center justify-around border-b border-gray-800 bg-[#050505] p-6">
+                    <button class="modal-tab-btn active" onclick="switchBioTab(0)">Información Básica</button>
+                    <button class="modal-tab-btn" onclick="switchBioTab(1)">Certificados</button>
+                    <button class="modal-tab-btn" onclick="switchBioTab(2)">Tecnología</button>
+                </div>
+                
+                <!-- Text Content Area -->
+                <div class="flex-1 p-8 md:p-12 overflow-y-auto bg-[#0a0a0a]">
+                    <div id="bioTextContent" class="h-full flex flex-col justify-center">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Image Area -->
+            <div class="hidden md:block w-full md:w-1/2 relative bg-black">
+                <img id="bioImage" src="" alt="Doctor Bio" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0">
+                <!-- Gradient Overlay for text readability if needed, or style -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            </div>
+            
+            <!-- Mobile Image (Hidden on Desktop) -->
+            <div class="md:hidden h-48 relative overflow-hidden">
+                 <img id="bioImageMobile" src="" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- DATA STRUCTURE FOR PROCEDURES ---
+        const proceduresData = {
+            "CUERPO": [
+                { title: "Lipoescultura", desc: "Esculpe tu figura eliminando grasa localizada." },
+                { title: "Abdominoplastia", desc: "Recupera la firmeza de tu abdomen." },
+                { title: "Gluteoplastia", desc: "Aumenta y moldea tus glúteos de forma segura." }
+            ],
+            "SENOS": [
+                { title: "Mamoplastia de Aumento", desc: "Realza tu volumen con resultados naturales." },
+                { title: "Mastopexia", desc: "Elevación de senos para una apariencia rejuvenecida." },
+                { title: "Explantación Mamaria", desc: "Retiro seguro de implantes con reconstrucción." },
+                { title: "Reducción Mamaria", desc: "Alivia el peso y mejora la estética." }
+            ],
+            "ROSTRO": [
+                { title: "Frontoplastia", desc: "Rejuvenecimiento de la frente y cejas." },
+                { title: "Ritidoplastia", desc: "Lifting facial para eliminar arrugas profundas." },
+                { title: "Blefaroplastia", desc: "Cirugía de párpados superior e inferior." },
+                { title: "Rinoplastia", desc: "Armonización estética y funcional de la nariz." },
+                { title: "Implantes Faciales", desc: "Armonización facial estructural." }
+            ],
+            "ÍNTIMA": [
+                { title: "Rejuvenecimiento Vaginal", desc: "Mejora funcional y estética de la zona íntima." }
+            ],
+            "NO QUIRÚRGICOS": [
+                { title: "Botox", desc: "Suaviza líneas de expresión sin cirugía." },
+                { title: "Ácido Hialurónico", desc: "Armonización facial y relleno de surcos." },
+                { title: "Definición de Labios", desc: "Volumen e hidratación para tus labios." },
+                { title: "Bioestimuladores", desc: "Estimula tu propio colágeno naturalmente." }
+            ]
+        };
+
+        // --- BIO MODAL DATA ---
+        const bioData = [
+            {
+                // Tab 0: Basic Info
+                title: "Dr. Alejandro M.",
+                subtitle: "Cirujano Plástico Certificado",
+                text: `
+                    <p class="mb-4 text-gray-300 font-light leading-relaxed">Con más de 15 años de experiencia transformando vidas, el Dr. Alejandro combina la precisión quirúrgica con una visión artística incomparable. Graduado con honores de la Universidad Nacional y especializado en Río de Janeiro, la capital mundial de la cirugía estética.</p>
+                    <ul class="space-y-2 text-sm text-gray-400 font-cinzel">
+                        <li>• Especialista en Contorno Corporal</li>
+                        <li>• Miembro de la SCCP</li>
+                        <li>• +5,000 Procedimientos Exitosos</li>
+                    </ul>
+                `,
+                image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2670&auto=format&fit=crop" // Doctor portrait
+            },
+            {
+                // Tab 1: Certs & Awards
+                title: "Excelencia Reconocida",
+                subtitle: "Certificaciones y Premios",
+                text: `
+                    <p class="mb-4 text-gray-300 font-light leading-relaxed">La seguridad y la excelencia no son negociables. Nuestra práctica está respaldada por las instituciones médicas más prestigiosas a nivel global.</p>
+                    <div class="grid grid-cols-1 gap-4 mt-4">
+                        <div class="flex items-center gap-4 bg-white/5 p-3 rounded border border-white/10">
+                            <div class="text-gold text-2xl">🏆</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Premio Bisturí de Oro 2023</h4>
+                                <p class="text-xs text-gray-500">Mejores resultados en Rinoplastia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-3 rounded border border-white/10">
+                            <div class="text-gold text-2xl">🎖️</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Certificación Board Internacional</h4>
+                                <p class="text-xs text-gray-500">ISAPS & ASPS Member</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=2670&auto=format&fit=crop" // Awards/Certs image
+            },
+            {
+                // Tab 2: Technology
+                title: "Vanguardia Tecnológica",
+                subtitle: "Equipos de Última Generación",
+                text: `
+                    <p class="mb-4 text-gray-300 font-light leading-relaxed">Utilizamos tecnología punta para garantizar procedimientos menos invasivos, recuperaciones más rápidas y resultados de alta precisión.</p>
+                    <ul class="space-y-4 mt-4">
+                        <li class="border-l-2 border-yellow-600 pl-4">
+                            <strong class="text-white block font-cinzel">Vaser Lipo®</strong>
+                            <span class="text-sm text-gray-400">Ultrasonido para definición muscular HD.</span>
+                        </li>
+                        <li class="border-l-2 border-yellow-600 pl-4">
+                            <strong class="text-white block font-cinzel">Crisalix 3D</strong>
+                            <span class="text-sm text-gray-400">Simulación virtual de resultados antes de operar.</span>
+                        </li>
+                        <li class="border-l-2 border-yellow-600 pl-4">
+                            <strong class="text-white block font-cinzel">Renuvion</strong>
+                            <span class="text-sm text-gray-400">Tensado de piel con tecnología de plasma.</span>
+                        </li>
+                    </ul>
+                `,
+                image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=2670&auto=format&fit=crop" // Tech/Machine image
+            }
+        ];
+
+        // --- MODAL FUNCTIONS ---
+        const modal = document.getElementById('bioModal');
+        const modalContent = document.getElementById('bioTextContent');
+        const modalImage = document.getElementById('bioImage');
+        const modalImageMob = document.getElementById('bioImageMobile');
+        const bioTabs = document.querySelectorAll('.modal-tab-btn');
+
+        function openModal() {
+            modal.classList.add('open');
+            switchBioTab(0); // Reset to first tab
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+        }
+
+        function switchBioTab(index) {
+            // Update Tab Styles
+            bioTabs.forEach((btn, i) => {
+                if(i === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Update Content with Fade Animation
+            const data = bioData[index];
+            
+            // Fade Out Content
+            gsap.to(modalContent, { opacity: 0, duration: 0.2, onComplete: () => {
+                modalContent.innerHTML = `
+                    <h3 class="text-3xl md:text-5xl font-playfair text-white mb-2">${data.title}</h3>
+                    <h4 class="text-gold font-cinzel tracking-widest text-sm mb-8">${data.subtitle}</h4>
+                    <div class="text-content">${data.text}</div>
+                `;
+                // Fade In Content
+                gsap.to(modalContent, { opacity: 1, duration: 0.4 });
+            }});
+
+            // Fade Out Image
+            gsap.to([modalImage, modalImageMob], { opacity: 0, duration: 0.2, onComplete: () => {
+                modalImage.src = data.image;
+                modalImageMob.src = data.image;
+                // Fade In Image
+                gsap.to([modalImage, modalImageMob], { opacity: 1, duration: 0.4 });
+            }});
+        }
+
+
+        // --- RENDER FUNCTIONS FOR SERVICES (EXISTING) ---
+        const tabsContainer = document.getElementById('tabs-container');
+        const gridContainer = document.getElementById('procedures-grid');
+        let activeTab = "CUERPO";
+
+        function renderTabs() {
+            tabsContainer.innerHTML = '';
+            Object.keys(proceduresData).forEach(key => {
+                const btn = document.createElement('button');
+                btn.innerText = key;
+                btn.className = `tab-btn text-sm md:text-lg uppercase tracking-widest font-bold px-4 py-2 cursor-pointer ${activeTab === key ? 'active' : 'text-gray-500'}`;
+                btn.onclick = () => switchTab(key);
+                tabsContainer.appendChild(btn);
+            });
+        }
+
+        function renderCards(category) {
+            // Fade out
+            gsap.to(gridContainer, { opacity: 0, duration: 0.3, onComplete: () => {
+                gridContainer.innerHTML = '';
+                const items = proceduresData[category];
+                
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = "flip-card h-[400px] w-full perspective-1000 cursor-pointer group";
+                    card.innerHTML = `
+                        <div class="flip-card-inner">
+                            <!-- Front -->
+                            <div class="flip-card-front">
+                                <h3 class="text-2xl font-playfair font-bold mb-4 text-white">${item.title}</h3>
+                                <p class="text-gray-400 text-sm mb-8 px-4 font-light">${item.desc}</p>
+                                <button class="btn-flip text-gold uppercase tracking-widest text-xs border-b border-yellow-600 pb-1 hover:text-white transition-colors" onclick="flipCard(this, true)">
+                                    Ver Más +
+                                </button>
+                            </div>
+                            <!-- Back -->
+                            <div class="flip-card-back">
+                                <h3 class="text-xl font-cinzel text-gold mb-4">${item.title}</h3>
+                                <p class="text-gray-300 text-sm mb-6 leading-relaxed px-4">
+                                    Procedimiento de alta precisión diseñado para resultados armónicos. 
+                                    Incluye valoración inicial, quirófano certificado y seguimiento post-operatorio.
+                                </p>
+                                <button class="text-white bg-white/10 px-6 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-white/20 transition-all" onclick="flipCard(this, false)">
+                                    Volver
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    gridContainer.appendChild(card);
+                });
+
+                // Fade In & Stagger items
+                gsap.to(gridContainer, { opacity: 1, duration: 0.3 });
+                gsap.from("#procedures-grid .flip-card", {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "power2.out"
+                });
+            }});
+        }
+
+        function switchTab(key) {
+            activeTab = key;
+            renderTabs();
+            renderCards(key);
+        }
+
+        // --- FLIP LOGIC ---
+        // Need to attach to window so HTML inline onclick works
+        window.flipCard = function(btn, isFlipping) {
+            event.stopPropagation(); // Stop bubbling
+            const card = btn.closest('.flip-card');
+            if(isFlipping) {
+                card.classList.add('flipped');
+            } else {
+                card.classList.remove('flipped');
+            }
+        }
+
+        // Initialize
+        renderTabs();
+        renderCards(activeTab);
+
+
+        // --- EXISTING GSAP ANIMATIONS ---
+        
+        // 1. Parallax Effect
+        gsap.utils.toArray('.parallax-section').forEach((section, i) => {
+            const bg = section.querySelector('.parallax-bg');
+            gsap.to(bg, {
+                backgroundPosition: `50% ${innerHeight / 2}px`,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top bottom", 
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        // 2. Text Reveal
+        gsap.utils.toArray('.gsap-reveal').forEach(element => {
+            gsap.fromTo(element, 
+                { y: 100, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+                    scrollTrigger: { trigger: element, start: "top 80%" }
+                }
+            );
+        });
+
+        // 3. Image Reveal
+        gsap.utils.toArray('.gsap-image-reveal').forEach(element => {
+            gsap.fromTo(element, 
+                { scale: 0.8, opacity: 0, rotationY: 15 },
+                {
+                    scale: 1, opacity: 1, rotationY: 0, duration: 1.5, ease: "power2.out",
+                    scrollTrigger: { trigger: element, start: "top 75%" }
+                }
+            );
+        });
+
+        // 4. Numbers
+        gsap.utils.toArray('.step-number-outline').forEach(number => {
+            gsap.to(number, {
+                y: -50, ease: "none",
+                scrollTrigger: { trigger: number, start: "top bottom", end: "bottom top", scrub: 2 }
+            });
+        });
+
+        // Header Intro
+        window.onload = () => {
+            const tl = gsap.timeline();
+            tl.from("header h1", { duration: 1.5, y: 50, opacity: 0, ease: "power4.out" })
+              .from("header p", { duration: 1, opacity: 0 }, "-=1")
+              .from("header .w-px", { duration: 1, height: 0, ease: "power2.inOut" }, "-=0.5");
+        };
+
+    </script>
+</body>
+</html>

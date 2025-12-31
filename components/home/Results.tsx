@@ -54,7 +54,7 @@ export const Results = () => {
               viewport={{ once: true }}
             >
               <span className="font-sans text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Casos de Éxito</span>
-              <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">Resultados <br /> <span className="text-gold italic">Reales</span></h2>
+              <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">Resultados <br /> <span className="text-gold italic font-serif">Reales</span></h2>
 
               <div className="space-y-6 mb-12">
                 {resultsData.map((item, index) => (

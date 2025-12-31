@@ -42,7 +42,7 @@ export const Hero = () => {
           radius="full"
           className="bg-gold text-luxury-black font-semibold text-lg px-10 py-8 hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_-5px_var(--color-gold)] rounded-full"
         >
-          Descubre tu mejor versión
+        DESCUBRE TU MEJOR VERSIÓN
         </Button>
       </div>
 

@@ -326,7 +326,7 @@ export const Testimonials = () => {
             Testimonios Reales
           </span>
           <h2 className="font-serif text-5xl md:text-6xl mb-6 text-luxury-black">
-            Lo que dicen <span className="text-gold italic">nuestras pacientes</span>
+            Lo que dicen <span className="text-gold italic font-serif">nuestras pacientes</span>
           </h2>
           <div className="flex items-center justify-center gap-2 mb-4">
             <div className="flex gap-0.5">

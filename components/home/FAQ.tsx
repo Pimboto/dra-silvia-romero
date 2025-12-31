@@ -7,7 +7,9 @@ export const FAQ = () => {
   return (
     <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-3xl mx-auto relative z-10">
-        <h2 className="font-serif text-4xl md:text-5xl text-center mb-16 text-luxury-black">Preguntas Frecuentes</h2>
+        <h2 className="font-serif text-4xl md:text-5xl text-center mb-16 text-luxury-black">
+          Preguntas <span className="text-gold italic font-serif">Frecuentes</span>
+        </h2>
 
         <Accordion
           variant="splitted"

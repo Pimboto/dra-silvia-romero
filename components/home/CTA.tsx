@@ -15,12 +15,12 @@ export const CTA = () => {
           </p>
           <h2 className="font-serif text-5xl md:text-8xl font-bold mb-10 leading-tight text-white">
             Empieza Tu <br />
-            <span className="text-gold italic">Transformación</span>
+            <span className="text-gold italic font-serif">Transformación</span>
           </h2>
           <div className="flex justify-center">
             <Link
               href="/contact"
-              className="group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-sans font-bold text-white transition-all duration-300 border border-gold hover:border-yellow-400 hover:bg-yellow-900/20"
+              className="group relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-sans font-bold text-white transition-all duration-300 border border-gold rounded-xl shadow-lg hover:border-yellow-400 hover:bg-yellow-900/20 hover:shadow-yellow-900/30 focus:outline-none focus:ring-2 focus:ring-yellow-400"
             >
               <span className="relative tracking-[0.2em] group-hover:text-yellow-400 transition-colors z-10">
                 AGENDA TU CITA

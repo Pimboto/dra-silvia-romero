@@ -8,6 +8,7 @@ type Procedure = {
   description: string;
   recovery: string;
   notes: string[];
+  image?: string;
 };
 
 type ProceduresData = {
@@ -20,6 +21,7 @@ const proceduresData: ProceduresData = {
       title: "Lipoescultura",
       description: "Liposucción con definición, marcación corporal y transferencia a glúteos.",
       recovery: "10–14 días antes de volver a rutina, 12 semanas de recuperación total.",
+  image: "/img/procedimientos/lipoescultura.webp",
       notes: [
         "Uso obligatorio de faja por 6 semanas",
         "Mejores candidatas tienen buena elasticidad en la piel",
@@ -30,6 +32,7 @@ const proceduresData: ProceduresData = {
       title: "Abdominoplastia",
       description: "Moldeamiento del abdomen con retiro de piel excedente, retiro de depósitos grasos, cierre de músculos para lograr un abdomen más plano y con cintura.",
       recovery: "21 días antes de volver a rutina, 12 semanas de recuperación total. Un año para resultado definitivo.",
+  image: "/img/after-before/Abdominoplastia.jpeg",
       notes: [
         "Uso obligatorio de faja por 6 semanas",
         "No es una cirugía para bajar de peso, sino para moldear",
@@ -41,6 +44,7 @@ const proceduresData: ProceduresData = {
       title: "Gluteoplastia",
       description: "Aumento natural del tamaño de los glúteos con implantes.",
       recovery: "21 días antes de volver a rutina, 12 semanas de recuperación total.",
+  image: "/img/procedimientos/gluteoplastia.jpg",
       notes: [
         "Uso obligatorio de faja por 6 semanas",
         "No apoyo en los glúteos por 2 semanas",
@@ -54,6 +58,7 @@ const proceduresData: ProceduresData = {
       title: "Aumento de Senos con Implantes",
       description: "Resultados naturales usando implantes, técnica convencional con implantes GC Aesthetics, o técnica PRESERVÉ con implantes MOTIVA.",
       recovery: "7–10 días para actividades normales, 4–6 semanas recuperación total.",
+  image: "/img/procedimientos/aumentosenosimplantes.webp",
       notes: [
         "Se requiere exámenes prequirúrgicos",
         "Tamaño del implante se define según proporciones del cuerpo y en común acuerdo contigo en la consulta preoperatoria"
@@ -63,6 +68,7 @@ const proceduresData: ProceduresData = {
       title: "Mastopexia (Levantamiento de Senos)",
       description: "Levantamiento de los senos, retiro de piel excedente.",
       recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
+  image: "/img/procedimientos/mastopexia.webp",
       notes: [
         "Uso obligatorio de brassier",
         "No corrige la flacidez de la piel",
@@ -74,6 +80,7 @@ const proceduresData: ProceduresData = {
       title: "Explantación Mamaria",
       description: "Retiro de la prótesis mamaria y uso de los tejidos propios para reconstruir los senos.",
       recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
+  image: "/img/procedimientos/explantacion-mamaria.jpg",
       notes: [
         "Uso obligatorio de brassier",
         "No corrige la flacidez de la piel",
@@ -85,6 +92,7 @@ const proceduresData: ProceduresData = {
       title: "Reducción Mamaria",
       description: "Disminución del tamaño de los senos, acompañado de levantamiento y retiro de piel excedente.",
       recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
+  image: "/img/procedimientos/reduccionmamaria.jpg",
       notes: [
         "Uso obligatorio de brassier",
         "No corrige la flacidez de la piel",
@@ -98,6 +106,7 @@ const proceduresData: ProceduresData = {
       title: "Ritidoplastia (Lifting Facial)",
       description: "Rejuvenecimiento facial reconstituyendo los tejidos profundos faciales. Técnica híbrida DEEP PLANE Y SUBSMAS.",
       recovery: "15 días para actividades normales y retiro de puntos, 12 semanas de recuperación total. Un año para el resultado definitivo.",
+  image: "/img/procedimientos/riditoplastia.jpg",
       notes: [
         "Se requiere exámenes prequirúrgicos, te recomiendo dos meses antes de la cirugía",
         "Debes realizarte una escanografía doppler facial para determinar la presencia de sustancias previas",
@@ -110,6 +119,7 @@ const proceduresData: ProceduresData = {
       title: "Blefaroplastia",
       description: "Rejuvenecimiento de la mirada, eliminando la piel en exceso y las bolsas grasas.",
       recovery: "15 días para actividades normales y retiro de puntos, 12 semanas de recuperación total. Un año para el resultado definitivo.",
+  image: "/img/procedimientos/blefaroplastia.jpg",
       notes: [
         "Se requiere exámenes prequirúrgicos, te recomiendo dos meses antes de la cirugía",
         "Tendrás cita con el anestesiólogo y conmigo presencial un día antes de tu cirugía",
@@ -121,6 +131,7 @@ const proceduresData: ProceduresData = {
       title: "Frontoplastia",
       description: "Rejuvenecimiento de la frente, cejas y región lateral de la órbita. Corrige el déficit frontotemporal y eleva las cejas.",
       recovery: "15 días para actividades normales y retiro de puntos, 12 semanas de recuperación total. Un año para el resultado definitivo.",
+  image: "/img/procedimientos/frontoplastia.png",
       notes: [
         "Se requiere exámenes prequirúrgicos, te recomiendo dos meses antes de la cirugía",
         "Tendrás cita con el anestesiólogo y conmigo presencial un día antes de tu cirugía",
@@ -132,6 +143,7 @@ const proceduresData: ProceduresData = {
       title: "Rinoplastia",
       description: "Moldeamiento de los huesos y cartílagos nasales para lograr una nariz más armónica con el rostro.",
       recovery: "10 días antes de volver a la rutina, 12 semanas de recuperación total. Un año para los resultados definitivos.",
+  image: "/img/procedimientos/rinoplastia.jpg",
       notes: [
         "Uso obligatorio de férulas intranasales",
         "Puede requerir manejo funcional de la nariz"
@@ -141,6 +153,7 @@ const proceduresData: ProceduresData = {
       title: "Armonización Facial con Implantes",
       description: "Uso de implantes faciales en mandíbula, región malar y otros para armonizar las proporciones del rostro.",
       recovery: "15 días antes de volver a la rutina, 12 semanas de recuperación total. Un año para los resultados definitivos.",
+  image: "/img/procedimientos/armonizacionfacialconimplantes.jpg",
       notes: [
         "Riesgo de infección de los implantes por las heridas en cavidad oral"
       ]
@@ -151,6 +164,7 @@ const proceduresData: ProceduresData = {
       title: "Rejuvenecimiento Vaginal",
       description: "Manejo de los labios menores y mayores, pubis y zona vaginal.",
       recovery: "14 días.",
+  image: "/img/procedimientos/rejuvenecimiento-vaginal.jpg",
       notes: [
         "Es un procedimiento sin incapacidad pero hay inflamación de las zonas",
         "Las suturas y heridas se deben cuidar muy bien dado el alto riesgo de infección por la zona"
@@ -162,6 +176,7 @@ const proceduresData: ProceduresData = {
       title: "Botox",
       description: "Uso de toxina botulínica para disminuir la contracción muscular y de esta manera tratar las líneas de expresión facial.",
       recovery: "5 horas, 14 días para ver el resultado, 6 semanas de duración del efecto.",
+  image: "/img/procedimientos/botox.jpg",
       notes: [
         "Las primeras 5 horas posterior a la aplicación no puedes acostarte, no masajear las zonas, no agacharse, no ejercicio durante ese día",
         "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales como por ejemplo personas que hacen ejercicio"
@@ -171,6 +186,7 @@ const proceduresData: ProceduresData = {
       title: "Ácido Hialurónico",
       description: "Uso de ácido hialurónico para armonizar el rostro.",
       recovery: "3 días, 14 días para ver el resultado, un año de duración del efecto.",
+  image: "/img/procedimientos/acidohialuronico1.png",
       notes: [
         "Es un procedimiento sin incapacidad pero hay inflamación de las zonas inyectadas por lo menos tres días",
         "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales"
@@ -180,6 +196,7 @@ const proceduresData: ProceduresData = {
       title: "Definición de Labios",
       description: "Uso de ácido hialurónico para armonizar los labios, definir o dar aumento.",
       recovery: "3 días, 14 días para ver el resultado, un año de duración del efecto.",
+  image: "/img/procedimientos/definiciondelabios.png",
       notes: [
         "Es un procedimiento sin incapacidad pero hay inflamación de las zonas inyectadas por lo menos tres días",
         "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales"
@@ -189,6 +206,7 @@ const proceduresData: ProceduresData = {
       title: "Bioestimuladores de Colágeno",
       description: "Aplicación de sustancias en el rostro: SCULPTRA, RADIESSE, HARMONICA para favorecer la producción de colágeno.",
       recovery: "3 días, 14 días a 3 meses para ver el resultado, un año de duración del efecto.",
+  image: "/img/procedimientos/bioestimuladoresdecolageno.webp",
       notes: [
         "Es un procedimiento sin incapacidad pero hay inflamación de las zonas inyectadas por lo menos tres días",
         "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales",
@@ -241,7 +259,7 @@ export const Services = () => {
           PORTAFOLIO EXCLUSIVO
         </span>
         <h2 className="font-serif text-4xl md:text-7xl font-bold mb-4 text-white">
-          Nuestros <span className="text-gold italic">Procedimientos</span>
+          Nuestros <span className="text-gold italic font-serif">Procedimientos</span>
         </h2>
         <div className="w-24 h-px bg-gold mx-auto mt-8"></div>
       </div>
@@ -302,41 +320,55 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
       >
         {/* Front */}
         <div 
-          className="flip-card-front absolute inset-0 bg-luxury-black/60 backdrop-blur-md border border-gold/10 rounded-lg p-6 flex flex-col justify-between overflow-y-auto"
+          className="flip-card-front absolute inset-0 rounded-lg overflow-hidden"
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden'
           }}
         >
-          <div>
-            <h3 className="font-serif text-xl font-bold mb-4 text-white text-center">
-              {procedure.title}
-            </h3>
-            
-            <div className="mb-4">
-              <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">Descripción</h4>
-              <p className="font-sans text-gray-300 text-sm leading-relaxed">
-                {procedure.description}
-              </p>
+          {/* Background Image */}
+          {procedure.image && (
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+              style={{ backgroundImage: `url(${procedure.image})` }}
+            />
+          )}
+          
+          {/* Overlay with gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-luxury-black/80 to-luxury-black/60" />
+          
+          {/* Content */}
+          <div className="relative z-10 h-full backdrop-blur-sm border border-gold/10 rounded-lg p-6 flex flex-col justify-between overflow-y-auto">
+            <div>
+              <h3 className="font-serif text-xl font-bold mb-4 text-white text-center">
+                {procedure.title}
+              </h3>
+              
+              <div className="mb-4">
+                <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">Descripción</h4>
+                <p className="font-sans text-gray-300 text-sm leading-relaxed">
+                  {procedure.description}
+                </p>
+              </div>
+
+              <div className="mb-4">
+                <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">Tiempo de Recuperación</h4>
+                <p className="font-sans text-gray-300 text-sm leading-relaxed">
+                  {procedure.recovery}
+                </p>
+              </div>
             </div>
 
-            <div className="mb-4">
-              <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">Tiempo de Recuperación</h4>
-              <p className="font-sans text-gray-300 text-sm leading-relaxed">
-                {procedure.recovery}
-              </p>
-            </div>
+            <button 
+              className="font-sans text-gold uppercase tracking-widest text-xs border-b border-gold pb-1 hover:text-white transition-colors self-center mt-4"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFlipped(true);
+              }}
+            >
+              Notas Importantes +
+            </button>
           </div>
-
-          <button 
-            className="font-sans text-gold uppercase tracking-widest text-xs border-b border-gold pb-1 hover:text-white transition-colors self-center mt-4"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsFlipped(true);
-            }}
-          >
-            Notas Importantes +
-          </button>
         </div>
 
         {/* Back */}

@@ -145,7 +145,7 @@ export const CustomerJourney = () => {
           Experiencia Exclusiva
         </p>
         <h1 className="font-serif text-6xl md:text-8xl font-bold mb-4 leading-none">
-          TU <span className="text-gold italic">VIAJE</span>
+          TU <span className="text-gold italic font-serif">VIAJE</span>
         </h1>
         <div className="w-px h-24 bg-gradient-to-b from-gold to-transparent mt-10"></div>
       </header>
@@ -197,7 +197,7 @@ export const CustomerJourney = () => {
                       {step.subtitle && (
                         <>
                           <br />
-                          <span className="font-light italic text-gray-300">{step.subtitle}</span>
+                          <span className="font-light italic text-gray-300 font-serif">{step.subtitle}</span>
                         </>
                       )}
                     </h2>
