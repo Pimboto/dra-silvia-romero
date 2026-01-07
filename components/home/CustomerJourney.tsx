@@ -26,7 +26,7 @@ const steps = [
     subtitle: "Detallada",
     description: "Diseño detallado de tu procedimiento y preparación pre-quirúrgica, asegurando que cada detalle esté cubierto.",
     icon: Calendar,
-    image: "https://images.unsplash.com/photo-1581093458791-9f302e6d8359?q=80&w=2670&auto=format&fit=crop"
+    image: "/img/procedimientos/Pre-operative-preparation-768x512.webp"
   },
   {
     number: "03",
