@@ -4,45 +4,47 @@ import { useState } from "react";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { motion, AnimatePresence } from "framer-motion";
-
-const resultsData = [
-  {
-    id: 1,
-    title: "Ritidoplastia",
-    before: "/img/assets/ritidoplastiabianca.mp4",
-    after: "/img/assets/ritidoplastiabianca.mp4",
-    description: "Rejuvenecimiento facial natural.",
-    isVideo: true
-  },
-  {
-    id: 2,
-    title: "Bichectomía",
-    before: "/img/assets/bichetomia.mp4",
-    after: "/img/assets/bichetomia.mp4",
-    description: "Perfilamiento facial y definición de mejillas.",
-    isVideo: true
-  },
-  {
-    id: 3,
-    title: "Armonización Facial",
-    before: "/img/assets/acidoastrid.mp4",
-    after: "/img/assets/acidoastrid.mp4",
-    description: "Resultados naturales con ácido hialurónico.",
-    isVideo: true
-  }
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Results = () => {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const resultsData = [
+    {
+      id: 1,
+      title: t.results.cases[0].title,
+      before: "/img/assets/ritidoplastiabianca.mp4",
+      after: "/img/assets/ritidoplastiabianca.mp4",
+      description: t.results.cases[0].description,
+      isVideo: true
+    },
+    {
+      id: 2,
+      title: t.results.cases[1].title,
+      before: "/img/assets/bichetomia.mp4",
+      after: "/img/assets/bichetomia.mp4",
+      description: t.results.cases[1].description,
+      isVideo: true
+    },
+    {
+      id: 3,
+      title: t.results.cases[2].title,
+      before: "/img/assets/acidoastrid.mp4",
+      after: "/img/assets/acidoastrid.mp4",
+      description: t.results.cases[2].description,
+      isVideo: true
+    }
+  ];
+
   return (
-    <section className="relative py-32 px-6 md:px-12 bg-luxury-black text-white overflow-hidden">
+    <section id="results" className="relative py-32 px-6 md:px-12 bg-luxury-black text-white overflow-hidden">
       {/* Degradado superior desde Services */}
       <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-white/30 via-white/10 to-transparent blur-xl"></div>
-      
+
       {/* Degradado inferior hacia DoctorFlipCard */}
       <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-transparent via-white/10 to-white/30 blur-xl"></div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
@@ -53,8 +55,8 @@ export const Results = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="font-sans text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Casos de Éxito</span>
-              <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">Resultados <br /> <span className="text-gold italic font-serif">Reales</span></h2>
+              <span className="font-sans text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">{t.results.tag}</span>
+              <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">{t.results.title} <br /> <span className="text-gold italic font-serif">{t.results.subtitle}</span></h2>
 
               <div className="space-y-6 mb-12">
                 {resultsData.map((item, index) => (
@@ -64,8 +66,8 @@ export const Results = () => {
                       setActiveIndex(index);
                     }}
                     className={`w-full text-left p-6 border-l-4 rounded-r-[20px] transition-all duration-500 ${activeIndex === index
-                        ? "border-gold bg-white/5"
-                        : "border-white/10 hover:border-white/30"
+                      ? "border-gold bg-white/5"
+                      : "border-white/10 hover:border-white/30"
                       }`}
                   >
                     <h3 className={`font-serif text-xl mb-1 ${activeIndex === index ? "text-gold" : "text-white"}`}>
@@ -110,7 +112,7 @@ export const Results = () => {
               </div>
             </div>
             <p className="font-sans mt-6 text-center text-gray-500 text-xs uppercase tracking-[0.2em]">
-              Video de caso real
+              {t.results.videoLabel}
             </p>
           </div>
 

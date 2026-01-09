@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { Button } from "@heroui/button";
 import { DoctorBioModal } from "./DoctorBioModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const DoctorFlipCard = () => {
+  const { t } = useLanguage();
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <section className="relative py-24 px-6 md:px-12 bg-white">
+    <section id="doctor" className="relative py-24 px-6 md:px-12 bg-white">
       {/* Degradado superior */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-luxury-black/10 to-transparent"></div>
 
@@ -36,10 +38,10 @@ export const DoctorFlipCard = () => {
               <div className="absolute bottom-0 left-0 w-full p-10">
                 <div className="border-l-4 border-gold pl-6">
                   <h3 className="font-serif text-4xl md:text-5xl text-white mb-2 leading-tight">
-                    Dra. Silvia <br /> Romero
+                    {t.doctor.name} <br /> {t.doctor.surname}
                   </h3>
                   <p className="font-sans text-gold tracking-[0.2em] text-sm uppercase font-semibold">
-                    Cirujana Plástica
+                    {t.doctor.specialty}
                   </p>
                 </div>
               </div>
@@ -53,9 +55,9 @@ export const DoctorFlipCard = () => {
 
               <div className="text-center mb-10">
                 <span className="font-sans text-gold text-xs uppercase tracking-[0.3em] block mb-2">
-                  Credenciales
+                  {t.doctor.credentials}
                 </span>
-                <h3 className="font-serif text-3xl text-white">Excelencia Médica</h3>
+                <h3 className="font-serif text-3xl text-white">{t.doctor.excellence}</h3>
                 <div className="w-12 h-0.5 bg-gold mx-auto mt-4"></div>
               </div>
 
@@ -66,10 +68,10 @@ export const DoctorFlipCard = () => {
                   </span>
                   <div>
                     <h4 className="font-sans text-white text-sm uppercase tracking-wider font-bold mb-1">
-                      Formación
+                      {t.doctor.items[0].title}
                     </h4>
                     <p className="font-sans text-gray-400 font-light text-sm leading-relaxed">
-                      Medicina General - Universidad Industrial de Santander, Colombia.
+                      {t.doctor.items[0].description}
                     </p>
                   </div>
                 </div>
@@ -80,10 +82,10 @@ export const DoctorFlipCard = () => {
                   </span>
                   <div>
                     <h4 className="font-sans text-white text-sm uppercase tracking-wider font-bold mb-1">
-                      Especialización
+                      {t.doctor.items[1].title}
                     </h4>
                     <p className="font-sans text-gray-400 font-light text-sm leading-relaxed">
-                      Cirugía Plástica - Universidad Industrial de Santander, Colombia.
+                      {t.doctor.items[1].description}
                     </p>
                   </div>
                 </div>
@@ -94,10 +96,10 @@ export const DoctorFlipCard = () => {
                   </span>
                   <div>
                     <h4 className="font-sans text-white text-sm uppercase tracking-wider font-bold mb-1">
-                      Experiencia
+                      {t.doctor.items[2].title}
                     </h4>
                     <p className="font-sans text-gray-400 font-light text-sm leading-relaxed">
-                      5 Años de experiencia y aprox. 400 cirugías realizadas.
+                      {t.doctor.items[2].description}
                     </p>
                   </div>
                 </div>
@@ -106,7 +108,7 @@ export const DoctorFlipCard = () => {
               <div className="mt-12 text-center">
                 <div className="inline-block p-4 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full">
                   <p className="font-sans text-xs text-gold uppercase tracking-widest text-center">
-                    Miembro SCCP • Motiva Certified
+                    {t.doctor.member}
                   </p>
                 </div>
               </div>
@@ -118,18 +120,16 @@ export const DoctorFlipCard = () => {
         <div className="flex flex-col justify-center">
           <span className="font-sans text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-6 flex items-center gap-4">
             <span className="w-10 h-[1px] bg-gold"></span>
-            Filosofía
+            {t.doctor.philosophy}
           </span>
 
           <h2 className="font-serif text-5xl md:text-6xl mb-8 text-luxury-black leading-[1.1]">
-            Pasión por <br /> la{" "}
-            <span className="text-gold italic">Perfección</span>
+            {t.doctor.passion} <br /> {t.doctor.perfection.split(' ')[0]} <span className="text-gold italic">{t.doctor.perfection.split(' ').slice(1).join(' ')}</span>
           </h2>
 
           <div className="space-y-8 text-lg leading-relaxed text-gray-600 font-sans font-light border-l border-gray-200 pl-8">
             <p>
-              Busco ir más allá, logrando una transformación de cuerpo, mente y
-              espíritu, acompañándote con amor en cada paso de este proceso.
+              {t.doctor.bio}
             </p>
           </div>
 
@@ -138,7 +138,7 @@ export const DoctorFlipCard = () => {
               onClick={() => setIsBioModalOpen(true)}
               className="font-sans bg-luxury-black text-white px-10 py-7 rounded-full text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition-all shadow-xl"
             >
-              Leer Biografía Completa
+              {t.doctor.readMore}
             </Button>
           </div>
         </div>

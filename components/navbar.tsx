@@ -7,6 +7,12 @@ import {
   NavbarBrand,
   NavbarItem,
 } from "@heroui/navbar";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem
+} from "@heroui/dropdown";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { link as linkStyles } from "@heroui/theme";
@@ -16,9 +22,11 @@ import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
 import StaggeredMenu from "@/components/react-bits/StaggeredMenu";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t, language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,11 +37,15 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = siteConfig.navMenuItems.map(item => ({
-    label: item.label,
-    ariaLabel: item.label,
-    link: item.href
-  }));
+  const menuItems = [
+    { label: t.nav.doctor, ariaLabel: t.nav.doctor, link: "/#doctor" },
+    { label: t.nav.services, ariaLabel: t.nav.services, link: "/#services" },
+    { label: t.nav.gallery, ariaLabel: t.nav.gallery, link: "/#results" },
+    { label: t.nav.testimonials, ariaLabel: t.nav.testimonials, link: "/#testimonials" },
+    { label: t.nav.patients, ariaLabel: t.nav.patients, link: "/#journey" },
+    { label: t.nav.faq, ariaLabel: t.nav.faq, link: "/#faq" },
+    { label: t.nav.contact, ariaLabel: t.nav.contact, link: "/#contact" },
+  ];
 
   const socialItems = [
     { label: 'Instagram', link: 'https://www.instagram.com/drasilvia.romero/' },
@@ -90,7 +102,7 @@ export const Navbar = () => {
                 color="foreground"
                 href={item.href}
               >
-                {item.label}
+                {t.nav[item.label as keyof typeof t.nav]}
               </NextLink>
             </NavbarItem>
           ))}
@@ -110,12 +122,38 @@ export const Navbar = () => {
                 ? "bg-gold text-luxury-black hover:bg-gold-light shadow-gold/20"
                 : "bg-white text-luxury-black hover:bg-white/90 shadow-white/10"
             )}
-            href="/contact"
+            href="/#contact"
             radius="full"
             variant="solid"
           >
-            Agendar Cita
+            {t.nav.book}
           </Button>
+        </NavbarItem>
+        <NavbarItem className="hidden md:flex ml-2">
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                variant="light"
+                className="text-white min-w-unit-0 px-3 gap-2"
+              >
+                {language === "en" ? "EN" : "ES"}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+                  <path d="M19.9201 8.9502L13.4001 15.4702C12.6301 16.2402 11.3701 16.2402 10.6001 15.4702L4.08008 8.9502" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu
+              aria-label="Language selection"
+              onAction={(key) => setLanguage(key as "en" | "es")}
+              className="bg-luxury-black text-white border border-white/10 rounded-xl"
+              itemClasses={{
+                base: "data-[hover=true]:bg-white/10 data-[hover=true]:text-gold text-white",
+              }}
+            >
+              <DropdownItem key="en">English</DropdownItem>
+              <DropdownItem key="es">Español</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </NavbarItem>
       </NavbarContent>
 

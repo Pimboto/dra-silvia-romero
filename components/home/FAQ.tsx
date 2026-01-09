@@ -2,13 +2,15 @@
 
 import { Accordion, AccordionItem } from "@heroui/accordion";
 import { Link } from "@heroui/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const FAQ = () => {
+  const { t } = useLanguage();
   return (
-    <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-white to-gray-50">
+    <section id="faq" className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-3xl mx-auto relative z-10">
         <h2 className="font-serif text-4xl md:text-5xl text-center mb-16 text-luxury-black">
-          Preguntas <span className="text-gold italic font-serif">Frecuentes</span>
+          {t.faq.title} <span className="text-gold italic font-serif">{t.faq.subtitle}</span>
         </h2>
 
         <Accordion
@@ -24,8 +26,8 @@ export const FAQ = () => {
         >
           <AccordionItem
             key="1"
-            aria-label="Costo de cirugía"
-            title="¿Cuánto cuesta mi cirugía?"
+            aria-label={t.faq.items[0].question}
+            title={t.faq.items[0].question}
             className="!bg-white"
             classNames={{
               base: "!bg-white",
@@ -34,12 +36,12 @@ export const FAQ = () => {
               content: "!bg-white !text-gray-600"
             }}
           >
-            En tu consulta médica te entrego el presupuesto completo de tu cirugía, ya que según el diagnóstico y tratamiento indicado establezco el costo de tu cirugía.
+            {t.faq.items[0].answer}
           </AccordionItem>
           <AccordionItem
             key="2"
-            aria-label="Resultados"
-            title="¿En cuánto tiempo veré los resultados finales de mi procedimiento?"
+            aria-label={t.faq.items[1].question}
+            title={t.faq.items[1].question}
             className="!bg-white"
             classNames={{
               base: "!bg-white",
@@ -48,12 +50,12 @@ export const FAQ = () => {
               content: "!bg-white !text-gray-600"
             }}
           >
-            A los tres meses verás el resultado parcial, y al año obtendrás el resultado final completo de tu transformación.
+            {t.faq.items[1].answer}
           </AccordionItem>
           <AccordionItem
             key="3"
-            aria-label="Pacientes internacionales"
-            title="¿Se puede operar pacientes internacionales?"
+            aria-label={t.faq.items[2].question}
+            title={t.faq.items[2].question}
             className="!bg-white"
             classNames={{
               base: "!bg-white",
@@ -62,16 +64,16 @@ export const FAQ = () => {
               content: "!bg-white !text-gray-600"
             }}
           >
-            La mayoría de mis pacientes son internacionales, así que tengo una amplia experiencia en el manejo desde la primera consulta hasta el cuidado y seguimiento postoperatorio.
+            {t.faq.items[2].answer}
           </AccordionItem>
         </Accordion>
 
         <div className="mt-16 text-center">
           <Link
-            href="/faq"
+            href="/#faq"
             className="font-sans text-gold font-bold uppercase tracking-[0.2em] text-xs hover:opacity-70 transition-opacity"
           >
-            Ver todas las preguntas frecuentes
+            {t.faq.viewAll}
           </Link>
         </div>
       </div>

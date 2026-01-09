@@ -2,6 +2,10 @@
 
 @config "../tailwind.config.js";
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Animación para el modal de biografía */
 @keyframes fadeIn {
   from {

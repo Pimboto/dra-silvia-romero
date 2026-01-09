@@ -6,6 +6,7 @@ import { Avatar } from "@heroui/avatar";
 import { Button } from "@heroui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft2, ArrowRight2 } from "iconsax-reactjs";
+import { useLanguage } from "@/context/LanguageContext";
 
 const testimonials = [
   {
@@ -283,6 +284,7 @@ const testimonials = [
 ];
 
 export const Testimonials = () => {
+  const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
 
@@ -304,13 +306,13 @@ export const Testimonials = () => {
   }, []);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => 
+    setCurrentIndex((prev) =>
       prev + cardsPerView >= testimonials.length ? 0 : prev + cardsPerView
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => 
+    setCurrentIndex((prev) =>
       prev - cardsPerView < 0 ? Math.max(0, testimonials.length - cardsPerView) : prev - cardsPerView
     );
   };
@@ -318,27 +320,27 @@ export const Testimonials = () => {
   const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + cardsPerView);
 
   return (
-    <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-white to-gray-50">
+    <section id="testimonials" className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <span className="font-sans text-gold uppercase tracking-[0.3em] text-xs font-bold mb-4 block">
-            Testimonios Reales
+            {t.testimonials.tag}
           </span>
           <h2 className="font-serif text-5xl md:text-6xl mb-6 text-luxury-black">
-            Lo que dicen <span className="text-gold italic font-serif">nuestras pacientes</span>
+            {t.testimonials.title} <span className="text-gold italic font-serif">{t.testimonials.subtitle}</span>
           </h2>
           <div className="flex items-center justify-center gap-2 mb-4">
             <div className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
                 <svg key={i} className="w-7 h-7 text-gold fill-current" viewBox="0 0 24 24">
-                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                 </svg>
               ))}
             </div>
             <span className="font-sans text-2xl font-bold text-luxury-black ml-2">5.0</span>
           </div>
-          <p className="font-sans text-gray-600 text-lg">Basado en más de 30 reseñas verificadas</p>
+          <p className="font-sans text-gray-600 text-lg">{t.testimonials.rating}</p>
         </div>
 
         {/* Testimonials Slider */}
@@ -374,7 +376,7 @@ export const Testimonials = () => {
                       <div className="flex gap-0.5 mb-4">
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <svg key={i} className="w-5 h-5 text-gold fill-current" viewBox="0 0 24 24">
-                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                           </svg>
                         ))}
                       </div>
@@ -420,7 +422,7 @@ export const Testimonials = () => {
 
         {/* Google Reviews Badge */}
         <div className="mt-16 text-center">
-          <p className="font-sans text-gray-500 mb-4">¿Ya eres paciente nuestra?</p>
+          <p className="font-sans text-gray-500 mb-4">{t.testimonials.patient}</p>
           <a
             href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review"
             target="_blank"
@@ -428,9 +430,9 @@ export const Testimonials = () => {
             className="font-sans inline-flex items-center gap-2 text-gold font-semibold hover:opacity-70 transition-opacity"
           >
             <svg className="w-5 h-5 text-gold fill-current" viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
             </svg>
-            Déjanos tu reseña en Google
+            {t.testimonials.google}
           </a>
         </div>
       </div>

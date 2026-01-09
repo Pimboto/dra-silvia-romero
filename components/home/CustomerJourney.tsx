@@ -4,53 +4,55 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { User, Calendar, MagicStar, TickCircle } from "iconsax-reactjs";
+import { useLanguage } from "@/context/LanguageContext";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const steps = [
-  {
-    number: "01",
-    tag: "INICIO DEL PROCESO",
-    title: "Valoración",
-    subtitle: "Personalizada",
-    description: "Evaluación personalizada virtual o presencial para entender profundamente tus deseos y expectativas estéticas.",
-    icon: User,
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    number: "02",
-    tag: "ESTRATEGIA",
-    title: "Planificación",
-    subtitle: "Detallada",
-    description: "Diseño detallado de tu procedimiento y preparación pre-quirúrgica, asegurando que cada detalle esté cubierto.",
-    icon: Calendar,
-    image: "/img/procedimientos/Pre-operative-preparation-768x512.webp"
-  },
-  {
-    number: "03",
-    tag: "EL MOMENTO",
-    title: "Tu Gran Día",
-    subtitle: "",
-    description: "Cirugía en quirófanos de Nivel III con los más altos estándares de seguridad y tecnología de vanguardia.",
-    icon: MagicStar,
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2668&auto=format&fit=crop"
-  },
-  {
-    number: "04",
-    tag: "RECUPERACIÓN",
-    title: "Seguimiento",
-    subtitle: "Continuo",
-    description: "Acompañamiento cercano 24/7 durante tu recuperación, asegurando resultados óptimos y tu tranquilidad.",
-    icon: TickCircle,
-    image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?q=80&w=2670&auto=format&fit=crop"
-  }
-];
-
 export const CustomerJourney = () => {
+  const { t } = useLanguage();
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const headerRef = useRef<HTMLElement>(null);
+
+  const steps = [
+    {
+      number: "01",
+      tag: t.journey.steps[0].tag,
+      title: t.journey.steps[0].title,
+      subtitle: t.journey.steps[0].subtitle,
+      description: t.journey.steps[0].description,
+      icon: User,
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      number: "02",
+      tag: t.journey.steps[1].tag,
+      title: t.journey.steps[1].title,
+      subtitle: t.journey.steps[1].subtitle,
+      description: t.journey.steps[1].description,
+      icon: Calendar,
+      image: "/img/procedimientos/Pre-operative-preparation-768x512.webp"
+    },
+    {
+      number: "03",
+      tag: t.journey.steps[2].tag,
+      title: t.journey.steps[2].title,
+      subtitle: t.journey.steps[2].subtitle,
+      description: t.journey.steps[2].description,
+      icon: MagicStar,
+      image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2668&auto=format&fit=crop"
+    },
+    {
+      number: "04",
+      tag: t.journey.steps[3].tag,
+      title: t.journey.steps[3].title,
+      subtitle: t.journey.steps[3].subtitle,
+      description: t.journey.steps[3].description,
+      icon: TickCircle,
+      image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?q=80&w=2670&auto=format&fit=crop"
+    }
+  ];
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -132,20 +134,20 @@ export const CustomerJourney = () => {
     });
 
     return () => ctx.revert();
-  }, []);
+  }, [steps]); // Added steps dependency
 
   return (
-    <section className="relative bg-luxury-black text-white overflow-hidden">
+    <section id="journey" className="relative bg-luxury-black text-white overflow-hidden">
       {/* Intro Header */}
-      <header 
+      <header
         ref={headerRef}
         className="min-h-[60vh] flex flex-col items-center justify-center relative z-10 text-center px-4 py-24"
       >
         <p className="font-sans text-sm md:text-base tracking-[0.5em] uppercase text-gray-400 mb-6">
-          Experiencia Exclusiva
+          {t.journey.intro}
         </p>
         <h1 className="font-serif text-6xl md:text-8xl font-bold mb-4 leading-none">
-          TU <span className="text-gold italic font-serif">VIAJE</span>
+          {t.journey.title} <span className="text-gold italic font-serif">{t.journey.subtitle}</span>
         </h1>
         <div className="w-px h-24 bg-gradient-to-b from-gold to-transparent mt-10"></div>
       </header>
@@ -162,9 +164,9 @@ export const CustomerJourney = () => {
             className="relative min-h-screen flex items-center justify-center border-b border-white/5 py-24"
           >
             {/* Background Image with Parallax */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center opacity-20"
-              style={{ 
+              style={{
                 backgroundImage: `url('${step.image}')`,
                 transform: 'translateZ(0)',
               }}
@@ -217,7 +219,7 @@ export const CustomerJourney = () => {
 
                 {/* Image */}
                 <div className={`step-image ${isEven ? 'order-1 md:order-2' : 'order-1'} flex ${isEven ? 'justify-center md:justify-end' : 'justify-center md:justify-start'}`}>
-                  <div 
+                  <div
                     className="relative p-2 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm border border-gold/10 rounded-lg shadow-2xl transform hover:rotate-0 transition-transform duration-700 w-full max-w-md"
                     style={{ transform: `rotate(${isEven ? '2deg' : '-2deg'})` }}
                   >

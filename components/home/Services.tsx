@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { gsap } from "gsap";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Procedure = {
   title: string;
@@ -15,213 +16,149 @@ type ProceduresData = {
   [key: string]: Procedure[];
 };
 
-const proceduresData: ProceduresData = {
-  "CUERPO": [
-    {
-      title: "Lipoescultura",
-      description: "Liposucción con definición, marcación corporal y transferencia a glúteos.",
-      recovery: "10–14 días antes de volver a rutina, 12 semanas de recuperación total.",
-  image: "/img/procedimientos/lipoescultura.webp",
-      notes: [
-        "Uso obligatorio de faja por 6 semanas",
-        "Mejores candidatas tienen buena elasticidad en la piel",
-        "No corrige el exceso de piel moderado y severo"
-      ]
-    },
-    {
-      title: "Abdominoplastia",
-      description: "Moldeamiento del abdomen con retiro de piel excedente, retiro de depósitos grasos, cierre de músculos para lograr un abdomen más plano y con cintura.",
-      recovery: "21 días antes de volver a rutina, 12 semanas de recuperación total. Un año para resultado definitivo.",
-  image: "/img/after-before/Abdominoplastia.jpeg",
-      notes: [
-        "Uso obligatorio de faja por 6 semanas",
-        "No es una cirugía para bajar de peso, sino para moldear",
-        "Normalmente se recomienda con lipoescultura",
-        "Los buenos hábitos de salud y vida son muy importantes para mantener el resultado"
-      ]
-    },
-    {
-      title: "Gluteoplastia",
-      description: "Aumento natural del tamaño de los glúteos con implantes.",
-      recovery: "21 días antes de volver a rutina, 12 semanas de recuperación total.",
-  image: "/img/procedimientos/gluteoplastia.jpg",
-      notes: [
-        "Uso obligatorio de faja por 6 semanas",
-        "No apoyo en los glúteos por 2 semanas",
-        "Adecuada higiene muy importante para evitar contaminación",
-        "No corrige el exceso de piel moderado y severo"
-      ]
-    }
-  ],
-  "SENOS": [
-    {
-      title: "Aumento de Senos con Implantes",
-      description: "Resultados naturales usando implantes, técnica convencional con implantes GC Aesthetics, o técnica PRESERVÉ con implantes MOTIVA.",
-      recovery: "7–10 días para actividades normales, 4–6 semanas recuperación total.",
-  image: "/img/procedimientos/aumentosenosimplantes.webp",
-      notes: [
-        "Se requiere exámenes prequirúrgicos",
-        "Tamaño del implante se define según proporciones del cuerpo y en común acuerdo contigo en la consulta preoperatoria"
-      ]
-    },
-    {
-      title: "Mastopexia (Levantamiento de Senos)",
-      description: "Levantamiento de los senos, retiro de piel excedente.",
-      recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
-  image: "/img/procedimientos/mastopexia.webp",
-      notes: [
-        "Uso obligatorio de brassier",
-        "No corrige la flacidez de la piel",
-        "Puede realizarse con o sin implantes",
-        "Normalmente requiere una cicatriz en T invertida"
-      ]
-    },
-    {
-      title: "Explantación Mamaria",
-      description: "Retiro de la prótesis mamaria y uso de los tejidos propios para reconstruir los senos.",
-      recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
-  image: "/img/procedimientos/explantacion-mamaria.jpg",
-      notes: [
-        "Uso obligatorio de brassier",
-        "No corrige la flacidez de la piel",
-        "Normalmente requiere una cicatriz en T invertida",
-        "Puede requerir inyección de grasa"
-      ]
-    },
-    {
-      title: "Reducción Mamaria",
-      description: "Disminución del tamaño de los senos, acompañado de levantamiento y retiro de piel excedente.",
-      recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
-  image: "/img/procedimientos/reduccionmamaria.jpg",
-      notes: [
-        "Uso obligatorio de brassier",
-        "No corrige la flacidez de la piel",
-        "Puede realizarse con o sin implantes",
-        "Normalmente requiere una cicatriz en T invertida"
-      ]
-    }
-  ],
-  "ROSTRO": [
-    {
-      title: "Ritidoplastia (Lifting Facial)",
-      description: "Rejuvenecimiento facial reconstituyendo los tejidos profundos faciales. Técnica híbrida DEEP PLANE Y SUBSMAS.",
-      recovery: "15 días para actividades normales y retiro de puntos, 12 semanas de recuperación total. Un año para el resultado definitivo.",
-  image: "/img/procedimientos/riditoplastia.jpg",
-      notes: [
-        "Se requiere exámenes prequirúrgicos, te recomiendo dos meses antes de la cirugía",
-        "Debes realizarte una escanografía doppler facial para determinar la presencia de sustancias previas",
-        "Tendrás cita con el anestesiólogo y conmigo presencial antes de tu cirugía",
-        "Es importante que tu IMC sea menor a 30 por seguridad quirúrgica",
-        "No elimina la necesidad de usar Toxina Botulínica BOTOX"
-      ]
-    },
-    {
-      title: "Blefaroplastia",
-      description: "Rejuvenecimiento de la mirada, eliminando la piel en exceso y las bolsas grasas.",
-      recovery: "15 días para actividades normales y retiro de puntos, 12 semanas de recuperación total. Un año para el resultado definitivo.",
-  image: "/img/procedimientos/blefaroplastia.jpg",
-      notes: [
-        "Se requiere exámenes prequirúrgicos, te recomiendo dos meses antes de la cirugía",
-        "Tendrás cita con el anestesiólogo y conmigo presencial un día antes de tu cirugía",
-        "Es recomendable acompañarla de una frontoplastia para elevación de las cejas",
-        "No elimina la necesidad de usar Toxina Botulínica BOTOX"
-      ]
-    },
-    {
-      title: "Frontoplastia",
-      description: "Rejuvenecimiento de la frente, cejas y región lateral de la órbita. Corrige el déficit frontotemporal y eleva las cejas.",
-      recovery: "15 días para actividades normales y retiro de puntos, 12 semanas de recuperación total. Un año para el resultado definitivo.",
-  image: "/img/procedimientos/frontoplastia.png",
-      notes: [
-        "Se requiere exámenes prequirúrgicos, te recomiendo dos meses antes de la cirugía",
-        "Tendrás cita con el anestesiólogo y conmigo presencial un día antes de tu cirugía",
-        "Es recomendable acompañarla de blefaroplastia",
-        "No elimina la necesidad de usar Toxina Botulínica BOTOX"
-      ]
-    },
-    {
-      title: "Rinoplastia",
-      description: "Moldeamiento de los huesos y cartílagos nasales para lograr una nariz más armónica con el rostro.",
-      recovery: "10 días antes de volver a la rutina, 12 semanas de recuperación total. Un año para los resultados definitivos.",
-  image: "/img/procedimientos/rinoplastia.jpg",
-      notes: [
-        "Uso obligatorio de férulas intranasales",
-        "Puede requerir manejo funcional de la nariz"
-      ]
-    },
-    {
-      title: "Armonización Facial con Implantes",
-      description: "Uso de implantes faciales en mandíbula, región malar y otros para armonizar las proporciones del rostro.",
-      recovery: "15 días antes de volver a la rutina, 12 semanas de recuperación total. Un año para los resultados definitivos.",
-  image: "/img/procedimientos/armonizacionfacialconimplantes.jpg",
-      notes: [
-        "Riesgo de infección de los implantes por las heridas en cavidad oral"
-      ]
-    }
-  ],
-  "ÍNTIMA": [
-    {
-      title: "Rejuvenecimiento Vaginal",
-      description: "Manejo de los labios menores y mayores, pubis y zona vaginal.",
-      recovery: "14 días.",
-  image: "/img/procedimientos/rejuvenecimiento-vaginal.jpg",
-      notes: [
-        "Es un procedimiento sin incapacidad pero hay inflamación de las zonas",
-        "Las suturas y heridas se deben cuidar muy bien dado el alto riesgo de infección por la zona"
-      ]
-    }
-  ],
-  "NO QUIRÚRGICOS": [
-    {
-      title: "Botox",
-      description: "Uso de toxina botulínica para disminuir la contracción muscular y de esta manera tratar las líneas de expresión facial.",
-      recovery: "5 horas, 14 días para ver el resultado, 6 semanas de duración del efecto.",
-  image: "/img/procedimientos/botox.jpg",
-      notes: [
-        "Las primeras 5 horas posterior a la aplicación no puedes acostarte, no masajear las zonas, no agacharse, no ejercicio durante ese día",
-        "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales como por ejemplo personas que hacen ejercicio"
-      ]
-    },
-    {
-      title: "Ácido Hialurónico",
-      description: "Uso de ácido hialurónico para armonizar el rostro.",
-      recovery: "3 días, 14 días para ver el resultado, un año de duración del efecto.",
-  image: "/img/procedimientos/acidohialuronico1.png",
-      notes: [
-        "Es un procedimiento sin incapacidad pero hay inflamación de las zonas inyectadas por lo menos tres días",
-        "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales"
-      ]
-    },
-    {
-      title: "Definición de Labios",
-      description: "Uso de ácido hialurónico para armonizar los labios, definir o dar aumento.",
-      recovery: "3 días, 14 días para ver el resultado, un año de duración del efecto.",
-  image: "/img/procedimientos/definiciondelabios.png",
-      notes: [
-        "Es un procedimiento sin incapacidad pero hay inflamación de las zonas inyectadas por lo menos tres días",
-        "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales"
-      ]
-    },
-    {
-      title: "Bioestimuladores de Colágeno",
-      description: "Aplicación de sustancias en el rostro: SCULPTRA, RADIESSE, HARMONICA para favorecer la producción de colágeno.",
-      recovery: "3 días, 14 días a 3 meses para ver el resultado, un año de duración del efecto.",
-  image: "/img/procedimientos/bioestimuladoresdecolageno.webp",
-      notes: [
-        "Es un procedimiento sin incapacidad pero hay inflamación de las zonas inyectadas por lo menos tres días",
-        "El efecto puede irse antes de este tiempo debido a factores genéticos o ambientales",
-        "Si la flacidez es moderada a severa puede no verse ningún efecto ya que la indicación es quirúrgica"
-      ]
-    }
-  ]
-};
-
 export const Services = () => {
-  const [activeTab, setActiveTab] = useState<string>("CUERPO");
+  const { t } = useLanguage();
+  const [activeTab, setActiveTab] = useState<string>("");
+
+  const proceduresData: ProceduresData = {
+    [t.services.categories.body]: [
+      {
+        title: t.services.procedures.lipo.title,
+        description: t.services.procedures.lipo.description,
+        recovery: t.services.procedures.lipo.recovery,
+        image: "/img/procedimientos/lipoescultura.webp",
+        notes: t.services.procedures.lipo.notes
+      },
+      {
+        title: t.services.procedures.abdominoplasty.title,
+        description: t.services.procedures.abdominoplasty.description,
+        recovery: t.services.procedures.abdominoplasty.recovery,
+        image: "/img/after-before/Abdominoplastia.jpeg",
+        notes: t.services.procedures.abdominoplasty.notes
+      },
+      {
+        title: t.services.procedures.gluteoplasty.title,
+        description: t.services.procedures.gluteoplasty.description,
+        recovery: t.services.procedures.gluteoplasty.recovery,
+        image: "/img/procedimientos/gluteoplastia.jpg",
+        notes: t.services.procedures.gluteoplasty.notes
+      }
+    ],
+    [t.services.categories.breast]: [
+      {
+        title: t.services.procedures.breastAug.title,
+        description: t.services.procedures.breastAug.description,
+        recovery: t.services.procedures.breastAug.recovery,
+        image: "/img/procedimientos/aumentosenosimplantes.webp",
+        notes: t.services.procedures.breastAug.notes
+      },
+      {
+        title: t.services.procedures.mastopexy.title,
+        description: t.services.procedures.mastopexy.description,
+        recovery: t.services.procedures.mastopexy.recovery,
+        image: "/img/procedimientos/mastopexia.webp",
+        notes: t.services.procedures.mastopexy.notes
+      },
+      {
+        title: t.services.procedures.explantation.title,
+        description: t.services.procedures.explantation.description,
+        recovery: t.services.procedures.explantation.recovery,
+        image: "/img/procedimientos/explantacion-mamaria.jpg",
+        notes: t.services.procedures.explantation.notes
+      },
+      {
+        title: t.services.procedures.breastRed.title,
+        description: t.services.procedures.breastRed.description,
+        recovery: t.services.procedures.breastRed.recovery,
+        image: "/img/procedimientos/reduccionmamaria.jpg",
+        notes: t.services.procedures.breastRed.notes
+      }
+    ],
+    [t.services.categories.face]: [
+      {
+        title: t.services.procedures.facelift.title,
+        description: t.services.procedures.facelift.description,
+        recovery: t.services.procedures.facelift.recovery,
+        image: "/img/procedimientos/riditoplastia.jpg",
+        notes: t.services.procedures.facelift.notes
+      },
+      {
+        title: t.services.procedures.blepharoplasty.title,
+        description: t.services.procedures.blepharoplasty.description,
+        recovery: t.services.procedures.blepharoplasty.recovery,
+        image: "/img/procedimientos/blefaroplastia.jpg",
+        notes: t.services.procedures.blepharoplasty.notes
+      },
+      {
+        title: t.services.procedures.frontoplasty.title,
+        description: t.services.procedures.frontoplasty.description,
+        recovery: t.services.procedures.frontoplasty.recovery,
+        image: "/img/procedimientos/frontoplastia.png",
+        notes: t.services.procedures.frontoplasty.notes
+      },
+      {
+        title: t.services.procedures.rhinoplasty.title,
+        description: t.services.procedures.rhinoplasty.description,
+        recovery: t.services.procedures.rhinoplasty.recovery,
+        image: "/img/procedimientos/rinoplastia.jpg",
+        notes: t.services.procedures.rhinoplasty.notes
+      },
+      {
+        title: t.services.procedures.facialImplants.title,
+        description: t.services.procedures.facialImplants.description,
+        recovery: t.services.procedures.facialImplants.recovery,
+        image: "/img/procedimientos/armonizacionfacialconimplantes.jpg",
+        notes: t.services.procedures.facialImplants.notes
+      }
+    ],
+    [t.services.categories.intimate]: [
+      {
+        title: t.services.procedures.vaginal.title,
+        description: t.services.procedures.vaginal.description,
+        recovery: t.services.procedures.vaginal.recovery,
+        image: "/img/procedimientos/rejuvenecimiento-vaginal.jpg",
+        notes: t.services.procedures.vaginal.notes
+      }
+    ],
+    [t.services.categories.nonSurgical]: [
+      {
+        title: t.services.procedures.botox.title,
+        description: t.services.procedures.botox.description,
+        recovery: t.services.procedures.botox.recovery,
+        image: "/img/procedimientos/botox.jpg",
+        notes: t.services.procedures.botox.notes
+      },
+      {
+        title: t.services.procedures.hyaluronic.title,
+        description: t.services.procedures.hyaluronic.description,
+        recovery: t.services.procedures.hyaluronic.recovery,
+        image: "/img/procedimientos/acidohialuronico1.png",
+        notes: t.services.procedures.hyaluronic.notes
+      },
+      {
+        title: t.services.procedures.lips.title,
+        description: t.services.procedures.lips.description,
+        recovery: t.services.procedures.lips.recovery,
+        image: "/img/procedimientos/definiciondelabios.png",
+        notes: t.services.procedures.lips.notes
+      },
+      {
+        title: t.services.procedures.biostimulators.title,
+        description: t.services.procedures.biostimulators.description,
+        recovery: t.services.procedures.biostimulators.recovery,
+        image: "/img/procedimientos/bioestimuladoresdecolageno.webp",
+        notes: t.services.procedures.biostimulators.notes
+      }
+    ]
+  };
+
+  useEffect(() => {
+    setActiveTab(t.services.categories.body);
+  }, [t]);
 
   const handleTabChange = (tab: string) => {
     const grid = document.getElementById('procedures-grid');
-    
+
     if (grid) {
       // Fade out
       gsap.to(grid, {
@@ -251,15 +188,17 @@ export const Services = () => {
     }
   }, [activeTab]);
 
+  if (!activeTab) return null;
+
   return (
-    <section className="relative py-32 bg-luxury-black border-t border-white/5">
+    <section id="services" className="relative py-32 bg-luxury-black border-t border-white/5">
       {/* Header */}
       <div className="container mx-auto px-6 mb-16 text-center">
         <span className="font-sans text-gold tracking-[0.3em] text-sm font-bold block mb-4">
-          PORTAFOLIO EXCLUSIVO
+          {t.services.tag}
         </span>
         <h2 className="font-serif text-4xl md:text-7xl font-bold mb-4 text-white">
-          Nuestros <span className="text-gold italic font-serif">Procedimientos</span>
+          {t.services.title} <span className="text-gold italic font-serif">{t.services.subtitle}</span>
         </h2>
         <div className="w-24 h-px bg-gold mx-auto mt-8"></div>
       </div>
@@ -271,11 +210,10 @@ export const Services = () => {
             <button
               key={category}
               onClick={() => handleTabChange(category)}
-              className={`font-sans text-sm md:text-lg uppercase tracking-widest font-bold px-4 py-2 cursor-pointer transition-all duration-300 ${
-                activeTab === category 
-                  ? 'text-gold border-b-2 border-gold' 
-                  : 'text-gray-500 hover:text-gray-300'
-              }`}
+              className={`font-sans text-sm md:text-lg uppercase tracking-widest font-bold px-4 py-2 cursor-pointer transition-all duration-300 ${activeTab === category
+                ? 'text-gold border-b-2 border-gold'
+                : 'text-gray-500 hover:text-gray-300'
+                }`}
             >
               {category}
             </button>
@@ -285,15 +223,14 @@ export const Services = () => {
 
       {/* Cards Grid */}
       <div className="container mx-auto px-6">
-        <div 
-          id="procedures-grid" 
-          className={`grid gap-8 min-h-[500px] ${
-            proceduresData[activeTab].length === 4 
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' 
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-          }`}
+        <div
+          id="procedures-grid"
+          className={`grid gap-8 min-h-[500px] ${proceduresData[activeTab]?.length === 4
+            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+            }`}
         >
-          {proceduresData[activeTab].map((procedure, index) => (
+          {proceduresData[activeTab]?.map((procedure, index) => (
             <FlipCard key={index} procedure={procedure} />
           ))}
         </div>
@@ -303,15 +240,16 @@ export const Services = () => {
 };
 
 function FlipCard({ procedure }: { procedure: Procedure }) {
+  const { t } = useLanguage();
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <div 
+    <div
       className="flip-card h-[500px] w-full cursor-pointer group"
       style={{ perspective: '1000px' }}
       onClick={() => setIsFlipped(!isFlipped)}
     >
-      <div 
+      <div
         className="flip-card-inner w-full h-full relative transition-transform duration-700"
         style={{
           transformStyle: 'preserve-3d',
@@ -319,7 +257,7 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
         }}
       >
         {/* Front */}
-        <div 
+        <div
           className="flip-card-front absolute inset-0 rounded-lg overflow-hidden"
           style={{
             backfaceVisibility: 'hidden',
@@ -328,51 +266,51 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
         >
           {/* Background Image */}
           {procedure.image && (
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
               style={{ backgroundImage: `url(${procedure.image})` }}
             />
           )}
-          
+
           {/* Overlay with gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-luxury-black via-luxury-black/80 to-luxury-black/60" />
-          
+
           {/* Content */}
           <div className="relative z-10 h-full backdrop-blur-sm border border-gold/10 rounded-lg p-6 flex flex-col justify-between overflow-y-auto">
             <div>
               <h3 className="font-serif text-xl font-bold mb-4 text-white text-center">
                 {procedure.title}
               </h3>
-              
+
               <div className="mb-4">
-                <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">Descripción</h4>
+                <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">{t.services.labels.description}</h4>
                 <p className="font-sans text-gray-300 text-sm leading-relaxed">
                   {procedure.description}
                 </p>
               </div>
 
               <div className="mb-4">
-                <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">Tiempo de Recuperación</h4>
+                <h4 className="font-sans text-gold text-xs uppercase tracking-widest font-bold mb-2">{t.services.labels.recovery}</h4>
                 <p className="font-sans text-gray-300 text-sm leading-relaxed">
                   {procedure.recovery}
                 </p>
               </div>
             </div>
 
-            <button 
+            <button
               className="font-sans text-gold uppercase tracking-widest text-xs border-b border-gold pb-1 hover:text-white transition-colors self-center mt-4"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsFlipped(true);
               }}
             >
-              Notas Importantes +
+              {t.services.labels.more}
             </button>
           </div>
         </div>
 
         {/* Back */}
-        <div 
+        <div
           className="flip-card-back absolute inset-0 bg-gradient-to-br from-gold/20 to-luxury-black/80 backdrop-blur-md border border-gold/30 rounded-lg p-6 flex flex-col justify-between overflow-y-auto"
           style={{
             backfaceVisibility: 'hidden',
@@ -384,11 +322,11 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
             <h3 className="font-serif text-lg text-gold mb-4 text-center">
               {procedure.title}
             </h3>
-            
+
             <h4 className="font-sans text-white text-xs uppercase tracking-widest font-bold mb-3">
-              Notas Importantes para Pacientes
+              {t.services.labels.patientNotes}
             </h4>
-            
+
             <ul className="space-y-3">
               {procedure.notes.map((note, index) => (
                 <li key={index} className="font-sans text-gray-300 text-sm leading-relaxed flex items-start">
@@ -399,14 +337,14 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
             </ul>
           </div>
 
-          <button 
+          <button
             className="font-sans text-white bg-white/10 px-6 py-2 rounded-full text-xs uppercase tracking-widest hover:bg-white/20 transition-all self-center mt-4"
             onClick={(e) => {
               e.stopPropagation();
               setIsFlipped(false);
             }}
           >
-            Volver
+            {t.services.labels.back}
           </button>
         </div>
       </div>

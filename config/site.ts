@@ -5,58 +5,58 @@ export const siteConfig = {
   description: "Medicina Estética de Alta Gama. Resultados naturales y elegantes.",
   navItems: [
     {
-      label: "Doctora",
-      href: "/about",
+      label: "doctor",
+      href: "/#doctor",
     },
     {
-      label: "Servicios",
-      href: "/services",
+      label: "services",
+      href: "/#services",
     },
     {
-      label: "Galería",
-      href: "/results",
+      label: "gallery",
+      href: "/#results",
     },
     {
-      label: "Testimonios",
-      href: "/testimonials",
+      label: "testimonials",
+      href: "/#testimonials",
     },
     {
-      label: "Pacientes",
-      href: "/allies",
+      label: "patients",
+      href: "/#journey",
     },
     {
-      label: "FAQ",
-      href: "/faq",
+      label: "faq",
+      href: "/#faq",
     },
     {
-      label: "Contacto",
-      href: "/contact",
+      label: "contact",
+      href: "/#contact",
     },
   ],
   navMenuItems: [
     {
-      label: "Doctora",
-      href: "/about",
+      label: "doctor",
+      href: "/#doctor",
     },
     {
-      label: "Servicios",
-      href: "/services",
+      label: "services",
+      href: "/#services",
     },
     {
-      label: "Antes y Después",
-      href: "/results",
+      label: "gallery",
+      href: "/#results",
     },
     {
-      label: "Testimonios",
-      href: "/testimonials",
+      label: "testimonials",
+      href: "/#testimonials",
     },
     {
-      label: "FAQ",
-      href: "/faq",
+      label: "faq",
+      href: "/#faq",
     },
     {
-      label: "Contacto",
-      href: "/contact",
+      label: "contact",
+      href: "/#contact",
     },
   ],
   links: {
