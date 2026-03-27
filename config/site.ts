@@ -5,16 +5,16 @@ export const siteConfig = {
   description: "Medicina Estética de Alta Gama. Resultados naturales y elegantes.",
   navItems: [
     {
+      label: "gallery",
+      href: "/#results",
+    },
+    {
       label: "doctor",
       href: "/#doctor",
     },
     {
       label: "services",
       href: "/#services",
-    },
-    {
-      label: "gallery",
-      href: "/#results",
     },
     {
       label: "testimonials",
@@ -35,6 +35,10 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
+      label: "gallery",
+      href: "/#results",
+    },
+    {
       label: "doctor",
       href: "/#doctor",
     },
@@ -43,12 +47,12 @@ export const siteConfig = {
       href: "/#services",
     },
     {
-      label: "gallery",
-      href: "/#results",
-    },
-    {
       label: "testimonials",
       href: "/#testimonials",
+    },
+    {
+      label: "patients",
+      href: "/#journey",
     },
     {
       label: "faq",

@@ -22,17 +22,57 @@ export const Results = () => {
     {
       id: 2,
       title: t.results.cases[1].title,
-      before: "/img/assets/bichetomia.mp4",
-      after: "/img/assets/bichetomia.mp4",
+      before: "/img/assets/acidoastrid.mp4",
+      after: "/img/assets/acidoastrid.mp4",
       description: t.results.cases[1].description,
       isVideo: true
     },
     {
       id: 3,
       title: t.results.cases[2].title,
-      before: "/img/assets/acidoastrid.mp4",
-      after: "/img/assets/acidoastrid.mp4",
+      before: "/vid/abdominoplastia.mp4",
+      after: "/vid/abdominoplastia.mp4",
       description: t.results.cases[2].description,
+      isVideo: true
+    },
+    {
+      id: 4,
+      title: t.results.cases[3].title,
+      before: "/vid/cervicoplastia.mp4",
+      after: "/vid/cervicoplastia.mp4",
+      description: t.results.cases[3].description,
+      isVideo: true
+    },
+    {
+      id: 5,
+      title: t.results.cases[4].title,
+      before: "/vid/explantacion-mamaria.mp4",
+      after: "/vid/explantacion-mamaria.mp4",
+      description: t.results.cases[4].description,
+      isVideo: true
+    },
+    {
+      id: 6,
+      title: t.results.cases[5].title,
+      before: "/vid/gluteos.mp4",
+      after: "/vid/gluteos.mp4",
+      description: t.results.cases[5].description,
+      isVideo: true
+    },
+    {
+      id: 7,
+      title: t.results.cases[6].title,
+      before: "/vid/implantacion-mamaria.mp4",
+      after: "/vid/implantacion-mamaria.mp4",
+      description: t.results.cases[6].description,
+      isVideo: true
+    },
+    {
+      id: 8,
+      title: t.results.cases[7].title,
+      before: "/vid/abdomen.mp4",
+      after: "/vid/abdomen.mp4",
+      description: t.results.cases[7].description,
       isVideo: true
     }
   ];
@@ -58,26 +98,23 @@ export const Results = () => {
               <span className="font-sans text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">{t.results.tag}</span>
               <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">{t.results.title} <br /> <span className="text-gold italic font-serif">{t.results.subtitle}</span></h2>
 
-              <div className="space-y-6 mb-12">
+              <div className="grid grid-cols-2 gap-3 mb-12">
                 {resultsData.map((item, index) => (
                   <button
                     key={item.id}
-                    onClick={() => {
-                      setActiveIndex(index);
-                    }}
-                    className={`w-full text-left p-6 border-l-4 rounded-r-[20px] transition-all duration-500 ${activeIndex === index
+                    onClick={() => setActiveIndex(index)}
+                    className={`w-full text-left p-4 border-l-4 rounded-r-[20px] transition-all duration-500 ${activeIndex === index
                       ? "border-gold bg-white/5"
                       : "border-white/10 hover:border-white/30"
                       }`}
                   >
-                    <h3 className={`font-serif text-xl mb-1 ${activeIndex === index ? "text-gold" : "text-white"}`}>
+                    <h3 className={`font-serif text-sm md:text-base mb-1 ${activeIndex === index ? "text-gold" : "text-white"}`}>
                       {item.title}
                     </h3>
-                    <p className="font-sans text-sm text-gray-400 font-light">{item.description}</p>
+                    <p className="font-sans text-xs text-gray-400 font-light">{item.description}</p>
                   </button>
                 ))}
               </div>
-
 
             </motion.div>
           </div>
@@ -86,7 +123,6 @@ export const Results = () => {
           <div className="lg:col-span-7">
             <div className="relative aspect-[4/5] md:aspect-square w-full bg-neutral-800 overflow-hidden shadow-2xl border border-white/5 rounded-[32px]">
               <div className="relative w-full h-full">
-                {/* Video */}
                 {resultsData[activeIndex].isVideo ? (
                   <video
                     key={activeIndex}

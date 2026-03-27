@@ -7,6 +7,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export const Hero = () => {
   const { t } = useLanguage();
+
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('section:nth-of-type(2)');
     if (nextSection) {
@@ -25,7 +26,7 @@ export const Hero = () => {
           playsInline
           className="min-w-full min-h-full object-cover opacity-50"
         >
-          <source src="/img/assets/hero/hero.mp4" type="video/mp4" />
+          <source src="/vid/hero/hero new.mp4" type="video/mp4" />
         </video>
       </div>
 
@@ -39,7 +40,7 @@ export const Hero = () => {
         </p>
         <Button
           as={Link}
-          href="/contact"
+          href="https://wa.me/573118324191"
           variant="solid"
           radius="full"
           className="bg-gold text-luxury-black font-semibold text-lg px-10 py-8 hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_-5px_var(--color-gold)] rounded-full"

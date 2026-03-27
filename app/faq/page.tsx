@@ -128,7 +128,7 @@ export default function FAQPage() {
             <h2 className="text-3xl md:text-4xl font-serif mb-4">¿Tienes más preguntas?</h2>
             <p className="text-white/80 mb-8 text-lg">Estoy aquí para ayudarte en cada paso de tu transformación.</p>
             <a
-              href="https://wa.me/573000000000"
+              href="https://wa.me/573118324191"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-gold text-luxury-black font-semibold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform"

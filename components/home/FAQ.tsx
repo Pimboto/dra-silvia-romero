@@ -1,7 +1,6 @@
 "use client";
 
 import { Accordion, AccordionItem } from "@heroui/accordion";
-import { Link } from "@heroui/link";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const FAQ = () => {
@@ -24,58 +23,23 @@ export const FAQ = () => {
             indicator: "text-luxury-black"
           }}
         >
-          <AccordionItem
-            key="1"
-            aria-label={t.faq.items[0].question}
-            title={t.faq.items[0].question}
-            className="!bg-white"
-            classNames={{
-              base: "!bg-white",
-              title: "!text-luxury-black",
-              trigger: "!bg-white",
-              content: "!bg-white !text-gray-600"
-            }}
-          >
-            {t.faq.items[0].answer}
-          </AccordionItem>
-          <AccordionItem
-            key="2"
-            aria-label={t.faq.items[1].question}
-            title={t.faq.items[1].question}
-            className="!bg-white"
-            classNames={{
-              base: "!bg-white",
-              title: "!text-luxury-black",
-              trigger: "!bg-white",
-              content: "!bg-white !text-gray-600"
-            }}
-          >
-            {t.faq.items[1].answer}
-          </AccordionItem>
-          <AccordionItem
-            key="3"
-            aria-label={t.faq.items[2].question}
-            title={t.faq.items[2].question}
-            className="!bg-white"
-            classNames={{
-              base: "!bg-white",
-              title: "!text-luxury-black",
-              trigger: "!bg-white",
-              content: "!bg-white !text-gray-600"
-            }}
-          >
-            {t.faq.items[2].answer}
-          </AccordionItem>
+          {t.faq.items.map((item, index) => (
+            <AccordionItem
+              key={String(index)}
+              aria-label={item.question}
+              title={item.question}
+              className="!bg-white"
+              classNames={{
+                base: "!bg-white",
+                title: "!text-luxury-black",
+                trigger: "!bg-white",
+                content: "!bg-white !text-gray-600"
+              }}
+            >
+              {item.answer}
+            </AccordionItem>
+          ))}
         </Accordion>
-
-        <div className="mt-16 text-center">
-          <Link
-            href="/#faq"
-            className="font-sans text-gold font-bold uppercase tracking-[0.2em] text-xs hover:opacity-70 transition-opacity"
-          >
-            {t.faq.viewAll}
-          </Link>
-        </div>
       </div>
     </section>
   );

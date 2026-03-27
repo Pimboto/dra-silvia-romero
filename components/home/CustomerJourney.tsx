@@ -23,7 +23,7 @@ export const CustomerJourney = () => {
       subtitle: t.journey.steps[0].subtitle,
       description: t.journey.steps[0].description,
       icon: User,
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop"
+      image: "/img/my-jouney/valorizacion-personalizada.jpg"
     },
     {
       number: "02",
@@ -32,7 +32,7 @@ export const CustomerJourney = () => {
       subtitle: t.journey.steps[1].subtitle,
       description: t.journey.steps[1].description,
       icon: Calendar,
-      image: "/img/procedimientos/Pre-operative-preparation-768x512.webp"
+      image: "/img/my-jouney/planificacion-detallada.jpeg"
     },
     {
       number: "03",
@@ -41,7 +41,7 @@ export const CustomerJourney = () => {
       subtitle: t.journey.steps[2].subtitle,
       description: t.journey.steps[2].description,
       icon: MagicStar,
-      image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2668&auto=format&fit=crop"
+      image: "/img/my-jouney/gran-dia.jpeg"
     },
     {
       number: "04",
@@ -50,7 +50,7 @@ export const CustomerJourney = () => {
       subtitle: t.journey.steps[3].subtitle,
       description: t.journey.steps[3].description,
       icon: TickCircle,
-      image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?q=80&w=2670&auto=format&fit=crop"
+      image: "/img/my-jouney/seguimiento.jpeg"
     }
   ];
 
@@ -161,7 +161,7 @@ export const CustomerJourney = () => {
           <section
             key={step.number}
             ref={(el) => { sectionRefs.current[index] = el; }}
-            className="relative min-h-screen flex items-center justify-center border-b border-white/5 py-24"
+            className="relative min-h-[70vh] flex items-center justify-center border-b border-white/5 py-20"
           >
             {/* Background Image with Parallax */}
             <div
@@ -213,6 +213,19 @@ export const CustomerJourney = () => {
                       <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
                         <Icon size={24} variant="Bold" className="text-gold" />
                       </div>
+                      {index === 2 && (
+                        <a
+                          href="https://www.instagram.com/quirofanoseltesoroqet?igsh=YWZleHk2eWx0Zm42"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-sans text-gold text-sm font-semibold hover:text-gold-light transition-colors tracking-wide flex items-center gap-2"
+                        >
+                          Quirófanos El Tesoro
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

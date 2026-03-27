@@ -24,8 +24,13 @@ export const translations = {
             videoLabel: "Real case video",
             cases: [
                 { title: "Rhytidoplasty", description: "Natural facial rejuvenation." },
-                { title: "Bichectomy", description: "Facial contouring and cheek definition." },
-                { title: "Facial Harmonization", description: "Natural results with hyaluronic acid." }
+                { title: "Facial Harmonization", description: "Natural results with hyaluronic acid." },
+                { title: "Abdominoplasty", description: "Abdominal contouring and toning." },
+                { title: "Cervicoplasty", description: "Neck rejuvenation and definition." },
+                { title: "Breast Explantation", description: "Safe breast implant removal." },
+                { title: "Gluteoplasty", description: "Buttock augmentation and contouring." },
+                { title: "Breast Implantation", description: "Breast augmentation with implants." },
+                { title: "Abdomen", description: "Abdominal sculpting and definition." }
             ]
         },
         doctor: {
@@ -176,7 +181,9 @@ export const translations = {
             subtitle: "our patients say",
             rating: "Based on over 30 verified reviews",
             google: "Leave us your review on Google",
-            patient: "Are you already our patient?"
+            patient: "Are you already our patient?",
+            readMore: "Read full review",
+            close: "Close"
         },
         journey: {
             intro: "EXCLUSIVE EXPERIENCE",
@@ -219,8 +226,24 @@ export const translations = {
                     answer: "In your medical consultation I give you the complete budget for your surgery, since according to the diagnosis and indicated treatment I establish the cost of your surgery."
                 },
                 {
+                    question: "In which cities does Dr. Silvia Romero perform procedures?",
+                    answer: "Medellín."
+                },
+                {
+                    question: "How long should I stay in the city after the procedure?",
+                    answer: "Ideally 21 days."
+                },
+                {
+                    question: "What type of anesthesia is used in the procedures?",
+                    answer: "The most commonly used is general anesthesia."
+                },
+                {
                     question: "How soon will I see the final results of my procedure?",
                     answer: "At three months you will see the partial result, and at one year you will obtain the complete final result of your transformation."
+                },
+                {
+                    question: "Are the scars very visible?",
+                    answer: "No, I use a precise technique with special sutures, always seeking harmony in scar placement, so I aim for thin, well-placed scars in every surgery. It is important to remember that the healing process is mediated by other genetic and environmental factors, so it is important to follow a scar care protocol."
                 },
                 {
                     question: "Can international patients be operated on?",
@@ -236,7 +259,76 @@ export const translations = {
             spots: "LIMITED SPOTS THIS MONTH",
             footer: {
                 excellence: "MEDICAL EXCELLENCE",
-                rights: "All rights reserved."
+                rights: "All rights reserved.",
+                description: "Aesthetic and Reconstructive Plastic Surgery",
+                location: "Medellín, C.C. El Tesoro — Medical Tower 2, Office 1062",
+                schedule: "Mon – Fri: 8:00 AM – 6:00 PM",
+                navigation: "Navigation",
+                contact: "Contact",
+                followUs: "Follow Us"
+            }
+        },
+        doctorModal: {
+            tabs: {
+                info: "Basic Info",
+                certificates: "Certificates",
+                technology: "Technology",
+                training: "Training"
+            },
+            info: {
+                title: "Dr. Silvia Romero",
+                subtitle: "Aesthetic and Reconstructive Plastic Surgeon",
+                description1: "With over 5 years of experience and more than 400 procedures performed, Dr. Silvia Katherine Romero Rondón specializes in facial rejuvenation and harmonization, always seeking natural results that enhance your unique beauty.",
+                experience: "5 years of experience",
+                procedures: "400 procedures",
+                description2: "My philosophy is to go beyond aesthetics, achieving a transformation of body, mind, and spirit, accompanying you with love in every step of this process.",
+                locationLabel: "Location",
+                locationValue: "Medellín, C.C. El Tesoro",
+                officeLabel: "Office",
+                officeValue: "Medical Tower 2, Office 1062",
+                specialtyLabel: "Specialty",
+                specialtyValue: "Facial Rejuvenation and Harmonization",
+                statsYears: "Years",
+                statsProcedures: "Procedures",
+                statsSupport: "Follow-up"
+            },
+            certificates: {
+                title: "Recognized Excellence",
+                subtitle: "Certifications and Awards",
+                description: "Safety and excellence are non-negotiable. My practice is backed by the most prestigious medical institutions and training at the best universities in the country.",
+                items: [
+                    { title: "Academic Training", description: "Industrial University of Santander, Colombia" },
+                    { title: "FELSOCEM Award", description: "Research - Latin American Federation" },
+                    { title: "SCCP Member", description: "Colombian Society of Plastic Surgery" },
+                    { title: "Motiva Certified Surgeon", description: "Preservé - International Certification" }
+                ]
+            },
+            technology: {
+                title: "Technological Vanguard",
+                subtitle: "Latest Generation Equipment",
+                description: "I use cutting-edge technology to ensure less invasive procedures, faster recoveries, and high-precision results.",
+                items: [
+                    { title: "Premium Implants", description: "GC Aesthetics and Motiva ergonomic latest generation" },
+                    { title: "Advanced Techniques", description: "BodyTite, FaceTite, Morpheus 8, Deep Plane, FullFace" },
+                    { title: "Specialized Equipment", description: "CO2 Laser, Exosomes, NanoFat, MicroFat, TENSAMAX" },
+                    { title: "Safety Protocols", description: "Level III El Tesoro Operating Rooms • Complications Insurance • 24/7 Monitoring" }
+                ]
+            },
+            training: {
+                title: "Specialized Training",
+                subtitle: "Continuous Professional Development",
+                description: "Committed to excellence through continuous training at the most prestigious international institutions.",
+                items: [
+                    { title: "Abdominoplasty & Mastopexy", description: "Dr. Saldanha — Brazil" },
+                    { title: "Facial Harmonization with Implants", description: "Brazil" },
+                    { title: "Patient Safety Congress", description: "International Congress" },
+                    { title: "Facial Lifting", description: "Nora — Stanford" },
+                    { title: "Medellín Health City", description: "Medellín, Colombia" },
+                    { title: "Intimate Rejuvenation", description: "Specialized Training" },
+                    { title: "Rhinoplasty", description: "Dr. Nakamura — Brazil" },
+                    { title: "Rhinoplasty", description: "Dr. Juan Diego Mejía" },
+                    { title: "Rhytidoplasty", description: "Turkey" }
+                ]
             }
         }
     },
@@ -265,8 +357,13 @@ export const translations = {
             videoLabel: "Video de caso real",
             cases: [
                 { title: "Ritidoplastia", description: "Rejuvenecimiento facial natural." },
-                { title: "Bichectomía", description: "Perfilamiento facial y definición de mejillas." },
-                { title: "Armonización Facial", description: "Resultados naturales con ácido hialurónico." }
+                { title: "Armonización Facial", description: "Resultados naturales con ácido hialurónico." },
+                { title: "Abdominoplastia", description: "Contorno y tonificación abdominal." },
+                { title: "Cervicoplastia", description: "Rejuvenecimiento y definición del cuello." },
+                { title: "Explantación Mamaria", description: "Retiro seguro de implantes mamarios." },
+                { title: "Gluteoplastia", description: "Aumento y contorno de glúteos." },
+                { title: "Implantación Mamaria", description: "Aumento mamario con implantes." },
+                { title: "Abdomen", description: "Escultura y definición abdominal." }
             ]
         },
         doctor: {
@@ -417,7 +514,9 @@ export const translations = {
             subtitle: "nuestras pacientes",
             rating: "Basado en más de 30 reseñas verificadas",
             google: "Déjanos tu reseña en Google",
-            patient: "¿Ya eres paciente nuestra?"
+            patient: "¿Ya eres paciente nuestra?",
+            readMore: "Leer reseña completa",
+            close: "Cerrar"
         },
         journey: {
             intro: "EXPERIENCIA EXCLUSIVA",
@@ -460,8 +559,24 @@ export const translations = {
                     answer: "En tu consulta médica te entrego el presupuesto completo de tu cirugía, ya que según el diagnóstico y tratamiento indicado establezco el costo de tu cirugía."
                 },
                 {
+                    question: "¿En qué ciudades realiza los procedimientos la Dra. Silvia Romero?",
+                    answer: "Medellín."
+                },
+                {
+                    question: "¿Cuánto tiempo debo quedarme en la ciudad después del procedimiento?",
+                    answer: "Idealmente 21 días."
+                },
+                {
+                    question: "¿Qué tipo de anestesia se utiliza en los procedimientos?",
+                    answer: "La más utilizada es la anestesia general."
+                },
+                {
                     question: "¿En cuánto tiempo veré los resultados finales de mi procedimiento?",
                     answer: "A los tres meses verás el resultado parcial, y al año obtendrás el resultado final completo de tu transformación."
+                },
+                {
+                    question: "¿Las cicatrices son muy visibles?",
+                    answer: "No, uso una técnica precisa, con suturas especiales, además buscando siempre la armonía en la ubicación de las cicatrices, así que busco en cada cirugía cicatrices finas y bien ubicadas. Es importante recordar que el proceso de cicatrización está mediado por otros factores genéticos y ambientales, así que es importante seguir un protocolo de cuidado de la cicatriz."
                 },
                 {
                     question: "¿Se puede operar pacientes internacionales?",
@@ -477,7 +592,76 @@ export const translations = {
             spots: "PLAZAS LIMITADAS ESTE MES",
             footer: {
                 excellence: "EXCELENCIA MÉDICA",
-                rights: "Todos los derechos reservados."
+                rights: "Todos los derechos reservados.",
+                description: "Cirugía Plástica Estética y Reconstructiva",
+                location: "Medellín, C.C. El Tesoro — Torre Médica 2, Cons. 1062",
+                schedule: "Lun – Vie: 8:00 AM – 6:00 PM",
+                navigation: "Navegación",
+                contact: "Contacto",
+                followUs: "Síguenos"
+            }
+        },
+        doctorModal: {
+            tabs: {
+                info: "Info Básica",
+                certificates: "Certificados",
+                technology: "Tecnología",
+                training: "Entrenamientos"
+            },
+            info: {
+                title: "Dra. Silvia Romero",
+                subtitle: "Cirujana Plástica Estética y Reconstructiva",
+                description1: "Con más de 5 años de experiencia y más de 400 procedimientos realizados, la Dra. Silvia Katherine Romero Rondón se especializa en rejuvenecimiento y armonización facial, buscando siempre resultados naturales que realcen tu belleza única.",
+                experience: "5 años de experiencia",
+                procedures: "400 procedimientos",
+                description2: "Mi filosofía es ir más allá de lo estético, logrando una transformación de cuerpo, mente y espíritu, acompañándote con amor en cada paso de este proceso.",
+                locationLabel: "Ubicación",
+                locationValue: "Medellín, C.C. El Tesoro",
+                officeLabel: "Consultorio",
+                officeValue: "Torre Médica 2, Cons. 1062",
+                specialtyLabel: "Especialidad",
+                specialtyValue: "Rejuvenecimiento y Armonización Facial",
+                statsYears: "Años",
+                statsProcedures: "Procedimientos",
+                statsSupport: "Seguimiento"
+            },
+            certificates: {
+                title: "Excelencia Reconocida",
+                subtitle: "Certificaciones y Premios",
+                description: "La seguridad y la excelencia no son negociables. Mi práctica está respaldada por las instituciones médicas más prestigiosas y formación en las mejores universidades del país.",
+                items: [
+                    { title: "Formación Académica", description: "Universidad Industrial de Santander, Colombia" },
+                    { title: "Premio FELSOCEM", description: "Investigación - Federación Latinoamericana" },
+                    { title: "Miembro SCCP", description: "Sociedad Colombiana de Cirugía Plástica" },
+                    { title: "Motiva Certified Surgeon", description: "Preservé - Certificación Internacional" }
+                ]
+            },
+            technology: {
+                title: "Vanguardia Tecnológica",
+                subtitle: "Equipos de Última Generación",
+                description: "Utilizo tecnología de punta para garantizar procedimientos menos invasivos, recuperaciones más rápidas y resultados de alta precisión.",
+                items: [
+                    { title: "Implantes Premium", description: "GC Aesthetics y Motiva ergonómicos de última generación" },
+                    { title: "Técnicas Avanzadas", description: "BodyTite, FaceTite, Morpheus 8, Deep Plane, FullFace" },
+                    { title: "Equipos Especializados", description: "Laser CO2, Exosomas, NanoFat, MicroFat, TENSAMAX" },
+                    { title: "Protocolos de Seguridad", description: "Quirófanos El Tesoro Nivel III • Póliza de complicaciones • Seguimiento 24/7" }
+                ]
+            },
+            training: {
+                title: "Entrenamientos Especializados",
+                subtitle: "Desarrollo Profesional Continuo",
+                description: "Comprometida con la excelencia a través de formación continua en las instituciones internacionales más prestigiosas.",
+                items: [
+                    { title: "Abdominoplastia y Mastopexia", description: "Dr. Saldanha — Brasil" },
+                    { title: "Armonización Facial con Implantes", description: "Brasil" },
+                    { title: "Congreso Seguridad del Paciente", description: "Congreso Internacional" },
+                    { title: "Lifting Facial", description: "Nora — Stanford" },
+                    { title: "Medellín Health City", description: "Medellín, Colombia" },
+                    { title: "Rejuvenecimiento Íntimo", description: "Entrenamiento Especializado" },
+                    { title: "Rinoplastia", description: "Dr. Nakamura — Brasil" },
+                    { title: "Rinoplastia", description: "Dr. Juan Diego Mejía" },
+                    { title: "Ritidoplastia", description: "Turquía" }
+                ]
             }
         }
     },

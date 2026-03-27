@@ -136,6 +136,7 @@ export const Navbar = () => {
                 variant="light"
                 className="text-white min-w-unit-0 px-3 gap-2"
               >
+                <span className={`fi ${language === "en" ? "fi-us" : "fi-es"} text-base rounded-sm`}></span>
                 {language === "en" ? "EN" : "ES"}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                   <path d="M19.9201 8.9502L13.4001 15.4702C12.6301 16.2402 11.3701 16.2402 10.6001 15.4702L4.08008 8.9502" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
@@ -150,8 +151,8 @@ export const Navbar = () => {
                 base: "data-[hover=true]:bg-white/10 data-[hover=true]:text-gold text-white",
               }}
             >
-              <DropdownItem key="en">English</DropdownItem>
-              <DropdownItem key="es">Español</DropdownItem>
+              <DropdownItem key="en" startContent={<span className="fi fi-us text-base rounded-sm"></span>}>English</DropdownItem>
+              <DropdownItem key="es" startContent={<span className="fi fi-es text-base rounded-sm"></span>}>Español</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </NavbarItem>
