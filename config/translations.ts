@@ -21,16 +21,16 @@ export const translations = {
             tag: "SUCCESS CASES",
             title: "Real",
             subtitle: "Results",
-            videoLabel: "Real case video",
+            videoLabel: "Real case",
             cases: [
+                { title: "Breast Implantation", description: "Breast augmentation with implants." },
                 { title: "Rhytidoplasty", description: "Natural facial rejuvenation." },
                 { title: "Facial Harmonization", description: "Natural results with hyaluronic acid." },
                 { title: "Abdominoplasty", description: "Abdominal contouring and toning." },
                 { title: "Cervicoplasty", description: "Neck rejuvenation and definition." },
                 { title: "Breast Explantation", description: "Safe breast implant removal." },
                 { title: "Gluteoplasty", description: "Buttock augmentation and contouring." },
-                { title: "Breast Implantation", description: "Breast augmentation with implants." },
-                { title: "Abdomen", description: "Abdominal sculpting and definition." }
+                { title: "Abdominal Sculpting", description: "Abdominal sculpting and definition." }
             ]
         },
         doctor: {
@@ -42,7 +42,7 @@ export const translations = {
             items: [
                 { title: "Education", description: "General Medicine - Industrial University of Santander, Colombia." },
                 { title: "Specialization", description: "Plastic Surgery - Industrial University of Santander, Colombia." },
-                { title: "Experience", description: "5 Years of experience and approx. 400 surgeries performed." }
+                { title: "Experience", description: "5+ Years of experience and 1000+ surgeries performed." }
             ],
             member: "SCCP Member • Motiva Certified",
             philosophy: "Philosophy",
@@ -227,7 +227,7 @@ export const translations = {
                 },
                 {
                     question: "In which cities does Dr. Silvia Romero perform procedures?",
-                    answer: "Medellín."
+                    answer: "Medellin."
                 },
                 {
                     question: "How long should I stay in the city after the procedure?",
@@ -261,7 +261,7 @@ export const translations = {
                 excellence: "MEDICAL EXCELLENCE",
                 rights: "All rights reserved.",
                 description: "Aesthetic and Reconstructive Plastic Surgery",
-                location: "Medellín, C.C. El Tesoro — Medical Tower 2, Office 1062",
+                location: "Medellin, C.C. El Tesoro — Medical Tower 2, Office 1062",
                 schedule: "Mon – Fri: 8:00 AM – 6:00 PM",
                 navigation: "Navigation",
                 contact: "Contact",
@@ -278,12 +278,12 @@ export const translations = {
             info: {
                 title: "Dr. Silvia Romero",
                 subtitle: "Aesthetic and Reconstructive Plastic Surgeon",
-                description1: "With over 5 years of experience and more than 400 procedures performed, Dr. Silvia Katherine Romero Rondón specializes in facial rejuvenation and harmonization, always seeking natural results that enhance your unique beauty.",
-                experience: "5 years of experience",
-                procedures: "400 procedures",
+                description1: "With over 5 years of experience and more than 1000 procedures performed, Dr. Silvia Katherine Romero Rondón specializes in facial rejuvenation and harmonization, always seeking natural results that enhance your unique beauty.",
+                experience: "5+ years of experience",
+                procedures: "1000+ procedures",
                 description2: "My philosophy is to go beyond aesthetics, achieving a transformation of body, mind, and spirit, accompanying you with love in every step of this process.",
                 locationLabel: "Location",
-                locationValue: "Medellín, C.C. El Tesoro",
+                locationValue: "Medellin, C.C. El Tesoro",
                 officeLabel: "Office",
                 officeValue: "Medical Tower 2, Office 1062",
                 specialtyLabel: "Specialty",
@@ -323,7 +323,7 @@ export const translations = {
                     { title: "Facial Harmonization with Implants", description: "Brazil" },
                     { title: "Patient Safety Congress", description: "International Congress" },
                     { title: "Facial Lifting", description: "Nora — Stanford" },
-                    { title: "Medellín Health City", description: "Medellín, Colombia" },
+                    { title: "Medellin Health City", description: "Medellin, Colombia" },
                     { title: "Intimate Rejuvenation", description: "Specialized Training" },
                     { title: "Rhinoplasty", description: "Dr. Nakamura — Brazil" },
                     { title: "Rhinoplasty", description: "Dr. Juan Diego Mejía" },
@@ -354,15 +354,15 @@ export const translations = {
             tag: "CASOS DE ÉXITO",
             title: "Resultados",
             subtitle: "Reales",
-            videoLabel: "Video de caso real",
+            videoLabel: "Caso real",
             cases: [
+                { title: "Implantación Mamaria", description: "Aumento mamario con implantes." },
                 { title: "Ritidoplastia", description: "Rejuvenecimiento facial natural." },
                 { title: "Armonización Facial", description: "Resultados naturales con ácido hialurónico." },
                 { title: "Abdominoplastia", description: "Contorno y tonificación abdominal." },
                 { title: "Cervicoplastia", description: "Rejuvenecimiento y definición del cuello." },
                 { title: "Explantación Mamaria", description: "Retiro seguro de implantes mamarios." },
                 { title: "Gluteoplastia", description: "Aumento y contorno de glúteos." },
-                { title: "Implantación Mamaria", description: "Aumento mamario con implantes." },
                 { title: "Abdomen", description: "Escultura y definición abdominal." }
             ]
         },
@@ -375,7 +375,7 @@ export const translations = {
             items: [
                 { title: "Formación", description: "Medicina General - Universidad Industrial de Santander, Colombia." },
                 { title: "Especialización", description: "Cirugía Plástica - Universidad Industrial de Santander, Colombia." },
-                { title: "Experiencia", description: "5 Años de experiencia y aprox. 400 cirugías realizadas." }
+                { title: "Experiencia", description: "5+ Años de experiencia y 1000+ cirugías realizadas." }
             ],
             member: "Miembro SCCP • Motiva Certified",
             philosophy: "Filosofía",
@@ -611,9 +611,9 @@ export const translations = {
             info: {
                 title: "Dra. Silvia Romero",
                 subtitle: "Cirujana Plástica Estética y Reconstructiva",
-                description1: "Con más de 5 años de experiencia y más de 400 procedimientos realizados, la Dra. Silvia Katherine Romero Rondón se especializa en rejuvenecimiento y armonización facial, buscando siempre resultados naturales que realcen tu belleza única.",
-                experience: "5 años de experiencia",
-                procedures: "400 procedimientos",
+                description1: "Con más de 5 años de experiencia y más de 1000 procedimientos realizados, la Dra. Silvia Katherine Romero Rondón se especializa en rejuvenecimiento y armonización facial, buscando siempre resultados naturales que realcen tu belleza única.",
+                experience: "5+ años de experiencia",
+                procedures: "1000+ procedimientos",
                 description2: "Mi filosofía es ir más allá de lo estético, logrando una transformación de cuerpo, mente y espíritu, acompañándote con amor en cada paso de este proceso.",
                 locationLabel: "Ubicación",
                 locationValue: "Medellín, C.C. El Tesoro",

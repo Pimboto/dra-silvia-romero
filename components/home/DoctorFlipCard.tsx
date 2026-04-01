@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@heroui/button";
 import { DoctorBioModal } from "./DoctorBioModal";
 import { useLanguage } from "@/context/LanguageContext";
@@ -9,6 +9,14 @@ export const DoctorFlipCard = () => {
   const { t } = useLanguage();
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+
+  // Auto-rotate the flip card every 6 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFlipped((prev) => !prev);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="doctor" className="relative py-24 px-6 md:px-12 bg-white">
@@ -23,7 +31,6 @@ export const DoctorFlipCard = () => {
         <div className="group w-full h-[650px] [perspective:1000px]">
           <div
             className="relative w-full h-full transition-all duration-1000 [transform-style:preserve-3d]"
-            onClick={() => setIsFlipped(!isFlipped)}
             style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
           >
             {/* FRONT FACE */}

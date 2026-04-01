@@ -1,69 +1,80 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
+const LOOP_COUNTS: Record<number, number> = {
+  3: 5, // Abdominoplastia - more time to appreciate the change
+  7: 5, // Abdomen - more time to appreciate the change
+};
+const DEFAULT_LOOP_COUNT = 3;
+
+const getMaxLoops = (index: number): number => LOOP_COUNTS[index] ?? DEFAULT_LOOP_COUNT;
+
 export const Results = () => {
   const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [autoRotationStopped, setAutoRotationStopped] = useState(false);
+  const playCountRef = useRef(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const resultsData = [
     {
-      id: 1,
+      id: 7,
       title: t.results.cases[0].title,
-      before: "/img/assets/ritidoplastiabianca.mp4",
-      after: "/img/assets/ritidoplastiabianca.mp4",
+      before: "/vid/implantacion-mamaria.mp4",
+      after: "/vid/implantacion-mamaria.mp4",
       description: t.results.cases[0].description,
       isVideo: true
     },
     {
-      id: 2,
+      id: 1,
       title: t.results.cases[1].title,
-      before: "/img/assets/acidoastrid.mp4",
-      after: "/img/assets/acidoastrid.mp4",
+      before: "/img/assets/ritidoplastiabianca.mp4",
+      after: "/img/assets/ritidoplastiabianca.mp4",
       description: t.results.cases[1].description,
       isVideo: true
     },
     {
-      id: 3,
+      id: 2,
       title: t.results.cases[2].title,
-      before: "/vid/abdominoplastia.mp4",
-      after: "/vid/abdominoplastia.mp4",
+      before: "/img/assets/acidoastrid.mp4",
+      after: "/img/assets/acidoastrid.mp4",
       description: t.results.cases[2].description,
       isVideo: true
     },
     {
-      id: 4,
+      id: 3,
       title: t.results.cases[3].title,
-      before: "/vid/cervicoplastia.mp4",
-      after: "/vid/cervicoplastia.mp4",
+      before: "/vid/abdominoplastia.mp4",
+      after: "/vid/abdominoplastia.mp4",
       description: t.results.cases[3].description,
       isVideo: true
     },
     {
-      id: 5,
+      id: 4,
       title: t.results.cases[4].title,
-      before: "/vid/explantacion-mamaria.mp4",
-      after: "/vid/explantacion-mamaria.mp4",
+      before: "/vid/cervicoplastia.mp4",
+      after: "/vid/cervicoplastia.mp4",
       description: t.results.cases[4].description,
       isVideo: true
     },
     {
-      id: 6,
+      id: 5,
       title: t.results.cases[5].title,
-      before: "/vid/gluteos.mp4",
-      after: "/vid/gluteos.mp4",
+      before: "/vid/explantacion-mamaria.mp4",
+      after: "/vid/explantacion-mamaria.mp4",
       description: t.results.cases[5].description,
       isVideo: true
     },
     {
-      id: 7,
+      id: 6,
       title: t.results.cases[6].title,
-      before: "/vid/implantacion-mamaria.mp4",
-      after: "/vid/implantacion-mamaria.mp4",
+      before: "/vid/gluteos.mp4",
+      after: "/vid/gluteos.mp4",
       description: t.results.cases[6].description,
       isVideo: true
     },
@@ -76,6 +87,29 @@ export const Results = () => {
       isVideo: true
     }
   ];
+
+  const handleVideoEnded = useCallback(() => {
+    if (autoRotationStopped) return;
+
+    playCountRef.current += 1;
+    const maxLoops = getMaxLoops(activeIndex);
+
+    if (playCountRef.current >= maxLoops) {
+      playCountRef.current = 0;
+      setActiveIndex((prev) => (prev + 1) % resultsData.length);
+    } else {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {});
+      }
+    }
+  }, [activeIndex, autoRotationStopped, resultsData.length]);
+
+  const handleUserClick = useCallback((index: number) => {
+    setAutoRotationStopped(true);
+    playCountRef.current = 0;
+    setActiveIndex(index);
+  }, []);
 
   return (
     <section id="results" className="relative py-32 px-6 md:px-12 bg-luxury-black text-white overflow-hidden">
@@ -102,7 +136,7 @@ export const Results = () => {
                 {resultsData.map((item, index) => (
                   <button
                     key={item.id}
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => handleUserClick(index)}
                     className={`w-full text-left p-4 border-l-4 rounded-r-[20px] transition-all duration-500 ${activeIndex === index
                       ? "border-gold bg-white/5"
                       : "border-white/10 hover:border-white/30"
@@ -125,12 +159,14 @@ export const Results = () => {
               <div className="relative w-full h-full">
                 {resultsData[activeIndex].isVideo ? (
                   <video
+                    ref={videoRef}
                     key={activeIndex}
                     src={resultsData[activeIndex].after}
                     autoPlay
-                    loop
+                    loop={autoRotationStopped}
                     muted
                     playsInline
+                    onEnded={handleVideoEnded}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                 ) : (

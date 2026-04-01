@@ -270,97 +270,6 @@ const testimonials: Testimonial[] = [
     text_en: "The best doctor in the city of Medellín.",
     text_es: "La mejor doctora en la ciudad de Medellín",
     avatar: "IN"
-  },
-  // --- Testimonials without doctor name ---
-  {
-    id: 26,
-    name: "Edward Celinz C.",
-    time_en: "4 months ago",
-    time_es: "Hace 4 meses",
-    rating: 5,
-    text_en: "I had a diode laser treatment to remove some hair and define my beard in the cheek area. The team is very professional and the experience was excellent. Natalia is very kind and conveys a lot of confidence; she makes you feel comfortable and safe throughout the procedure. Thank you!",
-    text_es: "Me realicé un tratamiento con láser de diodo para eliminar algunos vellos y definir la barba en la zona de las mejillas. El equipo es muy profesional y la experiencia fue excelente. Natalia es muy amable y transmite mucha confianza; te hace sentir cómodo y seguro durante todo el procedimiento. ¡Gracias!",
-    avatar: "EC"
-  },
-  {
-    id: 27,
-    name: "Manuela Rodriguez Gomez",
-    time_en: "A year ago",
-    time_es: "Hace un año",
-    rating: 5,
-    text_en: "An impeccable experience! The clinic not only offers an elegant and welcoming environment, but also has a team of exceptional professionals. Every staff member demonstrates a high level of competence and dedication, making you feel valued and well cared for at all times. The quality of service is unmatched.",
-    text_es: "¡Una experiencia impecable! La clínica no solo ofrece un ambiente elegante y acogedor, sino que también cuenta con un equipo de profesionales excepcionales. Cada miembro del personal demuestra un alto nivel de competencia y dedicación, haciendo que te sientas valorado y bien atendido en todo momento. La calidad del servicio es inigualable.",
-    avatar: "MR"
-  },
-  {
-    id: 28,
-    name: "Mariana Londoño",
-    time_en: "A year ago",
-    time_es: "Hace un año",
-    rating: 5,
-    text_en: "The team is highly professional and experienced, offering personalized and top-quality care. The facilities and equipment feature the latest technologies. Without a doubt, the best aesthetic surgery center in Medellin.",
-    text_es: "El equipo es altamente profesional y experimentado, ofreciendo atención personalizada y de primera calidad. Las instalaciones y equipos cuentan con las últimas tecnologías. Sin duda, el mejor centro de cirugía estética de Medellín.",
-    avatar: "ML"
-  },
-  {
-    id: 29,
-    name: "Monica Ospina",
-    time_en: "7 months ago",
-    time_es: "Hace 7 meses",
-    rating: 5,
-    text_en: "I had a wonderful procedure called CO2 Laser, among several I've had done and I highly recommend them. Their professionalism and treatment is incredible, and the results speak for themselves. I am absolutely HAPPY!!!",
-    text_es: "Me realicé un procedimiento maravilloso llamado Láser CO2, entre varios que me he hecho y los súper recomiendo, su profesionalismo y trato es increíble, y ni se diga de los resultados. Estoy absolutamente FELIZ!!!",
-    avatar: "MO"
-  },
-  {
-    id: 30,
-    name: "Andrea Rodriguez",
-    time_en: "10 months ago",
-    time_es: "Hace 10 meses",
-    rating: 5,
-    text_en: "Thank you so much for such excellent care! I felt super pampered by the whole team. They have cutting-edge technology and trained staff to place all your trust in them!",
-    text_es: "Muchas gracias por tan excelente atención! Me sentí súper consentida por todo el equipo. Tienen tecnología de punta y personal capacitado para depositar en ellos toda confianza!",
-    avatar: "AR"
-  },
-  {
-    id: 31,
-    name: "Felipe Alejandro Jurado Carmona",
-    time_en: "A year ago",
-    time_es: "Hace un año",
-    rating: 5,
-    text_en: "Excellent attention, great willingness from the staff, great human quality. I was accompanying my sister and I felt better than at home.",
-    text_es: "Excelente atención, mucha disposición del personal, mucha calidad humana, estuve acompañando a mi hermana y me sentí mejor que en casa.",
-    avatar: "FJ"
-  },
-  {
-    id: 32,
-    name: "Chayis Cano",
-    time_en: "4 months ago",
-    time_es: "Hace 4 meses",
-    rating: 5,
-    text_en: "I'm so happy with my experience! From the moment I arrived, I was surprised by how beautiful the place is and the warmth with which they welcome you. I had a laser treatment in two areas and the technology they use is next level. Everything was incredible: the atmosphere, the equipment and, above all, the professionalism. 100% recommended!",
-    text_es: "¡Estoy feliz con mi experiencia! Desde que llegué, quedé sorprendida por lo hermoso que es el lugar y la calidez con la que reciben. Me realicé un tratamiento láser en dos zonas y la tecnología que usan es de otro nivel. Todo fue increíble: el ambiente, los equipos y, sobre todo, el profesionalismo. ¡100% recomendado!",
-    avatar: "CC"
-  },
-  {
-    id: 33,
-    name: "Jaime Garcia",
-    time_en: "2 months ago",
-    time_es: "Hace 2 meses",
-    rating: 5,
-    text_en: "A very positive experience with the hyperbaric chamber. I was pleasantly surprised by the treatment. From the first session I noticed an improvement in my energy and physical recovery. The staff was very professional, attentive and explained the entire process clearly. I will definitely come back!",
-    text_es: "Una experiencia muy positiva con la cámara hiperbárica. Me sorprendió gratamente el tratamiento. Desde la primera sesión noté una mejora en mi energía y recuperación física. El personal fue muy profesional, atento y explicó todo el proceso con claridad. ¡Definitivamente volveré!",
-    avatar: "JG"
-  },
-  {
-    id: 34,
-    name: "Jaime Montoya",
-    time_en: "A year ago",
-    time_es: "Hace un año",
-    rating: 5,
-    text_en: "Excellent!",
-    text_es: "¡Excelente!",
-    avatar: "JM"
   }
 ];
 
@@ -531,21 +440,8 @@ export const Testimonials = () => {
           </div>
         </div>
 
-        {/* Google Reviews Badge */}
-        <div className="mt-16 text-center">
-          <p className="font-sans text-gray-500 mb-4">{t.testimonials.patient}</p>
-          <a
-            href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-sans inline-flex items-center gap-2 text-gold font-semibold hover:opacity-70 transition-opacity"
-          >
-            <svg className="w-5 h-5 text-gold fill-current" viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-            {t.testimonials.google}
-          </a>
-        </div>
+
+
       </div>
 
       {/* Testimonial Modal */}
@@ -617,13 +513,8 @@ export const Testimonials = () => {
                   {getText(selectedTestimonial)}
                 </p>
 
-                {/* Google badge */}
-                <div className="mt-8 pt-6 border-t border-gray-100 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-gold fill-current" viewBox="0 0 24 24">
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                  </svg>
-                  <span className="font-sans text-sm text-gray-500">Google Review</span>
-                </div>
+
+
               </div>
             </motion.div>
           </motion.div>

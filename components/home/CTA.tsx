@@ -86,7 +86,7 @@ export const CTA = () => {
           {/* Social icons */}
           <div className="flex items-center justify-center gap-4 mb-12">
             <a
-              href="https://www.instagram.com/drasilvia.romero/"
+              href="https://www.instagram.com/dra.silviaromero"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center

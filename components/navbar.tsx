@@ -48,7 +48,7 @@ export const Navbar = () => {
   ];
 
   const socialItems = [
-    { label: 'Instagram', link: 'https://www.instagram.com/drasilvia.romero/' },
+    { label: 'Instagram', link: 'https://www.instagram.com/dra.silviaromero' },
     { label: 'WhatsApp', link: 'https://wa.me/573118324191' },
   ];
 
@@ -158,8 +158,16 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="lg:hidden absolute top-0 right-0 h-16 w-16" justify="end">
-        <div className="w-full h-full relative">
+      <NavbarContent className="lg:hidden absolute top-0 right-0 h-16" justify="end">
+        {/* Mobile language toggle */}
+        <button
+          onClick={() => setLanguage(language === "en" ? "es" : "en")}
+          className="md:hidden absolute right-16 top-1/2 -translate-y-1/2 text-white flex items-center gap-1.5 text-xs z-50 px-2 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"
+        >
+          <span className={`fi ${language === "en" ? "fi-us" : "fi-es"} text-sm rounded-sm`}></span>
+          {language === "en" ? "EN" : "ES"}
+        </button>
+        <div className="w-16 h-full relative">
           <StaggeredMenu
             position="right"
             items={menuItems}

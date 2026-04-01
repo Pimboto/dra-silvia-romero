@@ -153,7 +153,7 @@ export const Services = () => {
   };
 
   useEffect(() => {
-    setActiveTab(t.services.categories.body);
+    setActiveTab(t.services.categories.face);
   }, [t]);
 
   const handleTabChange = (tab: string) => {
@@ -253,6 +253,7 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
         className="flip-card-inner w-full h-full relative transition-transform duration-700"
         style={{
           transformStyle: 'preserve-3d',
+          WebkitTransformStyle: 'preserve-3d' as any,
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
         }}
       >
