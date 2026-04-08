@@ -7,12 +7,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
 const LOOP_COUNTS: Record<number, number> = {
-  3: 5, // Abdominoplastia - more time to appreciate the change
-  7: 5, // Abdomen - more time to appreciate the change
+  3: 5, // Abdominoplastia
+  7: 5, // Abdomen
 };
 const DEFAULT_LOOP_COUNT = 3;
 
+// Seconds to hold on the final frame before advancing
+const HOLD_DURATION: Record<number, number> = {
+  3: 3000, // Abdominoplastia - 3s extra on final frame
+  7: 3000, // Abdomen - 3s extra on final frame
+};
+const DEFAULT_HOLD = 1500;
+
 const getMaxLoops = (index: number): number => LOOP_COUNTS[index] ?? DEFAULT_LOOP_COUNT;
+const getHoldDuration = (index: number): number => HOLD_DURATION[index] ?? DEFAULT_HOLD;
 
 export const Results = () => {
   const { t } = useLanguage();
@@ -49,8 +57,8 @@ export const Results = () => {
     {
       id: 3,
       title: t.results.cases[3].title,
-      before: "/vid/abdominoplastia.mp4",
-      after: "/vid/abdominoplastia.mp4",
+      before: "/vid/abdomyno.mp4",
+      after: "/vid/abdomyno.mp4",
       description: t.results.cases[3].description,
       isVideo: true
     },
@@ -88,24 +96,39 @@ export const Results = () => {
     }
   ];
 
+  const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const handleVideoEnded = useCallback(() => {
-    if (autoRotationStopped) return;
+    const hold = getHoldDuration(activeIndex);
 
-    playCountRef.current += 1;
-    const maxLoops = getMaxLoops(activeIndex);
+    // Always hold on final frame before doing anything
+    holdTimerRef.current = setTimeout(() => {
+      if (autoRotationStopped) {
+        // Manual mode: just replay after hold
+        if (videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play().catch(() => {});
+        }
+      } else {
+        // Auto-rotation mode
+        playCountRef.current += 1;
+        const maxLoops = getMaxLoops(activeIndex);
 
-    if (playCountRef.current >= maxLoops) {
-      playCountRef.current = 0;
-      setActiveIndex((prev) => (prev + 1) % resultsData.length);
-    } else {
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play().catch(() => {});
+        if (playCountRef.current >= maxLoops) {
+          playCountRef.current = 0;
+          setActiveIndex((prev) => (prev + 1) % resultsData.length);
+        } else {
+          if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play().catch(() => {});
+          }
+        }
       }
-    }
+    }, hold);
   }, [activeIndex, autoRotationStopped, resultsData.length]);
 
   const handleUserClick = useCallback((index: number) => {
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
     setAutoRotationStopped(true);
     playCountRef.current = 0;
     setActiveIndex(index);
@@ -163,7 +186,7 @@ export const Results = () => {
                     key={activeIndex}
                     src={resultsData[activeIndex].after}
                     autoPlay
-                    loop={autoRotationStopped}
+                    loop={false}
                     muted
                     playsInline
                     onEnded={handleVideoEnded}

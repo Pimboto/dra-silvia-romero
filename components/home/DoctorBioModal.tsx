@@ -143,9 +143,9 @@ export const DoctorBioModal = ({ isOpen, onClose }: DoctorBioModalProps) => {
               <p className="mb-3 text-gray-300 font-sans font-light leading-relaxed text-sm">
                 {t.doctorModal.info.description1}
               </p>
-              <p className="mb-4 text-gray-300 font-sans font-light leading-relaxed text-sm">
-                {t.doctorModal.info.description2}
-              </p>
+              <blockquote className="mb-4 pl-4 border-l-2 border-gold/40 italic text-gray-300 font-sans font-light leading-relaxed text-sm">
+                &ldquo;{t.doctorModal.info.description2}&rdquo;
+              </blockquote>
               <ul className="space-y-2 text-sm text-gray-400 font-sans">
                 <li className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 bg-gold rounded-full flex-shrink-0"></span>

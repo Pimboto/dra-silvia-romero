@@ -74,7 +74,7 @@ export const translations = {
                 lipo: {
                     title: "Liposculpture",
                     description: "Liposuction with definition, body contouring and transfer to buttocks.",
-                    recovery: "10–14 days before returning to routine, 12 weeks total recovery.",
+                    recovery: "10–14 days before returning to routine, 12 weeks total recovery. One year for definitive result.",
                     notes: ["Mandatory use of girdle for 6 weeks", "Best candidates have good skin elasticity", "Does not correct moderate to severe excess skin"]
                 },
                 abdominoplasty: {
@@ -86,31 +86,31 @@ export const translations = {
                 gluteoplasty: {
                     title: "Gluteoplasty",
                     description: "Natural increase in buttock size with implants.",
-                    recovery: "21 days before returning to routine, 12 weeks total recovery.",
+                    recovery: "21 days before returning to routine, 12 weeks total recovery. One year for definitive result.",
                     notes: ["Mandatory use of girdle for 6 weeks", "No support on buttocks for 2 weeks", "Proper hygiene very important to avoid contamination", "Does not correct moderate to severe excess skin"]
                 },
                 breastAug: {
                     title: "Breast Augmentation",
                     description: "Natural results using implants, conventional technique with GC Aesthetics implants, or PRESERVÉ technique with MOTIVA implants.",
-                    recovery: "7–10 days for normal activities, 4–6 weeks total recovery.",
+                    recovery: "7–10 days for normal activities, 4–6 weeks total recovery. One year for definitive result.",
                     notes: ["Pre-surgical exams required", "Implant size is defined according to body proportions and in agreement with you in the pre-operative consultation"]
                 },
                 mastopexy: {
                     title: "Mastopexy (Breast Lift)",
                     description: "Breast lifting, removal of excess skin.",
-                    recovery: "21 days before returning to routine, 12 weeks total recovery.",
+                    recovery: "21 days before returning to routine, 12 weeks total recovery. One year for definitive result.",
                     notes: ["Mandatory use of bra", "Does not correct skin flaccidity", "Can be performed with or without implants", "Usually requires an inverted T scar"]
                 },
                 explantation: {
                     title: "Breast Explantation",
                     description: "Removal of breast prosthesis and use of own tissues to reconstruct the breasts.",
-                    recovery: "21 days before returning to routine, 12 weeks total recovery.",
+                    recovery: "21 days before returning to routine, 12 weeks total recovery. One year for definitive result.",
                     notes: ["Mandatory use of bra", "Does not correct skin flaccidity", "Usually requires an inverted T scar", "May require fat injection"]
                 },
                 breastRed: {
                     title: "Breast Reduction",
                     description: "Decrease in breast size, accompanied by lifting and removal of excess skin.",
-                    recovery: "21 days before returning to routine, 12 weeks total recovery.",
+                    recovery: "21 days before returning to routine, 12 weeks total recovery. One year for definitive result.",
                     notes: ["Mandatory use of bra", "Does not correct skin flaccidity", "Can be performed with or without implants", "Usually requires an inverted T scar"]
                 },
                 facelift: {
@@ -146,7 +146,7 @@ export const translations = {
                 vaginal: {
                     title: "Vaginal Rejuvenation",
                     description: "Management of labia minora and majora, pubis and vaginal area.",
-                    recovery: "14 days.",
+                    recovery: "14 days. Three months for partial result, one year for definitive result.",
                     notes: ["Procedure without disability but there is inflammation", "Sutures and wounds must be cared for very well given high risk of infection due to area"]
                 },
                 botox: {
@@ -407,7 +407,7 @@ export const translations = {
                 lipo: {
                     title: "Lipoescultura",
                     description: "Liposucción con definición, marcación corporal y transferencia a glúteos.",
-                    recovery: "10–14 días antes de volver a rutina, 12 semanas de recuperación total.",
+                    recovery: "10–14 días antes de volver a rutina, 12 semanas de recuperación total. Un año para resultado definitivo.",
                     notes: ["Uso obligatorio de faja por 6 semanas", "Mejores candidatas tienen buena elasticidad en la piel", "No corrige el exceso de piel moderado y severo"]
                 },
                 abdominoplasty: {
@@ -419,31 +419,31 @@ export const translations = {
                 gluteoplasty: {
                     title: "Gluteoplastia",
                     description: "Aumento natural del tamaño de los glúteos con implantes.",
-                    recovery: "21 días antes de volver a rutina, 12 semanas de recuperación total.",
+                    recovery: "21 días antes de volver a rutina, 12 semanas de recuperación total. Un año para resultado definitivo.",
                     notes: ["Uso obligatorio de faja por 6 semanas", "No apoyo en los glúteos por 2 semanas", "Adecuada higiene muy importante para evitar contaminación", "No corrige el exceso de piel moderado y severo"]
                 },
                 breastAug: {
                     title: "Aumento de Senos con Implantes",
                     description: "Resultados naturales usando implantes, técnica convencional con implantes GC Aesthetics, o técnica PRESERVÉ con implantes MOTIVA.",
-                    recovery: "7–10 días para actividades normales, 4–6 semanas recuperación total.",
+                    recovery: "7–10 días para actividades normales, 4–6 semanas recuperación total. Un año para resultado definitivo.",
                     notes: ["Se requiere exámenes prequirúrgicos", "Tamaño del implante se define según proporciones del cuerpo y en común acuerdo contigo en la consulta preoperatoria"]
                 },
                 mastopexy: {
                     title: "Mastopexia (Levantamiento de Senos)",
                     description: "Levantamiento de los senos, retiro de piel excedente.",
-                    recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
+                    recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total. Un año para resultado definitivo.",
                     notes: ["Uso obligatorio de brassier", "No corrige la flacidez de la piel", "Puede realizarse con o sin implantes", "Normalmente requiere una cicatriz en T invertida"]
                 },
                 explantation: {
                     title: "Explantación Mamaria",
                     description: "Retiro de la prótesis mamaria y uso de los tejidos propios para reconstruir los senos.",
-                    recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
+                    recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total. Un año para resultado definitivo.",
                     notes: ["Uso obligatorio de brassier", "No corrige la flacidez de la piel", "Normalmente requiere una cicatriz en T invertida", "Puede requerir inyección de grasa"]
                 },
                 breastRed: {
                     title: "Reducción Mamaria",
                     description: "Disminución del tamaño de los senos, acompañado de levantamiento y retiro de piel excedente.",
-                    recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total.",
+                    recovery: "21 días antes de volver a la rutina, 12 semanas de recuperación total. Un año para resultado definitivo.",
                     notes: ["Uso obligatorio de brassier", "No corrige la flacidez de la piel", "Puede realizarse con o sin implantes", "Normalmente requiere una cicatriz en T invertida"]
                 },
                 facelift: {
@@ -479,7 +479,7 @@ export const translations = {
                 vaginal: {
                     title: "Rejuvenecimiento Vaginal",
                     description: "Manejo de los labios menores y mayores, pubis y zona vaginal.",
-                    recovery: "14 días.",
+                    recovery: "14 días. Tres meses para resultado parcial, un año para resultado definitivo.",
                     notes: ["Es un procedimiento sin incapacidad pero hay inflamación de las zonas", "Las suturas y heridas se deben cuidar muy bien dado el alto riesgo de infección por la zona"]
                 },
                 botox: {

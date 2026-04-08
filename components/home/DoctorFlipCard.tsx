@@ -9,14 +9,20 @@ export const DoctorFlipCard = () => {
   const { t } = useLanguage();
   const [isBioModalOpen, setIsBioModalOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [flipKey, setFlipKey] = useState(0);
 
-  // Auto-rotate the flip card every 6 seconds
+  // Auto-rotate the flip card every 6 seconds, resets when flipKey changes (manual click)
   useEffect(() => {
     const interval = setInterval(() => {
       setIsFlipped((prev) => !prev);
     }, 6000);
     return () => clearInterval(interval);
-  }, []);
+  }, [flipKey]);
+
+  const handleCardClick = () => {
+    setIsFlipped((prev) => !prev);
+    setFlipKey((prev) => prev + 1);
+  };
 
   return (
     <section id="doctor" className="relative py-24 px-6 md:px-12 bg-white">
@@ -28,7 +34,7 @@ export const DoctorFlipCard = () => {
 
       <div className="max-w-7xl mx-auto items-center gap-16 grid grid-cols-1 lg:grid-cols-2 relative z-10">
         {/* 3D Filp Card Component */}
-        <div className="group w-full h-[650px] [perspective:1000px]">
+        <div className="group w-full h-[650px] [perspective:1000px] cursor-pointer" onClick={handleCardClick}>
           <div
             className="relative w-full h-full transition-all duration-1000 [transform-style:preserve-3d]"
             style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
