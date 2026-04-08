@@ -88,6 +88,16 @@ export const Navbar = () => {
             </div>
           </NextLink>
         </NavbarBrand>
+        {/* Mobile language toggle - next to logo to avoid overlap with menu button */}
+        <NavbarItem className="md:hidden ml-2">
+          <button
+            onClick={() => setLanguage(language === "en" ? "es" : "en")}
+            className="text-white flex items-center gap-1.5 text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"
+          >
+            <span className={`fi ${language === "en" ? "fi-us" : "fi-es"} text-sm rounded-sm`}></span>
+            {language === "en" ? "EN" : "ES"}
+          </button>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="hidden lg:flex basis-full" justify="center">
@@ -158,15 +168,7 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="lg:hidden flex items-center gap-2" justify="end">
-        {/* Mobile language toggle */}
-        <button
-          onClick={() => setLanguage(language === "en" ? "es" : "en")}
-          className="md:hidden text-white flex items-center gap-1.5 text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"
-        >
-          <span className={`fi ${language === "en" ? "fi-us" : "fi-es"} text-sm rounded-sm`}></span>
-          {language === "en" ? "EN" : "ES"}
-        </button>
+      <NavbarContent className="lg:hidden" justify="end">
         <div className="w-12 h-12 relative">
           <StaggeredMenu
             position="right"
