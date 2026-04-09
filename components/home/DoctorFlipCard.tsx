@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@heroui/button";
+
 import { DoctorBioModal } from "./DoctorBioModal";
+
 import { useLanguage } from "@/context/LanguageContext";
 
 export const DoctorFlipCard = () => {
@@ -16,6 +18,7 @@ export const DoctorFlipCard = () => {
     const interval = setInterval(() => {
       setIsFlipped((prev) => !prev);
     }, 6000);
+
     return () => clearInterval(interval);
   }, [flipKey]);
 
@@ -25,28 +28,41 @@ export const DoctorFlipCard = () => {
   };
 
   return (
-    <section id="doctor" className="relative py-24 px-6 md:px-12 bg-white">
+    <section className="relative py-24 px-6 md:px-12 bg-white" id="doctor">
       {/* Degradado superior */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-luxury-black/10 to-transparent"></div>
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-luxury-black/10 to-transparent" />
 
       {/* Degradado inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-neutral-50/80"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-neutral-50/80" />
 
       <div className="max-w-7xl mx-auto items-center gap-16 grid grid-cols-1 lg:grid-cols-2 relative z-10">
         {/* 3D Filp Card Component */}
-        <div className="group w-full h-[650px] [perspective:1000px] cursor-pointer" onClick={handleCardClick}>
+        <div
+          className="group w-full h-[650px] [perspective:1000px] cursor-pointer"
+          role="button"
+          tabIndex={0}
+          onClick={handleCardClick}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleCardClick();
+            }
+          }}
+        >
           <div
             className="relative w-full h-full transition-all duration-1000 [transform-style:preserve-3d]"
-            style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+            style={{
+              transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+            }}
           >
             {/* FRONT FACE */}
             <div className="absolute w-full h-full [backface-visibility:hidden] rounded-[32px] overflow-hidden">
               <img
-                src="/img/doc/doctora.jpeg"
                 alt="Dra. Silvia Romero"
                 className="w-full h-full object-cover grayscale brightness-110"
+                src="/img/doc/doctora.jpeg"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90" />
 
               <div className="absolute bottom-0 left-0 w-full p-10">
                 <div className="border-l-4 border-gold pl-6">
@@ -63,15 +79,17 @@ export const DoctorFlipCard = () => {
             {/* BACK FACE */}
             <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-luxury-black text-white p-12 flex flex-col justify-center border-[1px] border-gold/30 rounded-[32px]">
               {/* Decorative element */}
-              <div className="absolute top-6 right-6 w-16 h-16 border-t border-r border-gold/40"></div>
-              <div className="absolute bottom-6 left-6 w-16 h-16 border-b border-l border-gold/40"></div>
+              <div className="absolute top-6 right-6 w-16 h-16 border-t border-r border-gold/40" />
+              <div className="absolute bottom-6 left-6 w-16 h-16 border-b border-l border-gold/40" />
 
               <div className="text-center mb-10">
                 <span className="font-sans text-gold text-xs uppercase tracking-[0.3em] block mb-2">
                   {t.doctor.credentials}
                 </span>
-                <h3 className="font-serif text-3xl text-white">{t.doctor.excellence}</h3>
-                <div className="w-12 h-0.5 bg-gold mx-auto mt-4"></div>
+                <h3 className="font-serif text-3xl text-white">
+                  {t.doctor.excellence}
+                </h3>
+                <div className="w-12 h-0.5 bg-gold mx-auto mt-4" />
               </div>
 
               <div className="space-y-8 relative z-10">
@@ -132,24 +150,25 @@ export const DoctorFlipCard = () => {
         {/* Right Side Content (Static) */}
         <div className="flex flex-col justify-center">
           <span className="font-sans text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-6 flex items-center gap-4">
-            <span className="w-10 h-[1px] bg-gold"></span>
+            <span className="w-10 h-[1px] bg-gold" />
             {t.doctor.philosophy}
           </span>
 
           <h2 className="font-serif text-5xl md:text-6xl mb-8 text-luxury-black leading-[1.1]">
-            {t.doctor.passion} <br /> {t.doctor.perfection.split(' ')[0]} <span className="text-gold italic">{t.doctor.perfection.split(' ').slice(1).join(' ')}</span>
+            {t.doctor.passion} <br /> {t.doctor.perfection.split(" ")[0]}{" "}
+            <span className="text-gold italic">
+              {t.doctor.perfection.split(" ").slice(1).join(" ")}
+            </span>
           </h2>
 
           <div className="space-y-8 text-lg leading-relaxed text-gray-600 font-sans font-light border-l border-gray-200 pl-8">
-            <p>
-              {t.doctor.bio}
-            </p>
+            <p>{t.doctor.bio}</p>
           </div>
 
           <div className="mt-12">
             <Button
-              onClick={() => setIsBioModalOpen(true)}
               className="font-sans bg-luxury-black text-white px-10 py-7 rounded-full text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition-all shadow-xl"
+              onClick={() => setIsBioModalOpen(true)}
             >
               {t.doctor.readMore}
             </Button>

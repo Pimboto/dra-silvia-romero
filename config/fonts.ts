@@ -1,4 +1,7 @@
-import { Playfair_Display as FontSerif, Montserrat as FontSans } from "next/font/google";
+import {
+  Playfair_Display as FontSerif,
+  Montserrat as FontSans,
+} from "next/font/google";
 
 export const fontSans = FontSans({
   subsets: ["latin"],

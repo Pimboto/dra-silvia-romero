@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { Button } from "@heroui/button";
-import { Link } from "@heroui/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+
 import { useLanguage } from "@/context/LanguageContext";
 
 const LOOP_COUNTS: Record<number, number> = {
@@ -19,8 +18,10 @@ const HOLD_DURATION: Record<number, number> = {
 };
 const DEFAULT_HOLD = 1500;
 
-const getMaxLoops = (index: number): number => LOOP_COUNTS[index] ?? DEFAULT_LOOP_COUNT;
-const getHoldDuration = (index: number): number => HOLD_DURATION[index] ?? DEFAULT_HOLD;
+const getMaxLoops = (index: number): number =>
+  LOOP_COUNTS[index] ?? DEFAULT_LOOP_COUNT;
+const getHoldDuration = (index: number): number =>
+  HOLD_DURATION[index] ?? DEFAULT_HOLD;
 
 export const Results = () => {
   const { t } = useLanguage();
@@ -36,7 +37,7 @@ export const Results = () => {
       before: "/vid/implantacion-mamaria.mp4",
       after: "/vid/implantacion-mamaria.mp4",
       description: t.results.cases[0].description,
-      isVideo: true
+      isVideo: true,
     },
     {
       id: 1,
@@ -44,7 +45,7 @@ export const Results = () => {
       before: "/img/assets/ritidoplastiabianca.mp4",
       after: "/img/assets/ritidoplastiabianca.mp4",
       description: t.results.cases[1].description,
-      isVideo: true
+      isVideo: true,
     },
     {
       id: 2,
@@ -52,7 +53,7 @@ export const Results = () => {
       before: "/img/assets/acidoastrid.mp4",
       after: "/img/assets/acidoastrid.mp4",
       description: t.results.cases[2].description,
-      isVideo: true
+      isVideo: true,
     },
     {
       id: 3,
@@ -60,7 +61,7 @@ export const Results = () => {
       before: "/vid/abdomyno.mp4",
       after: "/vid/abdomyno.mp4",
       description: t.results.cases[3].description,
-      isVideo: true
+      isVideo: true,
     },
     {
       id: 4,
@@ -68,7 +69,7 @@ export const Results = () => {
       before: "/vid/cervicoplastia.mp4",
       after: "/vid/cervicoplastia.mp4",
       description: t.results.cases[4].description,
-      isVideo: true
+      isVideo: true,
     },
     {
       id: 5,
@@ -76,7 +77,7 @@ export const Results = () => {
       before: "/vid/explantacion-mamaria.mp4",
       after: "/vid/explantacion-mamaria.mp4",
       description: t.results.cases[5].description,
-      isVideo: true
+      isVideo: true,
     },
     {
       id: 6,
@@ -84,7 +85,7 @@ export const Results = () => {
       before: "/vid/gluteos.mp4",
       after: "/vid/gluteos.mp4",
       description: t.results.cases[6].description,
-      isVideo: true
+      isVideo: true,
     },
     {
       id: 8,
@@ -92,8 +93,8 @@ export const Results = () => {
       before: "/vid/abdomen.mp4",
       after: "/vid/abdomen.mp4",
       description: t.results.cases[7].description,
-      isVideo: true
-    }
+      isVideo: true,
+    },
   ];
 
   const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -135,44 +136,57 @@ export const Results = () => {
   }, []);
 
   return (
-    <section id="results" className="relative py-32 px-6 md:px-12 bg-luxury-black text-white overflow-hidden">
+    <section
+      className="relative py-32 px-6 md:px-12 bg-luxury-black text-white overflow-hidden"
+      id="results"
+    >
       {/* Degradado superior desde Services */}
-      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-white/30 via-white/10 to-transparent blur-xl"></div>
+      <div className="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-white/30 via-white/10 to-transparent blur-xl" />
 
       {/* Degradado inferior hacia DoctorFlipCard */}
-      <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-transparent via-white/10 to-white/30 blur-xl"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-transparent via-white/10 to-white/30 blur-xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-
           {/* Left Content */}
           <div className="lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              whileInView={{ opacity: 1, x: 0 }}
             >
-              <span className="font-sans text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">{t.results.tag}</span>
-              <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">{t.results.title} <br /> <span className="text-gold italic font-serif">{t.results.subtitle}</span></h2>
+              <span className="font-sans text-gold uppercase tracking-[0.4em] text-xs font-bold mb-4 block">
+                {t.results.tag}
+              </span>
+              <h2 className="font-serif text-5xl md:text-6xl mb-8 leading-tight">
+                {t.results.title} <br />{" "}
+                <span className="text-gold italic font-serif">
+                  {t.results.subtitle}
+                </span>
+              </h2>
 
               <div className="grid grid-cols-2 gap-3 mb-12">
                 {resultsData.map((item, index) => (
                   <button
                     key={item.id}
+                    className={`w-full text-left p-4 border-l-4 rounded-r-[20px] transition-all duration-500 ${
+                      activeIndex === index
+                        ? "border-gold bg-white/5"
+                        : "border-white/10 hover:border-white/30"
+                    }`}
                     onClick={() => handleUserClick(index)}
-                    className={`w-full text-left p-4 border-l-4 rounded-r-[20px] transition-all duration-500 ${activeIndex === index
-                      ? "border-gold bg-white/5"
-                      : "border-white/10 hover:border-white/30"
-                      }`}
                   >
-                    <h3 className={`font-serif text-sm md:text-base mb-1 ${activeIndex === index ? "text-gold" : "text-white"}`}>
+                    <h3
+                      className={`font-serif text-sm md:text-base mb-1 ${activeIndex === index ? "text-gold" : "text-white"}`}
+                    >
                       {item.title}
                     </h3>
-                    <p className="font-sans text-xs text-gray-400 font-light">{item.description}</p>
+                    <p className="font-sans text-xs text-gray-400 font-light">
+                      {item.description}
+                    </p>
                   </button>
                 ))}
               </div>
-
             </motion.div>
           </div>
 
@@ -182,21 +196,21 @@ export const Results = () => {
               <div className="relative w-full h-full">
                 {resultsData[activeIndex].isVideo ? (
                   <video
-                    ref={videoRef}
                     key={activeIndex}
-                    src={resultsData[activeIndex].after}
+                    ref={videoRef}
                     autoPlay
-                    loop={false}
                     muted
                     playsInline
-                    onEnded={handleVideoEnded}
                     className="absolute inset-0 w-full h-full object-cover"
+                    loop={false}
+                    src={resultsData[activeIndex].after}
+                    onEnded={handleVideoEnded}
                   />
                 ) : (
                   <img
-                    src={resultsData[activeIndex].after}
                     alt={resultsData[activeIndex].title}
                     className="absolute inset-0 w-full h-full object-cover"
+                    src={resultsData[activeIndex].after}
                   />
                 )}
 
@@ -210,7 +224,6 @@ export const Results = () => {
               {t.results.videoLabel}
             </p>
           </div>
-
         </div>
       </div>
     </section>

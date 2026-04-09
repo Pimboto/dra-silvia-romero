@@ -4,16 +4,17 @@ import { Link } from "@heroui/link";
 
 export const WhatsAppButton = () => {
   const phoneNumber = "573118324191"; // Número de WhatsApp
-  const message = "Hola, me gustaría agendar una consulta con la Dra. Silvia Romero";
+  const message =
+    "Hola, me gustaría agendar una consulta con la Dra. Silvia Romero";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
     <Link
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] group"
       aria-label="Contactar por WhatsApp"
+      className="fixed bottom-8 right-8 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-2xl hover:scale-110 transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] group"
+      href={whatsappUrl}
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <svg
         className="w-9 h-9 text-white group-hover:scale-110 transition-transform"

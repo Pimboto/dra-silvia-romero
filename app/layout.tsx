@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import "flag-icons/css/flag-icons.min.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -35,22 +34,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en" className="light">
+    <html suppressHydrationWarning className="light" lang="en">
       <body
         suppressHydrationWarning
         className={clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
           fontSans.variable,
           fontSerif.variable,
-        )
-        }
+        )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "light", forcedTheme: "light" }}>
+        <Providers
+          themeProps={{
+            attribute: "class",
+            defaultTheme: "light",
+            forcedTheme: "light",
+          }}
+        >
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            <main className="w-full flex-grow">
-              {children}
-            </main>
+            <main className="w-full flex-grow">{children}</main>
           </div>
           <WhatsAppButton />
         </Providers>

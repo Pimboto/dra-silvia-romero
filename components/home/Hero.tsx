@@ -3,15 +3,17 @@
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { ArrowDown2 } from "iconsax-reactjs";
+
 import { useLanguage } from "@/context/LanguageContext";
 
 export const Hero = () => {
   const { t } = useLanguage();
 
   const scrollToNextSection = () => {
-    const nextSection = document.querySelector('section:nth-of-type(2)');
+    const nextSection = document.querySelector("section:nth-of-type(2)");
+
     if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
+      nextSection.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -21,8 +23,8 @@ export const Hero = () => {
       <div className="absolute inset-0 z-0 overflow-hidden pt-16">
         <video
           autoPlay
-          muted
           loop
+          muted
           playsInline
           className="min-w-full min-h-full object-cover opacity-50"
         >
@@ -40,10 +42,10 @@ export const Hero = () => {
         </p>
         <Button
           as={Link}
-          href="https://wa.me/573118324191"
-          variant="solid"
-          radius="full"
           className="bg-gold text-luxury-black font-semibold text-lg px-10 py-8 hover:scale-105 transition-transform duration-500 shadow-[0_0_30px_-5px_var(--color-gold)] rounded-full"
+          href="https://wa.me/573118324191"
+          radius="full"
+          variant="solid"
         >
           {t.hero.cta}
         </Button>
@@ -51,13 +53,19 @@ export const Hero = () => {
 
       {/* Scroll Indicator */}
       <button
-        onClick={scrollToNextSection}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/70 hover:text-gold transition-colors duration-300 cursor-pointer group"
         aria-label="Scroll to next section"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/70 hover:text-gold transition-colors duration-300 cursor-pointer group"
+        onClick={scrollToNextSection}
       >
-        <span className="text-xs uppercase tracking-widest font-semibold">{t.hero.scroll}</span>
+        <span className="text-xs uppercase tracking-widest font-semibold">
+          {t.hero.scroll}
+        </span>
         <div className="animate-bounce">
-          <ArrowDown2 size={28} variant="Bold" className="group-hover:text-gold transition-colors" />
+          <ArrowDown2
+            className="group-hover:text-gold transition-colors"
+            size={28}
+            variant="Bold"
+          />
         </div>
       </button>
     </section>
