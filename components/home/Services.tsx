@@ -272,7 +272,7 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
         style={{
           transformStyle: "preserve-3d",
           WebkitTransformStyle: "preserve-3d" as any,
-          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          // transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
       >
         {/* Front */}
@@ -320,7 +320,7 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
               </div>
             </div>
 
-            <button
+            {/* <button
               className="font-sans text-gold uppercase tracking-widest text-xs border-b border-gold pb-1 hover:text-white transition-colors self-center mt-4"
               onClick={(e) => {
                 e.stopPropagation();
@@ -328,7 +328,7 @@ function FlipCard({ procedure }: { procedure: Procedure }) {
               }}
             >
               {t.services.labels.more}
-            </button>
+            </button> */}
           </div>
         </div>
 

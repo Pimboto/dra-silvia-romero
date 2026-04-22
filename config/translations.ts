@@ -501,7 +501,7 @@ export const translations = {
             title: "Patient Safety Congress",
             description: "International Congress",
           },
-          { title: "Facial Lifting", description: "Nora — Stanford" },
+          { title: "Facial Lifting", description: "Dr. Nora Stanford" },
           { title: "Medellin Health City", description: "Medellin, Colombia" },
           {
             title: "Intimate Rejuvenation",
@@ -1019,7 +1019,7 @@ export const translations = {
             title: "Congreso Seguridad del Paciente",
             description: "Congreso Internacional",
           },
-          { title: "Lifting Facial", description: "Nora — Stanford" },
+          { title: "Lifting Facial", description: "Dra. Nora Stanford" },
           { title: "Medellín Health City", description: "Medellín, Colombia" },
           {
             title: "Rejuvenecimiento Íntimo",
